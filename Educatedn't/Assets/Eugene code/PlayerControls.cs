@@ -22,6 +22,9 @@ public class PlayerControls : MonoBehaviour
     [SerializeField, Range( 0f, 10f )]
     private float _jumpDist = 5f;
 
+    [SerializeField]
+    private Combat.Attack _attack = null;
+
 
     private Rigidbody _rb = null;
     private Vector3 _movement = Vector3.zero;
@@ -53,6 +56,10 @@ public class PlayerControls : MonoBehaviour
 
         if ( Input.GetKeyDown( _jumpKey ) ) {
             _jumpPressed = true;
+        }
+        if ( Input.GetMouseButtonDown( 0 ) && null != _attack ) {
+            Debug.Log( "Swoosh!" );
+            _attack.Strike();
         }
     }
 
