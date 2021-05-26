@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField, Range( 0.5f, 12f )]
-    private float _speed = 6.5f;
+    private float _speed = 4f;
 
     [SerializeField, Range( 3f, 8f )]
     private float _rotationSpeed = 5f;
@@ -23,12 +23,16 @@ public class PlayerControls : MonoBehaviour
     private float _jumpDist = 5f;
 
     [SerializeField]
-    private Combat.Attack _attack = null;
+    private Combat.Attack _attackForward = null;
+
+    [SerializeField]
+    private Combat.Attack _attackBelow = null;
 
 
     private Rigidbody _rb = null;
     private Vector3 _movement = Vector3.zero;
     private bool _jumpPressed = false;
+    private bool _attackPressed = true;
 
 
 
@@ -37,14 +41,14 @@ public class PlayerControls : MonoBehaviour
     }
 
 
-    private bool CheckGrounded() {
+    private bool IsGrounded() {
         Vector3 origin = transform.position + Vector3.up * 0.5f;
         Vector3 direction = new Vector3(0, -1, 0);
         float maxDistance = 0.6f;
+        int layerMask = 1;
 
-        //Debug.DrawRay(origin, direction * maxDistance, Color.magenta);
 
-        return Physics.Raycast( origin, direction, maxDistance );
+        return Physics.Raycast( origin, direction, maxDistance, layerMask );
     }
 
 
@@ -57,26 +61,35 @@ public class PlayerControls : MonoBehaviour
         if ( Input.GetKeyDown( _jumpKey ) ) {
             _jumpPressed = true;
         }
-        if ( Input.GetMouseButtonDown( 0 ) && null != _attack ) {
-            Debug.Log( "Swoosh!" );
-            _attack.Strike();
+        if ( Input.GetMouseButtonDown( 0 ) && null != _attackForward && null != _attackBelow ) {
+            _attackPressed = true;
         }
     }
 
 
     private void FixedUpdate() {
-        Vector3 velocityXY = new Vector3( _rb.velocity.x, 0, _rb.velocity.z );
-        if ( velocityXY.magnitude > 0.01f ) {
-            transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( velocityXY ), Time.fixedDeltaTime * _rotationSpeed );
-        }
+        // ROTATE
+        Rotate();
 
-        if ( CheckGrounded() ) {
+        if ( IsGrounded() ) {
             // JUMP
             Jump();
         }
         // MOVE
         Move();
+
+        // ATTACK
+        Attack();
     }
+
+
+    private void Rotate() {
+        Vector3 velocityXZ = new Vector3( _rb.velocity.x, 0, _rb.velocity.z );
+        if ( velocityXZ.magnitude > 0.01f ) {
+            transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( velocityXZ ), Time.fixedDeltaTime * _rotationSpeed );
+        }
+    }
+
 
     private void Jump() {
         if ( _jumpPressed && _canJump ) {
@@ -86,9 +99,32 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+
+    private void Bounce() {
+        Vector3 velocityXZ = new Vector3( _rb.velocity.x, 0, _rb.velocity.z ).normalized;
+        _rb.AddForce( new Vector3( velocityXZ.x * _jumpDist, _jumpForce, velocityXZ.z * _jumpDist ) * 5f );
+    }
+
+
     private void Move() {
         if ( _movement.magnitude >= 0.01f ) {
             _rb.AddForce( _movement * _speed );
+        }
+    }
+
+    private void Attack() {
+        if ( _attackPressed ) {
+            _attackPressed = false;
+            if ( IsGrounded() || _rb.velocity.y > 0 ) {
+                _attackForward.Strike();
+                Debug.Log( "Swoosh!" );
+            }
+            else {
+                _rb.velocity = new Vector3( _rb.velocity.x, 0, _rb.velocity.z );
+                _attackBelow.Strike();
+                Bounce();
+                Debug.Log( "Bump!" );
+            }
         }
     }
 }
