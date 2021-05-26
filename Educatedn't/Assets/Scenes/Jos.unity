@@ -472,6 +472,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyChaser
       objectReference: {fileID: 0}
+    - target: {fileID: 4053441512339799764, guid: 685ad5a4e31b7ca45ab39eacef2bd36e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4053441512339799772, guid: 685ad5a4e31b7ca45ab39eacef2bd36e, type: 3}
       propertyPath: player
       value: 
@@ -790,10 +794,6 @@ PrefabInstance:
     - target: {fileID: 4737563938146979241, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
       propertyPath: _rotationSpeed
       value: 4.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4737563938146979242, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
-      propertyPath: m_Center.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4737563938146979254, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
       propertyPath: m_LocalPosition.x
