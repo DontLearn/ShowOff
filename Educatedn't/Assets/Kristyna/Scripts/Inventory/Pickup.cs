@@ -18,6 +18,8 @@ public class Pickup : MonoBehaviour
 
     void Start()
     {
+        inventoryHolder = GameObject.FindGameObjectWithTag("Player");
+        Debug.Assert(inventoryHolder, "Pickup: InventoryHolder not found, wrong tag!");
         tag = inventoryHolder.gameObject.tag;
         inventory = GameObject.FindGameObjectWithTag(tag).GetComponent<Inventory>();
     }
