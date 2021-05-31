@@ -6,6 +6,10 @@ using UnityEngine;
 namespace Player {
     [RequireComponent( typeof( Animator ))]
     public class PlayerAnimator : MonoBehaviour {
+        [SerializeField]
+        private AnimatorOverrideController[] _attackOverride = null;
+
+
         private Animator _animator = null;
 
 
@@ -39,8 +43,23 @@ namespace Player {
 
 
         public void TriggerAttack() {
-            if ( _animator )
-                _animator.SetTrigger( "Attack" );
+            if ( _animator ) {
+                if ( !_animator.GetCurrentAnimatorStateInfo( 0 ).IsTag( "Attack" ) ) {
+                    int randomAttack = Random.Range( 0, _attackOverride.Length );
+                    SetAnimations( randomAttack );
+
+                    _animator.SetTrigger( "Attack" );
+                }
+            }
+        }
+
+
+        private void SetAnimations( int value ) {
+            if ( value >= 0 && value <= _attackOverride.Length - 1 ) {
+                AnimatorOverrideController controller = _attackOverride[ value ];
+                if ( null != controller )
+                    _animator.runtimeAnimatorController = controller;
+            }
         }
     }
 }
