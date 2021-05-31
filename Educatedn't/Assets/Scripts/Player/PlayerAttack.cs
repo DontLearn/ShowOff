@@ -7,14 +7,17 @@ using Combat;
 namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( Rigidbody ) )]
     public class PlayerAttack : MonoBehaviour {
-        [SerializeField, Range( 0f, 12f )]
-        private float _diveForce = 8f;
+        [SerializeField, Range( 0f, 10f )]
+        private float _downForce = 5f;
 
-        [SerializeField, Range( 16f, 38f )]
-        private float _bounceForce = 28f;
+        [SerializeField, Range( 5f, 25f )]
+        private float _bounceForce = 17f;
 
-        [SerializeField, Range( 0f, 6f )]
-        private float _bounceDash = 1.5f;
+        [SerializeField, Range( 0f, 18f )]
+        private float _bounceDash = 11.5f;
+
+        [SerializeField, Range( 0.01f, 0.99f )]
+        private float _slow = 0.7f;
 
 
         private Combat.Attack _attack = null;
@@ -22,6 +25,7 @@ namespace Player {
         private MultiAttack.Hitbox _activeHitbox = MultiAttack.Hitbox.FRONT;
         private PlayerAnimator _playerAnimator = null;
         private Rigidbody _rb = null;
+        private bool _isGrounded = true;
         private bool _attackPressed = false;
 
 
@@ -43,8 +47,24 @@ namespace Player {
         }
 
 
+        public void SetGrounded( bool pIsGrounded ) {
+            _isGrounded = pIsGrounded;
+        }
+
+
         public void AttackPressed() {
             _attackPressed = true;
+
+            if ( !_isGrounded ) {
+                float velY = _rb.velocity.y;
+                if ( velY <= 0.4f ) {
+                    _rb.velocity = new Vector3(
+                        _rb.velocity.x * ( 1f - Mathf.Pow( _slow, 2f ) ),
+                        _rb.velocity.y - _downForce,
+                        _rb.velocity.z * ( 1f - Mathf.Pow( _slow, 2f ) )
+                    );
+                }
+            }
         }
 
 
@@ -60,13 +80,14 @@ namespace Player {
         private void FixedUpdate() {
             if ( _attack ) {
                 if ( _attack is MultiAttack ) {
-                    switch ( _activeHitbox ) {
-                        case MultiAttack.Hitbox.FRONT:
-                            FrontalAttack();
-                            break;
-                        case MultiAttack.Hitbox.BELOW:
+                    if ( _isGrounded ) {
+                        FrontalAttack();
+                    }
+                    else {
+                        float velY = _rb.velocity.y;
+                        if ( velY <= 0.4f ) {
                             DiveAttack();
-                            break;
+                        }
                     }
                 }
                 else {
@@ -86,9 +107,15 @@ namespace Player {
 
 
         private void DiveAttack() {
-            _rb.AddForce( Vector3.down * _diveForce );
-
             if ( _attackPressed ) {
+                _rb.velocity = new Vector3(
+                    _rb.velocity.x * ( 1f - Mathf.Pow( _slow, 2f ) ),
+                    _rb.velocity.y,
+                    _rb.velocity.z * ( 1f - Mathf.Pow( _slow, 2f ) )
+                );
+
+                _rb.AddForce( Vector3.down * _downForce * 10f );
+
                 // Always attacking, checking for hits
                 if ( _attack.Strike() ) {
                     _attackPressed = false;
@@ -101,7 +128,12 @@ namespace Player {
         private void Bounce() {
             Vector3 velocityXZ = new Vector3( _rb.velocity.x, 0, _rb.velocity.z ).normalized;
             _rb.velocity = velocityXZ;
-            _rb.AddForce( new Vector3( velocityXZ.x * _bounceDash * 10f, _bounceForce, velocityXZ.z * _bounceDash * 10f ) * 10f );
+
+            _rb.AddForce( 100f * new Vector3(
+                velocityXZ.x * _bounceDash,
+                _bounceForce,
+                velocityXZ.z * _bounceDash )
+            );
         }
     }
 }

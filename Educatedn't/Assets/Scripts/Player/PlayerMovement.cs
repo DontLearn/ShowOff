@@ -6,18 +6,18 @@ using UnityEngine;
 namespace Player {
     [RequireComponent( typeof( Rigidbody ) )]
     public class PlayerMovement : MonoBehaviour {
-        [SerializeField, Range( 6f, 36f )]
-        private float _speed = 14f;
+        [SerializeField, Range( 6f, 32f )]
+        private float _speed = 13f;
 
-        [SerializeField, Range( 1f, 18f )]
-        private float _acceleration = 11f;
+        [SerializeField, Range( 25f, 90f )]
+        private float _acceleration = 65f;
 
-        [SerializeField, Range( 3f, 8f )]
+        [SerializeField, Range( 3f, 7f )]
         private float _rotationSpeed = 5f;
 
 
         private Rigidbody _rb = null;
-        private Vector3 _movement = Vector3.zero;
+        private Vector2 _movement = Vector3.zero;
 
 
 
@@ -42,7 +42,7 @@ namespace Player {
 
 
         public void SetMovementInput( Vector2 movementInput ) {
-            _movement = new Vector3( movementInput.x, 0, movementInput.y );
+            _movement = new Vector2( movementInput.x, movementInput.y );
         }
 
 
@@ -64,15 +64,15 @@ namespace Player {
 
         private void Rotate() {
             Vector3 velocityXZ = new Vector3( _rb.velocity.x, 0, _rb.velocity.z );
-            if ( velocityXZ.magnitude > 0.01f ) {
-                transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( velocityXZ ), Time.fixedDeltaTime * _rotationSpeed );
+            if ( Mathf.Abs( _rb.velocity.x ) > 0.03f || Mathf.Abs( _rb.velocity.z ) > 0.03f ) {
+                transform.rotation = Quaternion.Slerp( transform.rotation, Quaternion.LookRotation( velocityXZ.normalized ), Time.fixedDeltaTime * _rotationSpeed );
             }
         }
 
 
         private void Move() {
-            if ( _movement.magnitude >= 0.01f ) {
-                _rb.AddForce( _movement * _acceleration );
+            if ( Mathf.Abs( _movement.x ) > 0.03f || Mathf.Abs( _movement.y ) > 0.03f ) {
+                _rb.AddForce( new Vector3( _movement.x, 0, _movement.y ) * _acceleration );
                 Vector3 velocityXZ = new Vector3( _rb.velocity.x, 0, _rb.velocity.z );
                 if ( velocityXZ.magnitude > _speed ) {
                     velocityXZ = velocityXZ.normalized * _speed;
