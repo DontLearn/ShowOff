@@ -38,6 +38,7 @@ namespace Combat
             if ( IsDead() ) Die();
         }
 
+
         public void Hit( int damage, Vector3 force ) {
             Hit( damage );
             Rigidbody rb = GetComponent<Rigidbody>();
