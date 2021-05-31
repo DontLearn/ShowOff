@@ -13,12 +13,15 @@ namespace Combat
         private float stability = 2f;
 
 
+
+
         public void Hit( int damage ) {
             hitPoints = Math.Max( hitPoints - damage, 0 );
             Debug.Log( $"{name} was hit for {damage} damage!" );
 
             if ( IsDead() ) Die();
         }
+
 
         public void Hit( int damage, Vector3 force ) {
             Hit( damage );

@@ -24,6 +24,7 @@ namespace Player
         private int _attackButton = -1;
 
         private Vector2 _axisInversion = Vector2.one;
+        private bool _isGrounded = true;
 
 
         private void Start() {
@@ -45,6 +46,10 @@ namespace Player
 
 
         private void FixedUpdate() {
+            // Check Ground
+            CheckGround();
+
+            // Check Velocity
             CheckVelocity();
         }
 
@@ -96,34 +101,13 @@ namespace Player
                 Input.GetAxis( _forwardAxis ) * _axisInversion.x,
                 Input.GetAxis( _sideAxis ) * _axisInversion.y
             );
-            if ( _movement && moveInput.magnitude > 0 )
+            if ( _movement )
                 _movement.SetMovementInput( moveInput );
-        }
-
-
-        private void CheckVelocity() {
-            if ( _movement ) {
-                float velXZ = _movement.GetVelocityXZ();
-                float velY = _movement.GetVelocityY();
-
-                if ( _playerAnimator ) {
-                    _playerAnimator.SetVelocityXZ( velXZ );
-                    _playerAnimator.SetVelocityY( velY );
-                }
-
-
-                if ( _attack ) {
-                    if ( velY >= -0.15f )
-                        _attack.SetActiveHitbox( Combat.MultiAttack.Hitbox.FRONT );
-                    else
-                        _attack.SetActiveHitbox( Combat.MultiAttack.Hitbox.BELOW );
-                }
-            }
         }
 
         
         private void Jump() {
-            if ( _jump && Input.GetKeyDown( _jumpButton ) && IsGrounded() ) {
+            if ( _jump && Input.GetKeyDown( _jumpButton ) && _isGrounded ) {
                 _jump.JumpPressed();
             }
         }
@@ -140,19 +124,43 @@ namespace Player
         }
 
 
-        private bool IsGrounded() {
+        private void CheckGround() {
             Vector3 origin = transform.position + Vector3.up * 0.4f;
             Vector3 direction = new Vector3( 0, -1, 0 );
             float maxDistance = 0.6f;
             int layerMask = 1;
 
-            bool grounded = Physics.Raycast( origin, direction, maxDistance, layerMask );
+            _isGrounded = Physics.Raycast( origin, direction, maxDistance, layerMask );
 
 
             if ( _playerAnimator )
-                _playerAnimator.SetGrounded( grounded );
+                _playerAnimator.SetGrounded( _isGrounded );
 
-            return grounded;
+            if ( _attack )
+                _attack.SetGrounded( _isGrounded );
+        }
+
+
+        private void CheckVelocity() {
+            if ( _movement ) {
+                float velXZ = _movement.GetVelocityXZ();
+                float velY = _movement.GetVelocityY();
+
+                if ( _playerAnimator ) {
+                    if ( velXZ > Mathf.Epsilon )
+                        _playerAnimator.SetVelocityXZ( velXZ );
+                    _playerAnimator.SetVelocityY( velY );
+                }
+
+
+                if ( _attack ) {
+                    if ( _isGrounded )
+                        _attack.SetActiveHitbox( Combat.MultiAttack.Hitbox.FRONT );
+                    else if ( velY <= 0.4f )
+                        _attack.SetActiveHitbox( Combat.MultiAttack.Hitbox.BELOW );
+
+                }
+            }
         }
     }
 }

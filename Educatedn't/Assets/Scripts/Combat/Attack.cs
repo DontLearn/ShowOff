@@ -20,6 +20,30 @@ namespace Combat
         public abstract bool Strike();
 
 
+
+        /*public void HitHittables( IHittable[] hittables ) {
+            foreach( IHittable hittable in hittables ) {
+                // not ourself?
+                if ( hittable != GetComponent<IHittable>() ) {
+                    // Hit
+                    Vector3 displacement = transform.forward * hitForce;
+                    hittable.Hit( damage, displacement );
+                }
+            }
+        }
+
+        public void HitHittables( IHittable[] hittables, int dmg, float force ) {
+            foreach ( IHittable hittable in hittables ) {
+                // not ourself?
+                if ( hittable != GetComponent<IHittable>() ) {
+                    // Hit
+                    Vector3 displacement = transform.forward * force;
+                    hittable.Hit( dmg, displacement );
+                }
+            }
+        }*/
+
+
         public void HitColliders( Collider[] colliders ) {
             foreach ( Collider col in colliders ) {
                 // not ourself?

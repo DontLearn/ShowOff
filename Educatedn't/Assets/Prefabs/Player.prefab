@@ -176,8 +176,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4737563938146979244}
   serializedVersion: 2
-  m_Mass: 0.45
-  m_Drag: 2.5
+  m_Mass: 2
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -268,8 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b781546339620f24189485ba67fa1b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 14
-  _acceleration: 11
+  _speed: 13
+  _acceleration: 65
   _rotationSpeed: 5
 --- !u!114 &6162155450221642042
 MonoBehaviour:
@@ -283,9 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1293c42e3eb51543b2342c2e2898af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canJump: 1
-  _jumpForce: 30
-  _jumpDash: 1.6
+  _jumpForce: 22
+  _jumpDash: 4
   _dashSensitivity: 0.4
 --- !u!114 &8562061004092929634
 MonoBehaviour:
@@ -299,9 +298,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0b6c6e3b033a94191c64d7a573fec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diveForce: 9
-  _bounceForce: 27
-  _bounceDash: 2
+  _downForce: 7
+  _bounceForce: 17
+  _bounceDash: 11.5
+  _slow: 0.7
   _activeHitbox: 0
 --- !u!114 &1041695738629044350
 MonoBehaviour:
@@ -316,9 +316,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  hitForce: 40
+  hitForce: 90
   layerMask: 2048
   _diveDamage: 20
+  _diveForce: -45
   _hitBoxFront: {fileID: 346319153569968088}
   _hitBoxBelow: {fileID: 3346103136970486066}
 --- !u!1 &4737563938426396801

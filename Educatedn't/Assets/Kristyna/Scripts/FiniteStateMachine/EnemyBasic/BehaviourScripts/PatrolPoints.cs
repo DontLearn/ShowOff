@@ -13,7 +13,7 @@ public class PatrolPoints : PatrolAbs
     private NavMeshAgent _agent;
     private GameObject _character;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         _character = this.gameObject;
@@ -22,11 +22,16 @@ public class PatrolPoints : PatrolAbs
         _currentPoint = startingPoint;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+    private void OnDrawGizmosSelected() {
+        for ( int i = 0; i < points.Length; ++i ) {
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine( points[ i ], points[ i ] + Vector3.up * 1.3f );
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere( points[ i ] + Vector3.up * 1.3f, 0.2f );
+        }
     }
+
 
     public override void Patrol()
     {        
