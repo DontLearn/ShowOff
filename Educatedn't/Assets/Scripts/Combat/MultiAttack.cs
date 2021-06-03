@@ -27,7 +27,6 @@ namespace Combat
         private BoxCollider _hitBoxBelow = null;
 
 
-        //private List<IHittable> _hittables = new List<IHittable>();
         private BoxCollider _currentActive = null;
 
 
@@ -50,24 +49,6 @@ namespace Combat
         }
 
 
-        /*private void OnTriggerEnter( Collider other ) {
-            if ( other.gameObject.layer == 11 ) {
-                IHittable hittable = other.GetComponent<IHittable>();
-                if ( null != hittable ) {
-                    _hittables.Add( hittable );
-                }
-            }
-        }
-
-
-        private void OnTriggerExit( Collider other ) {
-            IHittable hittable = other.GetComponent<IHittable>();
-            if ( null != hittable ) {
-                _hittables.Remove( hittable );
-            }
-        }*/
-
-
         public override bool Strike() {
             if ( null != _currentActive ) {
                 // Get all colliders overlapping our hitbox
@@ -85,12 +66,6 @@ namespace Combat
                     }
                     return true;
                 }
-                /*if ( _currentActive == _hitBoxBelow ) {
-                    HitHittables( _hittables.ToArray() );
-                }
-                else {
-                    HitHittables( _hittables.ToArray(), _diveDamage, _diveForce );
-                }*/
             }
             else Debug.LogWarning( $"No hitbox detected for {name}'s MultiAttack script when trying to attack." );
             return false;

@@ -9,33 +9,42 @@ namespace Combat
         [SerializeField, Range( 0, 1000 )]
         private int hitPoints = 100;
 
-        [SerializeField, Range( 1f, 10f )]
+        [SerializeField, Range( .01f, 10f )]
         private float stability = 2f;
-		
-		// added by Attila
-		
-		[SerializeField]
-		private HealthBar _healthBar;
 
-        [SerializeField] private PlayAudioSource _damageSound;
-        [SerializeField] private PlayAudioSource _killSound;
+        [SerializeField]
+        private HealthBar _healthBar;
 
-        private void Awake()
-        {
-            _healthBar.SetMaxHealth(hitPoints);
-            _healthBar.SetHealth(hitPoints);
+        [SerializeField]
+        private PlayAudioSource _damageSound;
+
+        [SerializeField]
+        private PlayAudioSource _killSound;
+
+
+
+        private void Start() {
+            if ( _healthBar ) {
+                _healthBar.SetMaxHealth( hitPoints );
+                _healthBar.SetHealth( hitPoints );
+            }
+            else {
+                Debug.LogError( $"No Health Bar found on {name}." );
+            }
         }
 
-        //---------------------------------
+
         public void Hit( int damage ) {
             hitPoints = Math.Max( hitPoints - damage, 0 );
             Debug.Log( $"{name} was hit for {damage} damage!" );
-            // edited by Attila
-            _healthBar.SetHealth(hitPoints);
-            _damageSound.PlayAudio();
-            // --------------------------
 
-            if ( IsDead() ) Die();
+            if ( _healthBar )
+                _healthBar.SetHealth( hitPoints );
+            
+            if ( IsDead() )
+                Die();
+            else if ( _damageSound )
+                _damageSound.PlayAudio();
         }
 
 
@@ -46,21 +55,24 @@ namespace Combat
                 rb.AddForce( force * ( 10f / stability ) );
             }
         }
-        
+
+
         public void Die() {
             Debug.Log( $"{name} has died!" );
             Destroy( gameObject, 2f );
+
             Rigidbody rb = GetComponent<Rigidbody>();
             if ( rb ) {
                 rb.constraints = RigidbodyConstraints.None;
             }
+            if ( _killSound ) {
+                _killSound.PlayAudio();
+            }
         }
+
 
         public bool IsDead() {
             return hitPoints <= 0;
-            // edited by Attila
-            _killSound.PlayAudio();
-            // --------------------------
         }
     }
 }
