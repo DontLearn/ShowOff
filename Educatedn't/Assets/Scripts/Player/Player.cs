@@ -114,12 +114,10 @@ namespace Player
 
 
         private void Attack() {
-            if ( Input.GetMouseButtonDown( _attackButton ) ) {
-                if ( _attack )
+            if ( Input.GetMouseButtonDown( _attackButton ) && _attack ) {
+                if ( _playerAnimator && _playerAnimator.TriggerAttack() ) {
                     _attack.AttackPressed();
-
-                if ( _playerAnimator )
-                    _playerAnimator.TriggerAttack();
+                }
             }
         }
 
@@ -127,7 +125,7 @@ namespace Player
         private void CheckGround() {
             Vector3 origin = transform.position + Vector3.up * 0.4f;
             Vector3 direction = new Vector3( 0, -1, 0 );
-            float maxDistance = 0.6f;
+            float maxDistance = 0.7f;
             int layerMask = 1;
 
             _isGrounded = Physics.Raycast( origin, direction, maxDistance, layerMask );

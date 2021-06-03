@@ -21,7 +21,6 @@ namespace Player {
 
 
         private Combat.Attack _attack = null;
-        [SerializeField]
         private MultiAttack.Hitbox _activeHitbox = MultiAttack.Hitbox.FRONT;
         private PlayerAnimator _playerAnimator = null;
         private Rigidbody _rb = null;
@@ -79,20 +78,12 @@ namespace Player {
 
         private void FixedUpdate() {
             if ( _attack ) {
-                if ( _attack is MultiAttack ) {
-                    if ( _isGrounded ) {
-                        FrontalAttack();
-                    }
-                    else {
-                        float velY = _rb.velocity.y;
-                        if ( velY <= 0.4f ) {
-                            DiveAttack();
-                        }
-                    }
+                float velY = _rb.velocity.y;
+                if ( _attack is MultiAttack && !_isGrounded && velY <= 0.4f ) {
+                    DiveAttack();
                 }
                 else {
-                    _attack.Strike();
-                    _attackPressed = false;
+                    FrontalAttack();
                 }
             }
         }
