@@ -16,6 +16,9 @@ public class PrototypeMenuHandler : MonoBehaviour
     [SerializeField]
     private Slider _volumeSlider;
 
+    [SerializeField]
+    private string _staringtLevel;
+
     private bool _isActive;
 
     void Start()
@@ -51,7 +54,15 @@ public class PrototypeMenuHandler : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(_staringtLevel == "")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(_staringtLevel);
+        }
+        
 		Time.timeScale = 1;
     }
 

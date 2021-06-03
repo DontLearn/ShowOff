@@ -834,6 +834,7 @@ MonoBehaviour:
   _menu: {fileID: 8268415842499949170}
   _audioMixer: {fileID: 24100000, guid: 0a9d8470496229842a9b3c3050b42b8a, type: 2}
   _volumeSlider: {fileID: 5858306330468061795}
+  _staringtLevel: 
 --- !u!1 &8268415842863646827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,7 +1110,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 70
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -1120,7 +1121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart
+  m_Text: Restart level
 --- !u!1 &8268415843046401009
 GameObject:
   m_ObjectHideFlags: 0
