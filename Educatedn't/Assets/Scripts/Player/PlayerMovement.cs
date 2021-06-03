@@ -72,7 +72,7 @@ namespace Player {
 
         private void Move() {
             if ( Mathf.Abs( _movement.x ) > 0.03f || Mathf.Abs( _movement.y ) > 0.03f ) {
-                _rb.AddForce( new Vector3( _movement.x, 0, _movement.y ) * _acceleration );
+                _rb.AddForce( new Vector3( _movement.x, 0, _movement.y ).normalized * _acceleration );
                 Vector3 velocityXZ = new Vector3( _rb.velocity.x, 0, _rb.velocity.z );
                 if ( velocityXZ.magnitude > _speed ) {
                     velocityXZ = velocityXZ.normalized * _speed;

@@ -42,15 +42,19 @@ namespace Player {
         }
 
 
-        public void TriggerAttack() {
+        public bool TriggerAttack() {
             if ( _animator ) {
-                if ( !_animator.GetCurrentAnimatorStateInfo( 0 ).IsTag( "Attack" ) ) {
+                AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo( 0 );
+                if ( !info.IsTag( "Attack" ) ) {
                     int randomAttack = Random.Range( 0, _attackOverride.Length );
                     SetAnimations( randomAttack );
 
                     _animator.SetTrigger( "Attack" );
                 }
+                return !info.IsTag( "Attack" ) &&
+                       !info.IsTag( "DiveAttack" );
             }
+            return false;
         }
 
 
