@@ -23,8 +23,8 @@ public class Detection : MonoBehaviour {
 
     /// TODO: Remake these to show only those given for the current ChangeToChase case
     /// {
-    [SerializeField, Range( 2f, 20f )]
-    private float _detectionDistance = 6f;
+    [SerializeField, Range( 2f, 22f )]
+    private float _detectionDistance = 11f;
 
     [SerializeField, Range( 30f, 180f )]
     private float _viewAngle = 45f;
@@ -61,6 +61,10 @@ public class Detection : MonoBehaviour {
             Gizmos.color = Color.red;
             Gizmos.DrawRay( transform.position + Vector3.up * 1.6f, direction1 * 5f );
             Gizmos.DrawRay( transform.position + Vector3.up * 1.6f, direction2 * 5f );
+        }
+        else {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere( transform.position + Vector3.up, _detectionDistance );
         }
     }
 

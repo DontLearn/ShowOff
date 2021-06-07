@@ -349,8 +349,8 @@ GameObject:
   - component: {fileID: 7410863375821054732}
   - component: {fileID: 7410863375821054735}
   - component: {fileID: 7410863375821054727}
-  - component: {fileID: 8724591949103805988}
   - component: {fileID: 5792334472567005087}
+  - component: {fileID: 8724591949103805988}
   - component: {fileID: 6280931851839718321}
   - component: {fileID: 4917176274227206221}
   - component: {fileID: 3315558232377383466}
@@ -462,18 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba22994fa434af54082c2a72b3c28181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8724591949103805988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7410863375821054734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58e54202ac821884889fa1074f546802, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _jumpRange: 8
 --- !u!114 &5792334472567005087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,6 +473,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe7a0571cd3a58e40b0a261ca2d50133, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _landOffset: 1.3333334
+--- !u!114 &8724591949103805988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410863375821054734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58e54202ac821884889fa1074f546802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &6280931851839718321
@@ -545,7 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectionType: 1
-  _detectionDistance: 7
+  _detectionDistance: 11
   _viewAngle: 45
   _targetTag: Player
 --- !u!195 &5824580268842890864

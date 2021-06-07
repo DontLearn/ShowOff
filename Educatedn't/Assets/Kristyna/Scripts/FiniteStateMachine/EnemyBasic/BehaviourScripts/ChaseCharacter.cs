@@ -5,15 +5,25 @@ using UnityEngine.AI;
 
 
 public class ChaseCharacter : ChaseAbs {
+    [SerializeField, Range( 1f, 10f )]
+    private float _jumpRange = 8f;
+
+
     private NavMeshAgent _agent = null;
     private Animator _animator = null;
-    private float _attackRange = 2f;
-    private float _attackMargin = 0.5f;
+    private float _jumpMargin = 0.5f;
 
 
 
     private void Start() {
         LoadComponents();
+    }
+
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay( transform.position + Vector3.up, transform.forward * ( _jumpRange - _jumpMargin - 0.4f ) );
+        Gizmos.DrawSphere( transform.position + Vector3.up + transform.forward * ( _jumpRange - _jumpMargin ), 0.4f );
     }
 
 
@@ -24,10 +34,11 @@ public class ChaseCharacter : ChaseAbs {
         _animator = GetComponent<Animator>();
         Debug.Assert( _animator, $"{this}: Animator component missing on {name}." );
 
-        if ( GetComponent<Combat.Attack>() is Combat.RadialAttack ) {
+        /// If jump is disabled:
+        /*if ( GetComponent<Combat.Attack>() is Combat.RadialAttack ) {
             Combat.RadialAttack radialAttack = GetComponent<Combat.RadialAttack>();
-            _attackRange = radialAttack.Radius;
-        }
+            _jumpRange = radialAttack.Radius;
+        }*/
     }
 
 
@@ -37,7 +48,7 @@ public class ChaseCharacter : ChaseAbs {
                 Vector3 point = ( agentEnabled ) ? target.position : transform.position;
                 _agent.SetDestination( point );
             }
-            if ( Vector3.Distance( transform.position, target.position ) <= _attackRange - _attackMargin ) {
+            if ( Vector3.Distance( transform.position, target.position ) <= _jumpRange - _jumpMargin ) {
                 _animator.SetTrigger( "Jump" );
             }
         }

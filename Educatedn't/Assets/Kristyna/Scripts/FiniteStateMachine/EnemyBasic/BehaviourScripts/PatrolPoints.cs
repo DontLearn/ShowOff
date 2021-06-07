@@ -50,10 +50,10 @@ public class PatrolPoints : PatrolAbs {
                 Vector3 point = PositionedPoint( i );
 
                 Gizmos.color = new Color( 1f, 1f, 1f, 0.4f );
-                Gizmos.DrawLine( point, point + Vector3.up * 1.3f );
+                Gizmos.DrawLine( point, point + Vector3.up * 1.2f );
 
                 Gizmos.color = new Color( 1f, 0f, 0f, 0.7f );
-                Gizmos.DrawSphere( point + Vector3.up * 1.3f, 0.2f );
+                Gizmos.DrawSphere( point + Vector3.up * 1.4f, 0.2f );
             }
         }
     }
