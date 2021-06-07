@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
     path: Assets/Eugenestuff/MyScenes/Eu Lvl1.unity
     guid: 1e529ef92a2389f46a80f1ed38176404
   - enabled: 0
