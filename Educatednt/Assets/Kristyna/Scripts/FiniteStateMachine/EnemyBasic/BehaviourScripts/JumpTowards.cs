@@ -8,6 +8,8 @@ public class JumpTowards : JumpAbs {
     [SerializeField, Range( 0.1f, 10f )]
     private float _jumpSpeed = 4.5f;
 
+    [SerializeField, Range( 0.5f, 7f )]
+    private float _maxHeight = 4f;
 
     [SerializeField, Range( 0.25f, 2.5f )]
     private float _landOffset = 4f / 3f;
@@ -20,7 +22,7 @@ public class JumpTowards : JumpAbs {
     private bool _active = false;
 
     // For calculation
-    private float _signedAngle = 0f;
+    private Vector2 _direction = Vector2.zero;
     private float _speedCounter = 0f;
     private float _distanceCounter = 0f;
     private float _timeSpeed = 0f;
@@ -39,11 +41,6 @@ public class JumpTowards : JumpAbs {
 
 
     private void OnDrawGizmosSelected() {
-        // Draw starting position
-        //Gizmos.color = new Color( 0, 1, 1, 0.6f );
-        //Gizmos.DrawRay( startPos, Vector3.up * 2.75f );
-        //Gizmos.DrawSphere( startPos + Vector3.up * 3f, 0.25f );
-
         // Draw landing position
         Gizmos.color = new Color( 1, 0, 1, 0.6f );
         Gizmos.DrawRay( _targetPos, Vector3.up * 2.75f );
@@ -59,8 +56,8 @@ public class JumpTowards : JumpAbs {
 
         /// Get trajectory based on starting pos, landing pos, and angle
         if ( _active ) {
-            Vector3 pos = CalculateTrajectory();
-            transform.position = pos;
+            Vector3 displacement = CalculateTrajectory();
+            transform.position += displacement;
         }
     }
 
@@ -76,7 +73,7 @@ public class JumpTowards : JumpAbs {
             float offset = ( dist - _bodyMargin < _landOffset ) ? Mathf.Max( dist - _bodyMargin, _minimumLandOffset ) : _landOffset;
             _targetPos += ( startPos - _targetPos ).normalized * offset;
 
-            _signedAngle = Vector3.SignedAngle( startPos, _targetPos, Vector3.up );
+            _direction = new Vector2( ( _targetPos - startPos ).x, ( _targetPos - startPos ).z );
 
             _speedCounter = 0f;
             _distanceCounter = dist;
@@ -95,9 +92,9 @@ public class JumpTowards : JumpAbs {
 
     private Vector3 CalculateTrajectory() {
         _speedCounter += _timeSpeed;
-        Vector3 displacement = new Vector3( Mathf.Cos( _signedAngle ), 0, Mathf.Sin( _signedAngle )  ) * _timeSpeed;
+        Vector3 displacement = new Vector3( _direction.x, 0, _direction.y ) * _timeSpeed;
 
 
-        return transform.position;
+        return displacement;
     }
 }
