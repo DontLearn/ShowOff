@@ -475,6 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7a0571cd3a58e40b0a261ca2d50133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _jumpSpeed: 4.5
+  _maxHeight: 4
   _landOffset: 1.3333334
 --- !u!114 &8724591949103805988
 MonoBehaviour:
@@ -529,7 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c168e97a6b5bc9a40ae56077d5bbf1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 100
+  hitPoints: 50
   stability: 0.7
   _healthBar: {fileID: 8267843291521538057}
   _damageSound: {fileID: 1009796341554239741}
