@@ -13,6 +13,10 @@ public class JumpTowards : JumpAbs {
 
     [SerializeField, Range( 0.25f, 2.5f )]
     private float _landOffset = 0.5f;
+
+    [SerializeField, Range( 0.4f, 1.4f )]
+    private float _velocityCutoff = 0.7f;
+
     
     private Animator _animator = null;
     private Vector3 _startPos = Vector3.zero;
@@ -77,9 +81,7 @@ public class JumpTowards : JumpAbs {
                 _animator.SetTrigger( "Attack" );
             }*/
 
-            float dist = Vector3.Distance( transform.position, _targetPos );
-            if ( dist < 1.4f ) {
-                Debug.Log( "ATTAACK" );
+            if ( _rb.velocity.magnitude <= _velocityCutoff ) {
                 _animator.SetTrigger( "Attack" );
             }
         }
@@ -87,7 +89,6 @@ public class JumpTowards : JumpAbs {
 
 
     public override void OnStateEnter( params object[] args ) {
-        _active = true;
         _startPos = transform.position;
 
         if ( args[ 0 ] is Transform ) {
@@ -140,7 +141,13 @@ public class JumpTowards : JumpAbs {
         Vector3 finalVelocity = Quaternion.AngleAxis( angleBetweenObjects, Vector3.up ) * velocity;
 
         // Fire!
-        _rb.velocity = finalVelocity;
+        if ( finalVelocity.magnitude > Mathf.Epsilon * 3f ) {
+            _rb.velocity = finalVelocity;
+            _active = true;
+        }
+        else {
+            _animator.SetTrigger( "Attack" );
+        }
 
 
         /*

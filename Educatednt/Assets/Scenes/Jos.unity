@@ -923,6 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialAngle: 25
   _landOffset: 1.3333334
+  _velocityCutoff: 0.7
 --- !u!114 &438619256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1092,6 +1093,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8000785655324356153, guid: 5ff2fc98f891886429dd088015121b4f, type: 3}
   m_PrefabInstance: {fileID: 8000785654144142643}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &610054897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2128931150386018031, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
+  m_PrefabInstance: {fileID: 3786287302152506524}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &610054899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610054897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d9c46443b810c41a98decc28fde619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colourType: 1
+  _hueShift: -0.24
 --- !u!1 &697923833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2383,6 +2403,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2375610259748698531, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 80975554ab87d1b43ae7e3db423b27b7, type: 2}
     - target: {fileID: 3786287303784784481, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
       propertyPath: m_RootOrder
       value: 2

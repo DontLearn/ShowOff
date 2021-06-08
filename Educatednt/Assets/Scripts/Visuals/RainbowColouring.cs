@@ -16,7 +16,7 @@ public class RainbowColouring : MonoBehaviour {
     private ColourType _colourType = ColourType.EMISSIVE_COLOUR;
 
 
-    [SerializeField, Range( -10f, 10f )]
+    [SerializeField, Range( -30f, 30f )]
     private float _hueShift = -2f;
 
 
