@@ -59,6 +59,9 @@ public class PatrolPoints : PatrolAbs {
     }
 
 
+    public override void OnStateEnter() { /*empty function*/ }
+
+
     public override void Patrol( bool agentEnabled ) {
         // if possible..
         if ( CurrentPointExists() ) {

@@ -14,6 +14,9 @@ public class PatrolState : EnemyBaseClassFSM {
             _patrol = gameObject.GetComponent<PatrolAbs>();
             Debug.Assert( _patrol, $"{this}: Patrolling component missing on {gameObject.name}." );
         }
+
+        if ( _patrol )
+            _patrol.OnStateEnter();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
