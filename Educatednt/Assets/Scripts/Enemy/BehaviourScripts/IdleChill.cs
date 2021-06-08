@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class IdleStun : IdleAbs {
-    [SerializeField, Range( 0f, 4f )]
-    private float _stunTime = 1.8f;
+public class IdleChill : IdleAbs {
+    [SerializeField]
+    private Vector2 _ChillTime = new Vector2( 0.2f, 1.7f );
 
 
     private Animator _animator = null;
     //private NavMeshAgent _agent = null;
-    private float _stunTimer = 0f;
+    private float _chillTimer = 0f;
 
 
 
@@ -30,7 +30,7 @@ public class IdleStun : IdleAbs {
 
 
     public override void OnStateEnter() {
-        _stunTimer = _stunTime;
+        _chillTimer = Random.Range( _ChillTime.x, _ChillTime.y );
     }
 
 
@@ -46,7 +46,7 @@ public class IdleStun : IdleAbs {
 
 
     private bool CountDown() {
-        _stunTimer = Mathf.Max( _stunTimer - Time.deltaTime, 0f );
-        return _stunTimer <= Mathf.Epsilon;
+        _chillTimer = Mathf.Max( _chillTimer - Time.deltaTime, 0f );
+        return _chillTimer <= Mathf.Epsilon;
     }
 }

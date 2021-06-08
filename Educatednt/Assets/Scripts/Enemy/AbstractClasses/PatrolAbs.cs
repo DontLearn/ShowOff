@@ -5,5 +5,7 @@ using UnityEngine;
 
 public abstract class PatrolAbs : MonoBehaviour
 {
+    public abstract void OnStateEnter();
+
     public abstract void Patrol( bool agentEnabled );
 }
