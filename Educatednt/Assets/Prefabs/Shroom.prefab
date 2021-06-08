@@ -460,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialAngle: 30
   _landOffset: 0.25
+  _velocityCutoff: 1.4
 --- !u!114 &8724591949103805988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,7 +680,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.8
+  m_Radius: 3.4
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1009796341554239741
 MonoBehaviour:
