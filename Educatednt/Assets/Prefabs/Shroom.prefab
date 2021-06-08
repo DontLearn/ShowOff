@@ -218,7 +218,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3563820148251166003}
-  - component: {fileID: 5603286503529837522}
   - component: {fileID: 6391546354660476172}
   m_Layer: 0
   m_Name: Cap Collider
@@ -241,22 +240,6 @@ Transform:
   m_Father: {fileID: 7410863375821054721}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &5603286503529837522
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5080506511033334194}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 120
-  m_CollisionDetection: 3
 --- !u!64 &6391546354660476172
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -354,7 +337,7 @@ GameObject:
   - component: {fileID: 6280931851839718321}
   - component: {fileID: 4917176274227206221}
   - component: {fileID: 3315558232377383466}
-  - component: {fileID: 697682572352843236}
+  - component: {fileID: 4240482285930405818}
   - component: {fileID: 5824580268842890864}
   m_Layer: 11
   m_Name: Shroom
@@ -421,7 +404,7 @@ Animator:
   m_GameObject: {fileID: 7410863375821054734}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4d66716e8344500428d362325e4d9d47, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5920d707a2089dd4d8dd561dfd82ce53, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -462,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba22994fa434af54082c2a72b3c28181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpRange: 8
+  _jumpRange: 7
 --- !u!114 &5792334472567005087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe7a0571cd3a58e40b0a261ca2d50133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _landOffset: 1.3333334
+  initialAngle: 30
+  _landOffset: 0.25
 --- !u!114 &8724591949103805988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,7 +518,7 @@ MonoBehaviour:
   _healthBar: {fileID: 8267843291521538057}
   _damageSound: {fileID: 1009796341554239741}
   _killSound: {fileID: 1009796341554239741}
---- !u!114 &697682572352843236
+--- !u!114 &4240482285930405818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -543,7 +527,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7410863375821054734}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a15a37ad05834345a0bc4a3e6580f49, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f53470cdf374d64494fdc6c26f58301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _detectionType: 1
@@ -889,9 +873,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
---- !u!1 &8267843291521538059 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4817119360525820197, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
+--- !u!4 &8267843291521538056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4817119360525820198, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
   m_PrefabInstance: {fileID: 3487086981839632686}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8267843291521538057 stripped
@@ -905,9 +889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073ea8bc41417e242965ef8be42e9a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8267843291521538056 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4817119360525820198, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
+--- !u!1 &8267843291521538059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4817119360525820197, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
   m_PrefabInstance: {fileID: 3487086981839632686}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4035892123365680148
