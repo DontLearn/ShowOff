@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class ShroomAttack : AttackAbs {
     private Combat.Attack _attack = null;
-    private NavMeshAgent _agent = null;
+    //private NavMeshAgent _agent = null;
     private float _attackRange = 2f;
     private float _attackMargin = 0.5f;
     private bool _damageDone = false;
@@ -22,8 +22,8 @@ public class ShroomAttack : AttackAbs {
         _attack = GetComponent<Combat.Attack>();
         Debug.Assert( _attack, $"{this}: No attack found on {name}." );
 
-        _agent = GetComponent<NavMeshAgent>();
-        Debug.Assert( _agent, $"{this}: NavMeshAgent component missing on {name}." );
+        /*_agent = GetComponent<NavMeshAgent>();
+        Debug.Assert( _agent, $"{this}: NavMeshAgent component missing on {name}." );*/
 
         if ( _attack && _attack is Combat.RadialAttack ) {
             _attackRange = ( ( Combat.RadialAttack ) _attack ).Radius;
