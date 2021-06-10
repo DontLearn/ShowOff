@@ -10638,6 +10638,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3315558232377383466, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: hitPoints
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917176274227206221, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7410863375821054721, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -12364,6 +12372,10 @@ PrefabInstance:
       propertyPath: stability
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3338565142548818437, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 980b9802cdabdfb40bd9f63a10c28a85, type: 2}
     - target: {fileID: 4917176274227206221, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
       propertyPath: damage
       value: 15
@@ -24268,6 +24280,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3315558232377383466, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: hitPoints
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917176274227206221, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7410863375821054721, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -29262,6 +29282,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3315558232377383466, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: hitPoints
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917176274227206221, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7410863375821054721, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -29887,6 +29915,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3315558232377383466, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: hitPoints
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917176274227206221, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7410863375821054721, guid: decf1bcc5123cdf4f975e5eb6d6fc0e7, type: 3}
       propertyPath: m_RootOrder
       value: 25
