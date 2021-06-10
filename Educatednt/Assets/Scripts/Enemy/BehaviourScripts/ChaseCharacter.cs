@@ -32,6 +32,9 @@ public class ChaseCharacter : ChaseAbs {
         Debug.Assert( _agent, $"{this}: NavMeshAgent component missing on {name}." );
 
         _animator = GetComponent<Animator>();
+        if ( !_animator ) {
+            _animator = GetComponentInChildren<Animator>();
+        }
         Debug.Assert( _animator, $"{this}: Animator component missing on {name}." );
 
         /// If jump is disabled:

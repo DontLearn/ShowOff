@@ -11,8 +11,11 @@ public class IdleState : EnemyBaseClassFSM {
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         base.OnStateEnter( animator, stateInfo, layerIndex );
         if ( !_idle ) {
-            _idle = gameObject.GetComponent<IdleAbs>();
-            Debug.Assert( _idle, $"{this}: Idling component missing on {gameObject.name}." );
+            _idle = transform.GetComponent<IdleAbs>();
+            if ( !_idle ) {
+                _idle = transform.GetComponentInParent<IdleAbs>();
+            }
+            Debug.Assert( _idle, $"{this}: Idling component missing on {transform.name}." );
         }
 
         if ( _idle ) {

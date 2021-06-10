@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-[RequireComponent( typeof( Animator ) )]
 public class Detection : MonoBehaviour {
     public Transform Target => _target;
     
@@ -47,6 +46,9 @@ public class Detection : MonoBehaviour {
 
     private void LoadComponents() {
         _animator = GetComponent<Animator>();
+        if ( !_animator ) {
+            _animator = GetComponentInChildren<Animator>();
+        }
         Debug.Assert( _animator, $"{this}: Animator component missing on {name}." );
 
         _target = GameObject.FindGameObjectWithTag( _targetTag ).transform;

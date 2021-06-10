@@ -39,6 +39,9 @@ public class JumpTowards : JumpAbs {
 
     private void LoadComponents() {
         _animator = GetComponent<Animator>();
+        if ( !_animator ) {
+            _animator = GetComponentInChildren<Animator>();
+        }
         Debug.Assert( _animator, $"{this}: Animator component missing on {name}." );
 
         _rb = GetComponent<Rigidbody>();

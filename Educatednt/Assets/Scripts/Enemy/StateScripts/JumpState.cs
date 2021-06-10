@@ -11,8 +11,11 @@ public class JumpState : EnemyBaseClassFSM {
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         base.OnStateEnter( animator, stateInfo, layerIndex );
         if ( !_jump ) {
-            _jump = gameObject.GetComponent<JumpAbs>();
-            Debug.Assert( _jump, $"{this}: Jumping component missing on {gameObject.name}." );
+            _jump = transform.GetComponent<JumpAbs>();
+            if ( !_jump ) {
+                _jump = transform.GetComponentInParent<JumpAbs>();
+            }
+            Debug.Assert( _jump, $"{this}: Jumping component missing on {transform.name}." );
         }
 
         Debug.Log( "Disabling agent." );

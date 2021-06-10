@@ -11,8 +11,11 @@ public class PatrolState : EnemyBaseClassFSM {
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         base.OnStateEnter( animator, stateInfo, layerIndex );
         if ( !_patrol ) {
-            _patrol = gameObject.GetComponent<PatrolAbs>();
-            Debug.Assert( _patrol, $"{this}: Patrolling component missing on {gameObject.name}." );
+            _patrol = transform.GetComponent<PatrolAbs>();
+            if ( !_patrol ) {
+                _patrol = transform.GetComponentInParent<PatrolAbs>();
+            }
+            Debug.Assert( _patrol, $"{this}: Patrolling component missing on {transform.name}." );
         }
 
         if ( _patrol )
