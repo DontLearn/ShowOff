@@ -4,12 +4,12 @@ using UnityEngine;
 
 
 namespace Player {
-    [RequireComponent( typeof( Animator ))]
     public class PlayerAnimator : MonoBehaviour {
         [SerializeField]
         private AnimatorOverrideController[] _attackOverride = null;
 
 
+        [SerializeField]
         private Animator _animator = null;
 
 
@@ -20,7 +20,8 @@ namespace Player {
 
 
         private void LoadComponents() {
-            _animator = GetComponent<Animator>();
+            //_animator = GetComponent<Animator>();
+            _animator = GetComponentInChildren<Animator>();
             Debug.Assert( null != _animator, $"Animator component missing on {name}." );
         }
 
@@ -46,8 +47,9 @@ namespace Player {
             if ( _animator ) {
                 AnimatorStateInfo info = _animator.GetCurrentAnimatorStateInfo( 0 );
                 if ( !info.IsTag( "Attack" ) ) {
-                    int randomAttack = Random.Range( 0, _attackOverride.Length );
-                    SetAnimations( randomAttack );
+                    /// random atk animation
+                    /*int randomAttack = Random.Range( 0, _attackOverride.Length );
+                    SetAnimations( randomAttack );*/
 
                     _animator.SetTrigger( "Attack" );
                 }
