@@ -11,8 +11,12 @@ public class AttackState : EnemyBaseClassFSM {
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         base.OnStateEnter( animator, stateInfo, layerIndex );
         if ( !_attack ) {
-            _attack = gameObject.GetComponent<AttackAbs>();
-            Debug.Assert( _attack, $"{this}: Attacking component missing on {gameObject.name}." );
+            _attack = transform.GetComponent<AttackAbs>();
+            if ( !_attack )
+            {
+                _attack = transform.GetComponentInParent<AttackAbs>();
+            }
+            Debug.Assert( _attack, $"{this}: Attacking component missing on {transform.name}." );
         }
     }
 

@@ -22,6 +22,9 @@ public class IdleStun : IdleAbs {
 
     private void LoadComponents() {
         _animator = GetComponent<Animator>();
+        if ( !_animator ) {
+            _animator = GetComponentInChildren<Animator>();
+        }
         Debug.Assert( _animator, $"{this}: Animator component missing on {name}." );
 
         /*_agent = GetComponent<NavMeshAgent>();

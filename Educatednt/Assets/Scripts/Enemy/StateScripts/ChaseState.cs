@@ -10,8 +10,11 @@ public class ChaseState : EnemyBaseClassFSM {
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
         base.OnStateEnter( animator, stateInfo, layerIndex );
         if ( !_chase ) {
-            _chase = gameObject.GetComponent<ChaseAbs>();
-            Debug.Assert( _chase, $"{this}: Chasing component missing on {gameObject.name}." );
+            _chase = transform.GetComponent<ChaseAbs>();
+            if ( !_chase ) {
+                _chase = transform.GetComponentInParent<ChaseAbs>();
+            }
+            Debug.Assert( _chase, $"{this}: Chasing component missing on {transform.name}." );
         }
     }
 

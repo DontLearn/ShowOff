@@ -5,19 +5,19 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Walk
+    second: ShroomWalk
   - first:
       74: 6720303635017113406
-    second: Attack
+    second: ShroomAttack
   - first:
       74: 5539831331247536789
-    second: Leap
+    second: ShroomJumpLeap
   - first:
       74: -2861340925227477554
-    second: Stunned
+    second: ShroomStun
   - first:
       74: -4630339522487117836
-    second: Die
+    second: ShroomDie
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -47,7 +47,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk
+      name: ShroomWalk
       takeName: Take 001
       internalID: 0
       firstFrame: 0
@@ -58,7 +58,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -76,7 +76,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Attack
+      name: ShroomAttack
       takeName: Take 001
       internalID: 0
       firstFrame: 20
@@ -105,7 +105,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Leap
+      name: ShroomJumpLeap
       takeName: Take 001
       internalID: 0
       firstFrame: 30
@@ -134,7 +134,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Stunned
+      name: ShroomStun
       takeName: Take 001
       internalID: 0
       firstFrame: 50
@@ -145,7 +145,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -163,7 +163,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Die
+      name: ShroomDie
       takeName: Take 001
       internalID: 0
       firstFrame: 70
@@ -194,7 +194,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -245,7 +245,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 100
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
