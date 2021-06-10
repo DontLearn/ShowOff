@@ -22,7 +22,6 @@ namespace Player {
 
         private Combat.Attack _attack = null;
         private MultiAttack.Hitbox _activeHitbox = MultiAttack.Hitbox.FRONT;
-        private PlayerAnimator _playerAnimator = null;
         private Rigidbody _rb = null;
         private bool _isGrounded = true;
         private bool _attackPressed = false;
@@ -37,9 +36,6 @@ namespace Player {
         private void LoadComponents() {
             _attack = GetComponent<Combat.Attack>();
             Debug.Assert( null != _attack, $"Attack component missing on {name}." );
-
-            _playerAnimator = GetComponent<PlayerAnimator>();
-            Debug.Assert( null != _playerAnimator, $"PlayerAnimator component missing on {name}." );
 
             _rb = GetComponent<Rigidbody>();
             Debug.Assert( null != _rb, $"RigidBody component missing on {name}." );
