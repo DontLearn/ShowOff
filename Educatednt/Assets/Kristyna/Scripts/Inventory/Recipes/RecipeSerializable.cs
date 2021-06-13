@@ -8,6 +8,7 @@ using UnityEditor;
 public class RecipeSerializable
 {
     public string name;
-    public List<IngredientSerializable> ingredients;
-    public int recipeTotalValue;
+    public byte rice;
+    public byte tomatoe;
+    public byte mushroom;
 }
