@@ -6,7 +6,6 @@ public class ItemButton : MonoBehaviour
 {
     public void DestroyItemButton()
     {
-        Debug.Log("ItemButton destroyed!");
-        GameObject.Destroy(this.gameObject);
+        GetComponentInParent<Slot>().SlotIsEmpty();//destroy this game object + tell inventory
     }
 }

@@ -3,59 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Pickup : MonoBehaviour
+public abstract class Pickup : MonoBehaviour
 {
-    /// <summary>
-    /// This script makes a gameObject a pickable item to an inventory
-    /// </summary>
+    protected Inventory inventory;
+    protected string playerTag = "Player";
 
-    public Sprite itemButtonSprite;
-    public GameObject itemButton;
-    public GameObject inventoryHolder;
-
-    private string tag;
-    private Inventory inventory;//where to store it
-
-    void Start()
+    void Awake()
     {
-        inventoryHolder = GameObject.FindGameObjectWithTag("Player");
-        Debug.Assert(inventoryHolder, "Pickup: InventoryHolder not found, wrong tag!");
-        tag = inventoryHolder.gameObject.tag;
-        inventory = GameObject.FindGameObjectWithTag(tag).GetComponent<Inventory>();
+        inventory = GameObject.FindGameObjectWithTag(playerTag).GetComponent<Inventory>();
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(tag))
-        {
-            //Check if any slot is free
-            for (int i = 0; i < inventory.slots.Length; i++)
-            {
-                if (inventory.isFull[i] == false)
-                {
-                    //Pickup is an ingredient:
-                    if (this.GetComponent<Ingredient>() != null)
-                    {
-                        inventory.AddIngredienceInventory(this.gameObject);
-                        inventory.isFull[i] = true;
-
-                        itemButton.GetComponent<Image>().sprite = itemButtonSprite;
-                        Instantiate(itemButton, inventory.slots[i].transform, false);//create itemButton at slot's position
-                    }
-                    //Pickup is not an ingredietn e.g. Health pickup
-                    else
-                    {
-                        //Check which pickup it is and do an action
-                        if (name == "Health")
-                        {
-                            inventory.healtPickupTest();
-                        }                        
-                    }
-
-                    Destroy(this.gameObject);
-                    break;
-                }
-            }
-        }
-    }
+    public abstract void OnTriggerEnter(Collider other);
 }
