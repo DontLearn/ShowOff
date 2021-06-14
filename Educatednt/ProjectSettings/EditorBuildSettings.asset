@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Eugenestuff/MyScenes/Eu Lvl1.unity
     guid: 1e529ef92a2389f46a80f1ed38176404
   - enabled: 1
+    path: Assets/Eugenestuff/MyScenes/Eu lvl 5.unity
+    guid: 38ecd98ce4ba6524295c396af5075d1b
+  - enabled: 0
     path: Assets/Eugenestuff/MyScenes/PrototypeEugene_edit1 1.unity
     guid: c62932a9d59e1874696810142bece588
   - enabled: 1
