@@ -17,16 +17,20 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Bricks_Old\" label=\"\" >\n  <presetinput
-      identifier=\"$outputsize\" uid=\"3098137515\" type=\"8\" value=\"9,9\" />\n
-      </sbspreset>\n"
+      identifier=\"$outputsize\" uid=\"3098137515\" type=\"8\" value=\"9,9\" />\n 
+      <presetinput identifier=\"mid-tones_color\" uid=\"3593253201\" type=\"3\" value=\"0.626415,0.835227,1,1\"
+      />\n  <presetinput identifier=\"shadows_color\" uid=\"3593253128\" type=\"3\"
+      value=\"0,0.33615,0.339623,1\" />\n  <presetinput identifier=\"highlights_color\"
+      uid=\"3593253137\" type=\"3\" value=\"0.220755,1,0.888105,1\" />\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}
-      shaderKeywords: _BASECOLORMAP _HEIGHTMAP _MASKMAP _NORMALMAP
+      shaderKeywords: _BASECOLORMAP _DISPLACEMENT_LOCK_TILING_SCALE _HEIGHTMAP _MASKMAP
+        _NORMALMAP _NORMALMAP_TANGENT_SPACE _TESSELLATION_DISPLACEMENT _VERTEX_DISPLACEMENT_LOCK_OBJECT_SCALE
       lightmapFlags: 4
       enableInstancingVariants: 0
       doubleSidedGI: 0
-      customRenderQueue: -1
+      customRenderQueue: 2225
       texEnvs:
       - name: _AnisotropyMap
         texture: {instanceID: 0}
@@ -274,19 +278,19 @@ ScriptedImporter:
       - name: _StencilRef
         float: 0
       - name: _StencilRefDepth
-        float: 0
+        float: 8
       - name: _StencilRefGBuffer
-        float: 2
+        float: 10
       - name: _StencilRefMV
-        float: 32
+        float: 40
       - name: _StencilWriteMask
-        float: 3
+        float: 6
       - name: _StencilWriteMaskDepth
         float: 8
       - name: _StencilWriteMaskGBuffer
-        float: 3
+        float: 14
       - name: _StencilWriteMaskMV
-        float: 32
+        float: 40
       - name: _SubsurfaceMask
         float: 1
       - name: _SupportDecals
@@ -342,7 +346,7 @@ ScriptedImporter:
       - name: _UseShadowThreshold
         float: 0
       - name: _ZTestDepthEqualForOpaque
-        float: 4
+        float: 3
       - name: _ZTestGBuffer
         float: 4
       - name: _ZTestTransparent
