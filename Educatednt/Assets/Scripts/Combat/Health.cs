@@ -7,7 +7,8 @@ namespace Combat
     class Health : MonoBehaviour, IHittable
     {
         [SerializeField, Range( 0, 1000 )]
-        private int hitPoints = 100;
+        public int hitPoints = 100;
+        //Eugene changed PRIVATE to PUBLIC cuz my script didn't work
 
         [SerializeField, Range( .01f, 10f )]
         private float stability = 2f;
