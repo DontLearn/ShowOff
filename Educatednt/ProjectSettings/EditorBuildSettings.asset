@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Jos.unity
     guid: 952122a55f7d17840bd2ef1d1dbf678e
+  - enabled: 1
+    path: Assets/Kristyna/SimpleInventorySystem.unity
+    guid: 98ac168fb6ec070498e7343da494dfbe
+  - enabled: 1
+    path: Assets/Kristyna/KitchenScene.unity
+    guid: b9265fb4200781546b719985faef6d63
   m_configObjects: {}
