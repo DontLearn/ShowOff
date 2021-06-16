@@ -5,16 +5,13 @@ using System.Linq;
 
 public class RecipeManager : MonoBehaviour
 {    
-    public static List<RecipeSerializable> availableRecipes = new List<RecipeSerializable>();//used in Kitchen scene to access this data
     [SerializeField]
-    public List<RecipeSerializable> recipes = new List<RecipeSerializable>();
+    public static List<RecipeSerializable> recipes = new List<RecipeSerializable>();
     [SerializeField]
     private Inventory _inventory;
 
     public void CheckAvailableRecipes(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
     {
-        if (availableRecipes.Count > 0) availableRecipes.Clear();
-
         for (int recipeNum = 0; recipeNum < recipes.Count; recipeNum++)
         {
             //check all three ingredients:
@@ -23,8 +20,12 @@ public class RecipeManager : MonoBehaviour
                 pMushroom >= recipes[recipeNum].mushroom &&
                 pBurger >= recipes[recipeNum].burger)
             {
-                availableRecipes.Add(recipes[recipeNum]);
-                Debug.Log($"{recipes[recipeNum].name} available to cook! Available recipes list.count = {availableRecipes.Count}");
+                recipes[recipeNum].isReadyToCook = true;
+                Debug.Log($"{recipes[recipeNum].name} available to cook!");
+            }
+            else
+            {
+                recipes[recipeNum].isReadyToCook = false;
             }
         }
     }

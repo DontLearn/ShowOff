@@ -12,4 +12,5 @@ public class RecipeSerializable
     public byte tomatoe;
     public byte mushroom;
     public byte burger;
+    public bool isReadyToCook;
 }
