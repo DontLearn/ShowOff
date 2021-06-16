@@ -4,11 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class JumpTowards : JumpAbs {
-    //[SerializeField, Range( 0.1f, 10f )]
-    //private float _jumpSpeed = 4.5f;
-    
-    [SerializeField, Range( 10f, 80f )]
+public class JumpTowards : JumpAbs {[SerializeField, Range( 10f, 80f )]
     private float initialAngle = 25f;
 
     [SerializeField, Range( 0.25f, 2.5f )]
@@ -18,17 +14,13 @@ public class JumpTowards : JumpAbs {
     private float _velocityCutoff = 0.7f;
 
     
+    private Rigidbody _rb = null;
     private Animator _animator = null;
     private Vector3 _startPos = Vector3.zero;
     private Vector3 _targetPos = Vector3.zero;
     private float _bodyMargin = 0.5f;
     private float _minimumLandOffset = 0.25f;
     private bool _active = false;
-
-    // For calculation
-    private Rigidbody _rb = null;
-    private Vector2 _direction = Vector2.zero;
-    private float _timeLeft = 0f;
 
 
 
@@ -63,27 +55,8 @@ public class JumpTowards : JumpAbs {
 
 
     private void FixedUpdate() {
-        /// TODO: jump from pos a to pos b in arc
-        /// for now, just skips the jump
-        //_animator.SetTrigger( "Attack" );
-
-
         /// Get trajectory based on starting pos, landing pos, and angle
         if ( _active ) {
-            /*Vector3 displacement = CalculateTrajectory( out float height );
-
-            if ( displacement.magnitude < Vector3.Distance( transform.position, _targetPos ) ) {
-                transform.position = new Vector3(
-                    transform.position.x + displacement.x,
-                    _startPos.y + height,
-                    transform.position.z + displacement.z
-                );
-            }
-            else {
-                transform.position = _targetPos;
-                _animator.SetTrigger( "Attack" );
-            }*/
-
             if ( _rb.velocity.magnitude <= _velocityCutoff ) {
                 _animator.SetTrigger( "Attack" );
             }
@@ -102,15 +75,6 @@ public class JumpTowards : JumpAbs {
             _targetPos += ( _startPos - _targetPos ).normalized * offset;
 
             CalculateTrajectory();
-
-
-            /*Vector3 diffXZ = new Vector3( _targetPos.x - _startPos.x, 0, _targetPos.z - _startPos.z );
-            _direction = new Vector2( diffXZ.x, diffXZ.z ).normalized;
-
-            // amount of seconds necessary to displace
-            _timeLeft = diffXZ.magnitude / _jumpSpeed;
-            Debug.Log( $"{this}: amount of time needed for the jump: {_timeLeft}." );
-            Debug.Log( $"{this}: speed per fixed time frame: {_jumpSpeed * Time.fixedDeltaTime}." );*/
         }
         else Debug.LogWarning( $"{this}: OnStateEnter method on JumpTowards script only uses Transform as first parameter." );
     }
@@ -151,35 +115,5 @@ public class JumpTowards : JumpAbs {
         else {
             _animator.SetTrigger( "Attack" );
         }
-
-
-        /*
-        //Calculate the first jump time
-        float sqrtTerm = Mathf.Sqrt( 2f * gravity.y * jumpPoint.deltaPosition.y + maxYVelocity * agent.maxSpeed );
-        float time = ( maxYVelocity - sqrtTerm ) / gravity.y;
-
-        //Check if we can use it, otherwise try the other time
-        if ( !CheckJumpTime( time ) ) {
-            time = ( maxYVelocity + sqrtTerm ) / gravity.y;
-        }*/
-        //return new Vector3( _direction.x, 0, _direction.y ) * _jumpSpeed * Time.fixedDeltaTime;
     }
-
-
-    /*
-    //Private helper method for the CalculateTarget function
-    private bool CheckJumpTime( float time ) {
-        //Calculate the planar speed
-        float vx = jumpPoint.deltaPosition.x / time;
-        float vz = jumpPoint.deltaPosition.z / time;
-        float speedSq = vx * vx + vz * vz;
-
-        //Check it to see if we have a valid solution
-        if ( speedSq < agent.maxSpeed * agent.maxSpeed ) {
-            target.GetComponent<Agent>().velocity = new Vector3( vx, 0f, vz );
-            canAchieve = true;
-            return true;
-        }
-        return false;
-    }*/
 }

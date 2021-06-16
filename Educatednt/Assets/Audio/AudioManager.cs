@@ -1,69 +1,62 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMODUnity;
 
-public class AudioManager : MonoBehaviour
-{
-    [SerializeField]
-    private AudioCarrier _audioCarrier;
 
-    private enum Location {Menu, Castle, Level};
+namespace Audio {
+    public class AudioManager : MonoBehaviour {
+        private enum Location {
+            MENU,
+            CASTLE,
+            LEVEL
+        };
 
-    [SerializeField]
-    private Location _currentLocation;
 
-    [SerializeField]
-    private List<int> _sceneDefinition;
+        [SerializeField]
+        private AudioCarrier _audioCarrier;
 
-    void Awake()
-    {
-        _audioCarrier = GetComponent<AudioCarrier>();
-    }
+        [SerializeField]
+        private Location _currentLocation;
 
-    private void Start()
-    {
-        DefineLocation();
-        ChangeState();
-    }
+        [SerializeField]
+        private List<int> _sceneDefinition;
 
-    private void ChangeState()
-    {
-        switch (_currentLocation)
-        {
-            case Location.Menu:
-                
-                break;
-                _audioCarrier.PlaySound(0);
-            case Location.Castle:
-                _audioCarrier.PlaySound(1);
-                _audioCarrier.PlaySound(2);
-                _audioCarrier.PlaySound(3);
-                break;
 
-            case Location.Level:
-                _audioCarrier.PlaySound(4);
-                _audioCarrier.PlaySound(5);
-                break;
+
+
+        private void Awake() {
+            _audioCarrier = GetComponent<AudioCarrier>();
         }
-    }
 
-    private void DefineLocation()
-    {
-        int _currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        if (_currentScene == _sceneDefinition[0])
-        {
-            _currentLocation = Location.Menu;
+        private void Start() {
+            DefineLocation();
+            ChangeState();
         }
-        else if (_currentScene == _sceneDefinition[1])
-        {
-            _currentLocation = Location.Castle;
+
+
+        private void ChangeState() {
+            switch (_currentLocation)
+            {
+                case Location.MENU:
+                    _audioCarrier.PlaySound(0);
+                    break;
+                case Location.CASTLE:
+                    _audioCarrier.PlaySound(1);
+                    _audioCarrier.PlaySound(2);
+                    _audioCarrier.PlaySound(3);
+                    break;
+                case Location.LEVEL:
+                    _audioCarrier.PlaySound(4);
+                    _audioCarrier.PlaySound(5);
+                    break;
+            }
         }
-        else if (_currentScene >= _sceneDefinition[2])
-        {
-            _currentLocation = Location.Level;
+
+
+        private void DefineLocation() {
+            _currentLocation = ( Location )SceneManager.GetActiveScene().buildIndex;
         }
     }
 }
