@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Ingredient : Pickup
 {
-    public ingredientType value = ingredientType.Mushroom;
+    public ingredientType value = ingredientType.Rice;
     public enum ingredientType
     {
         Rice = 0,
         Tomatoe = 1,
-        Mushroom = 2
+        Mushroom = 2,
+        Burger = 3
     }
 
     public override void OnTriggerEnter(Collider other)

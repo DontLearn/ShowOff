@@ -17,8 +17,11 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Brick\" label=\"\" >\n  <presetinput identifier=\"$outputsize\"
-      uid=\"1439099698\" type=\"8\" value=\"9,9\" />\n  <presetinput identifier=\"highlights_color\"
-      uid=\"994137018\" type=\"3\" value=\"0.65566,0.682882,1,1\" />\n </sbspreset>\n"
+      uid=\"1439099698\" type=\"8\" value=\"9,9\" />\n  <presetinput identifier=\"mid_tones_color\"
+      uid=\"994137040\" type=\"3\" value=\"0.60534,0.795999,0.981132,1\" />\n  <presetinput
+      identifier=\"shadows_color\" uid=\"994137024\" type=\"3\" value=\"0,0.169811,0.121294,1\"
+      />\n  <presetinput identifier=\"highlights_color\" uid=\"994137018\" type=\"3\"
+      value=\"0.160573,0.877358,0.869251,1\" />\n </sbspreset>\n"
     shaderName: HDRP/LitTessellation
     materialProperties:
       shader: {fileID: 4800000, guid: 756bac9090102564582875f4c7e30202, type: 3}

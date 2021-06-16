@@ -11,4 +11,5 @@ public class RecipeSerializable
     public byte rice;
     public byte tomatoe;
     public byte mushroom;
+    public byte burger;
 }
