@@ -1,12 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class RecipeManager : MonoBehaviour
-{    
+{
     [SerializeField]
-    public static List<RecipeSerializable> recipes = new List<RecipeSerializable>();
+    public List<RecipeSerializable> recipes = new List<RecipeSerializable>();
     [SerializeField]
     private Inventory _inventory;
 
@@ -20,12 +18,14 @@ public class RecipeManager : MonoBehaviour
                 pMushroom >= recipes[recipeNum].mushroom &&
                 pBurger >= recipes[recipeNum].burger)
             {
-                recipes[recipeNum].isReadyToCook = true;
+                //note the recipe at 0 as available to cook.
+                //So, Kitchen scene can show/hide cook buttons.
+                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = true;
                 Debug.Log($"{recipes[recipeNum].name} available to cook!");
             }
             else
             {
-                recipes[recipeNum].isReadyToCook = false;
+                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = false;
             }
         }
     }
