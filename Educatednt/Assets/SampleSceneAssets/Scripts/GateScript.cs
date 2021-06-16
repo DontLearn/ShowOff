@@ -5,20 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GateScript : MonoBehaviour
 {
+    private int amountOfLvls;
+    public bool toKitchen;
+    public int levelToGo;
+    
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+           
 
-
-            if (SceneManager.GetActiveScene().buildIndex < 4)
+            if (SceneManager.GetActiveScene().buildIndex < 4 && !toKitchen)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-            else
+            else if(!toKitchen)
             {
                 SceneManager.LoadScene(0);
+            } else
+            {
+                SceneManager.LoadScene(levelToGo);
             }
         }
     }
