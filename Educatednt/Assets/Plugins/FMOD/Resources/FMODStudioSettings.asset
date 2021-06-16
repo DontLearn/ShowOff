@@ -15,8 +15,8 @@ MonoBehaviour:
   SwitchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../Audio/getoverherecucumber_fmod_project/getoverherecucumber_fmod_project.fspro
-  sourceBankPath: ..\..\..\Audio\getoverherecucumber_fmod_project\Build
+  sourceProjectPath: Assets/Audio/getoverherecucumber_fmod_project/getoverherecucumber_fmod_project.fspro
+  sourceBankPath: Assets\Audio\getoverherecucumber_fmod_project\Build
   SourceBankPathUnformatted: 
   AutomaticEventLoading: 1
   BankLoadType: 0
