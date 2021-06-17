@@ -11,8 +11,10 @@ public class Dialogue : MonoBehaviour
 {
     public const int minNumSentences = 1;
     public const int maxNumSentences = 10;
+    
 
     [TextArea(minNumSentences, maxNumSentences)]
     public string[] sentences; //loaded to queue
     public string name; //who is talking
+    public int imageNumber;
 }
