@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{83134f95-10f1-4870-98d8-4688f45044b2}">
+		<property name="assetPath">
+			<value>fake_talk_1.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.7240816326530612</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fe45c7e2-30b6-4f62-9ae2-6f03556916f2}</destination>
+		</relationship>
+	</object>
+</objects>

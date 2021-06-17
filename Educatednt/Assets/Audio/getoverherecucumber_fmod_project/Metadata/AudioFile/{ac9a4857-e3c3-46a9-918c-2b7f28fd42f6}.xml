@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{ac9a4857-e3c3-46a9-918c-2b7f28fd42f6}">
+		<property name="assetPath">
+			<value>monster_grunts_hurt13.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3583673469387756</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fe45c7e2-30b6-4f62-9ae2-6f03556916f2}</destination>
+		</relationship>
+	</object>
+</objects>

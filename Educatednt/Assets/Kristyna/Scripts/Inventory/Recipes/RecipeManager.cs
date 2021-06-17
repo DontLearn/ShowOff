@@ -1,11 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public class RecipeManager : MonoBehaviour
-{    
-    public static List<RecipeSerializable> availableRecipes = new List<RecipeSerializable>();//used in Kitchen scene to access this data
+{
     [SerializeField]
     public List<RecipeSerializable> recipes = new List<RecipeSerializable>();
     [SerializeField]
@@ -13,8 +10,6 @@ public class RecipeManager : MonoBehaviour
 
     public void CheckAvailableRecipes(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
     {
-        if (availableRecipes.Count > 0) availableRecipes.Clear();
-
         for (int recipeNum = 0; recipeNum < recipes.Count; recipeNum++)
         {
             //check all three ingredients:
@@ -23,8 +18,14 @@ public class RecipeManager : MonoBehaviour
                 pMushroom >= recipes[recipeNum].mushroom &&
                 pBurger >= recipes[recipeNum].burger)
             {
-                availableRecipes.Add(recipes[recipeNum]);
-                Debug.Log($"{recipes[recipeNum].name} available to cook! Available recipes list.count = {availableRecipes.Count}");
+                //note the recipe at 0 as available to cook.
+                //So, Kitchen scene can show/hide cook buttons.
+                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = true;
+                Debug.Log($"{recipes[recipeNum].name} available to cook!");
+            }
+            else
+            {
+                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = false;
             }
         }
     }

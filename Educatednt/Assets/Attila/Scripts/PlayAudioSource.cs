@@ -5,14 +5,14 @@ using UnityEngine.Audio;
 
 public class PlayAudioSource : MonoBehaviour
 {
-    private AudioManager _manager;
+    private PrototypeAudioManager _manager;
     [SerializeField] private int _neededAudioSorce;
     private GameObject audioManagerObject;
 
     void Awake()
     {
         audioManagerObject = GameObject.Find("AudioManager");
-        _manager = audioManagerObject.GetComponent<AudioManager>();
+        _manager = audioManagerObject.GetComponent<PrototypeAudioManager>();
     }
 
     public void PlayAudio()

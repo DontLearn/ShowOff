@@ -1497,6 +1497,8 @@ GameObject:
   - component: {fileID: 6162155450221642042}
   - component: {fileID: 8562061004092929634}
   - component: {fileID: 1041695738629044350}
+  - component: {fileID: 3379590479327235674}
+  - component: {fileID: 2669006253055867519}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -1663,6 +1665,38 @@ MonoBehaviour:
   _diveForce: -45
   _hitBoxFront: {fileID: 346319153569968088}
   _hitBoxBelow: {fileID: 3346103136970486066}
+--- !u!114 &3379590479327235674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737563938146979244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f115fef38f1c9ab419cef034dd0afea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fmodEvents:
+  - event:/PLAYER/Jump
+  - event:/PLAYER/Landing
+  - event:/PLAYER/Bounce
+  - event:/PLAYER/Attack
+  - event:/PLAYER/GetDamage
+--- !u!114 &2669006253055867519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737563938146979244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5f374bc8854a6438feae59da100572, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerWalkingSound: event:/PLAYER/Run
+  _walkingSpeed: 0.2
 --- !u!1 &4737563938426396801
 GameObject:
   m_ObjectHideFlags: 0

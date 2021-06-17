@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     }
     private void Update()
     {
-        if (dialogueUI.active && Input.GetKeyDown(KeyCode.N))
+        if (dialogueUI.activeSelf && Input.GetKeyDown(KeyCode.N))
         {
             DisplayNextSentence();
         }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{1cfa27e9-cfcd-4912-a3ef-84e8d4494424}">
+		<property name="assetPath">
+			<value>monster_grunts_die7.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.94040816326530607</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{fe45c7e2-30b6-4f62-9ae2-6f03556916f2}</destination>
+		</relationship>
+	</object>
+</objects>

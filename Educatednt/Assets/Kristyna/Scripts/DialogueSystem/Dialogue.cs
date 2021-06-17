@@ -14,5 +14,4 @@ public class Dialogue : MonoBehaviour
 
     [TextArea(minNumSentences, maxNumSentences)]
     public string[] sentences; //loaded to queue
-    public string name; //who is talking
 }
