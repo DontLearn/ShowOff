@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DefineStage();
     }
 
    public void DefineStage()
