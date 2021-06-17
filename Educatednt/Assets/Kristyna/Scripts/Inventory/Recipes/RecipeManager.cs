@@ -11,6 +11,12 @@ public class RecipeManager : MonoBehaviour
     [SerializeField]
     private Inventory _inventory;
 
+    private void Start()
+    {
+        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
+    }
+
     public void CheckAvailableRecipes(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
     {
         if (availableRecipes.Count > 0) availableRecipes.Clear();
