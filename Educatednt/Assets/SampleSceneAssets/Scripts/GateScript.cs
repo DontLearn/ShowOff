@@ -8,11 +8,13 @@ public class GateScript : MonoBehaviour
     private int amountOfLvls;
     public bool toKitchen;
     public int levelToGo;
+
+    public bool locked;
     
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !locked)
         {
            
 
