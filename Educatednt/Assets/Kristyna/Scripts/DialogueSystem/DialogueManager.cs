@@ -9,7 +9,11 @@ public class DialogueManager : MonoBehaviour
     public Text dialogueText;
     public GameObject dialogueUI;
 
+    public Image tutorialimg;
+    public Sprite[] tutorialImgs;
+
     private Queue<string> sentences;
+    //private Queue<int> imageNumber; 
         
     void Start()
     {
@@ -26,6 +30,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         nameText.text = dialogue.name;
+        tutorialimg.sprite = tutorialImgs[dialogue.imageNumber];
         sentences.Clear();//clear previous sentences
 
         //load all sentences
