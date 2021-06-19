@@ -4212,7 +4212,7 @@ PrefabInstance:
     - target: {fileID: 4214340872556120360, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: itemButtonPrefab
       value: 
-      objectReference: {fileID: 2974660988862252395, guid: 3d418000582b87d46980c730e7a0111c, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4214340872556120360, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: slots.Array.size
       value: 3
@@ -4248,19 +4248,19 @@ PrefabInstance:
     - target: {fileID: 4214340872556120360, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: pickupSprites.Array.data[0]
       value: 
-      objectReference: {fileID: 21300000, guid: 53d33cc9a5425ae43a8036d5f2e65415, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4214340872556120360, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: pickupSprites.Array.data[1]
       value: 
-      objectReference: {fileID: 21300000, guid: bc6cbb3a2e1b04649965c0a3b15f7432, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4214340872556120360, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: pickupSprites.Array.data[2]
       value: 
-      objectReference: {fileID: 21300000, guid: 6f29a765f9e67be4f987bc1674ea963b, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4214340872556120360, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: pickupSprites.Array.data[3]
       value: 
-      objectReference: {fileID: 21300000, guid: 5fa71a57facf0cf46a55e8bcaa4ee9fc, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4214340872556120361, guid: 3af9964b8dafdbb4eb9da190d54f9c76, type: 3}
       propertyPath: m_RootOrder
       value: 4
