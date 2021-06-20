@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 4240482285930405818}
   - component: {fileID: 5824580268842890864}
   m_Layer: 11
-  m_Name: Shroom
+  m_Name: Shroom 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,7 +1029,7 @@ PrefabInstance:
     - target: {fileID: 4039333742092465891, guid: a0aac31ad906b764d9a7a597c917db31, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bd0a57cb41391654d9a4e7798b87ea41, type: 2}
+      objectReference: {fileID: 2100000, guid: 2eef834e7fa75a24e9ac40e6b51628f6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0aac31ad906b764d9a7a597c917db31, type: 3}
 --- !u!1 &2909665682565412851 stripped
