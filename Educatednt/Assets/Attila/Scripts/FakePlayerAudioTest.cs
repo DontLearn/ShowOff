@@ -16,7 +16,7 @@ public class FakePlayerAudioTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _sound.PlaySound("Jump", false);
+            _sound.PlaySound(0, false);
         }
     }
 
