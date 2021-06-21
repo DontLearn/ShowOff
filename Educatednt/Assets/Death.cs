@@ -16,7 +16,7 @@ public class Death : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health.hitPoints <= 0)
+        if (health.HitPoints <= 0)
         {
             gameObject.SetActive(false);
             Died();

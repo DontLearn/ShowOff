@@ -2,7 +2,7 @@
 
 
 namespace Data {
-    public class KingData : PersistentDataBehaviour {
+    public class KingBehaviour : PersistentDataBehaviour {
         [SerializeField]
         private string key = "happiness";
         
@@ -22,6 +22,5 @@ namespace Data {
         public override void Save( PersistentData persistentData ) {
             persistentData.SetIntData( key, happiness );
         }
-
     }
 }

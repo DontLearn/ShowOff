@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 6162155450221642042}
   - component: {fileID: 8562061004092929634}
   - component: {fileID: 1041695738629044350}
-  - component: {fileID: 4672301506514676230}
+  - component: {fileID: 6080864488429679727}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -1515,7 +1515,7 @@ MonoBehaviour:
   _diveForce: -45
   _hitBoxFront: {fileID: 346319153569968088}
   _hitBoxBelow: {fileID: 3346103136970486066}
---- !u!114 &4672301506514676230
+--- !u!114 &6080864488429679727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1524,11 +1524,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4737563938146979244}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c168e97a6b5bc9a40ae56077d5bbf1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ba0e3ae86512e445b50b0403af680c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoints: 100
-  stability: 2
+  _hitPoints: 100
+  _stability: 2
   _healthBar: {fileID: 525714574439437519}
   _damageSound: {fileID: 1645487045324512030}
   _killSound: {fileID: 1645487045324512030}
