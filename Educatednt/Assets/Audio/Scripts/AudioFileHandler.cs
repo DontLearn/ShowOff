@@ -35,6 +35,16 @@ public class AudioFileHandler : MonoBehaviour
         }
     }
 
+    public void PlaySound(int _listPosition, bool _loop)
+    {
+        AudioExecutor _executor;
+
+        _executor = _sfx[_listPosition];
+        _source.clip = _executor.GetAudioClip();
+        _source.Play();
+        _source.loop = _loop;
+    }
+
     private int PassIntValue(int _passedValue)
     {
         return _passedValue;
