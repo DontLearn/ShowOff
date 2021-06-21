@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     public byte stackLimit = 5;
-    public GameObject itemButtonPrefab;
+    public GameObject InventoryItemPrefab;
     [Header("0-rice, 1 - toamtoe, 2 - mushroom, 3 - burger")]
     public Sprite[] pickupSprites = new Sprite[4];
 
@@ -29,6 +29,14 @@ public class Inventory : MonoBehaviour
         _recipes = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
             Debug.Assert(_recipes, "Recipe Manager with the Recipes script not found by the tag!");
         findSlotsInScene();
+        loadIngredientSpritesFromFolder();
+
+        Debug.Assert(InventoryItemPrefab, $"InventoryItemPrefab prefab missing in Inventory inspector!");
+    }
+    private void loadIngredientSpritesFromFolder()
+    {
+        pickupSprites = Resources.LoadAll<Sprite>("Sprites/IngredientSprites");
+        Debug.Assert(pickupSprites[0], $"Sprites for ingredients in folder Assets/Resources/Sprites/IngredientSprites not found!");
     }
     private bool checkIngredientAvailability(byte pIngredient, Ingredient.ingredientType pType)
     {
@@ -37,8 +45,8 @@ public class Inventory : MonoBehaviour
             if (pIngredient <= 0)
             {
                 //Create UI:
-                itemButtonPrefab.GetComponent<Image>().sprite = pickupSprites[(int)pType];
-                Instantiate(itemButtonPrefab, slots[(int)pType].transform, false);
+                InventoryItemPrefab.GetComponent<Image>().sprite = pickupSprites[(int)pType];
+                Instantiate(InventoryItemPrefab, slots[(int)pType].transform, false);
                 
                 slots[(int)pType].GetComponent<Slot>().showItemNumber();
             }
