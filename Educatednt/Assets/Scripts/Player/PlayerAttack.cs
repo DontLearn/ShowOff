@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Combat;
+using Data;
 
 
 namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( Rigidbody ) )]
-    public class PlayerAttack : MonoBehaviour {
+    public class PlayerAttack : PlayerBehaviour {
         [SerializeField, Range( 0f, 10f )]
         private float _downForce = 5f;
 
@@ -25,11 +24,30 @@ namespace Player {
         private Rigidbody _rb = null;
         private bool _isGrounded = true;
         private bool _attackPressed = false;
+        private bool _upgraded = false;
 
 
 
         private void Start() {
             LoadComponents();
+        }
+
+
+        private void Update() {
+            if ( !_upgraded && isLoaded ) {
+                // UPGRADE
+                Upgrade();
+            }
+        }
+
+
+        private void Upgrade() {
+            if ( _attack ) {
+                int dmg = data[ "damage" ];
+                _attack.SetDamage( dmg );
+                _upgraded = true;
+                Debug.Log( $"{this}: Upgraded attack damage. Is now {dmg}" );
+            }
         }
 
 
