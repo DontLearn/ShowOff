@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -17,6 +15,7 @@ namespace Combat
         protected int layerMask = 1 << 11;
 
 
+        public abstract void SetDamage( int amount );
         public abstract bool Strike();
 
 

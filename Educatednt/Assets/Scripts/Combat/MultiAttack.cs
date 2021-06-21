@@ -49,6 +49,12 @@ namespace Combat
         }
 
 
+        public override void SetDamage( int amount ) {
+            damage = amount;
+            _diveDamage = amount * 2;
+        }
+
+
         public override bool Strike() {
             if ( null != _currentActive ) {
                 // Get all colliders overlapping our hitbox

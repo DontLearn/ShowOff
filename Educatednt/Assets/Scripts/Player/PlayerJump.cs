@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 
 namespace Player {
-    public class PlayerJump : MonoBehaviour {
+    public class PlayerJump : PlayerBehaviour {
         [SerializeField, Range( 5f, 25f )]
         private float _jumpForce = 22f;
 
@@ -17,6 +16,7 @@ namespace Player {
 
         private Rigidbody _rb = null;
         private bool _jumpPressed = false;
+        private bool _upgraded = false;
 
 
 
@@ -26,9 +26,24 @@ namespace Player {
         }
 
 
+        private void Update() {
+            if ( !_upgraded && isLoaded ) {
+                // UPGRADE
+                Upgrade();
+            }
+        }
+
+
         private void FixedUpdate() {
             // JUMP
             Jump();
+        }
+
+
+        private void Upgrade() {
+            _jumpForce = data[ "jumpForce" ];
+            _upgraded = true;
+            Debug.Log( $"{this}: Upgraded jump force. Is now {_jumpForce}" );
         }
 
 

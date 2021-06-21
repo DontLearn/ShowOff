@@ -3,22 +3,25 @@ using UnityEngine;
 
 
 namespace Data {
-    public class PlayerData : PersistentDataBehaviour {
+    public class PlayerBehaviour : PersistentDataBehaviour {
         [SerializeField]
-        private Dictionary<string, int> datapairs = new Dictionary<string, int>() {
+        protected Dictionary<string, int> data = new Dictionary<string, int>() {
             { "health", 0 },
             { "upgrade", 0 },
             { "damage", 0 },
             { "knockback", 0 },
-            { "jumpHeight", 0 }
+            { "jumpForce", 0 }
         };
+
+
+        protected bool isLoaded = false;
 
 
 
         public override void Load( PersistentData persistentData ) {
             Dictionary<string, int> newDic = new Dictionary<string, int>();
 
-            foreach ( KeyValuePair<string, int> pair in datapairs ) {
+            foreach ( KeyValuePair<string, int> pair in data ) {
                 if ( int.TryParse( persistentData.GetStringData( pair.Key ), out int data ) ) {
                     newDic.Add( pair.Key, pair.Value );
                 }
@@ -27,12 +30,13 @@ namespace Data {
                 }
             }
 
-            datapairs = newDic;
+            data = newDic;
+            isLoaded = true;
         }
 
 
         public override void Save( PersistentData persistentData ) {
-            foreach ( KeyValuePair<string, int> pair in datapairs ) {
+            foreach ( KeyValuePair<string, int> pair in data ) {
                 persistentData.SetIntData( pair.Key, pair.Value );
             }
         }

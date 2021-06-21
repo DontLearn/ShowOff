@@ -1,9 +1,8 @@
-﻿using System;
-
+﻿using UnityEngine;
 
 
 namespace Data {
-    public abstract class PersistentDataBehaviour {
+    public abstract class PersistentDataBehaviour : MonoBehaviour {
         public abstract void Load ( PersistentData persistentData );
         public abstract void Save ( PersistentData persistentData );
 
