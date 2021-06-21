@@ -9,7 +9,6 @@ public class FakePlayerAudioTest : MonoBehaviour
     void Update()
     {
         FakePlayerJump();
-        FakePlayerRun();
     }
 
     private void FakePlayerJump()
@@ -17,18 +16,6 @@ public class FakePlayerAudioTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _sound.PlaySound(0, false);
-        }
-    }
-
-    private void FakePlayerRun()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            _sound.PlaySound("Run", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            _sound.StopSound();
         }
     }
 }

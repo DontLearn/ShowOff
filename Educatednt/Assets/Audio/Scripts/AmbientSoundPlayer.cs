@@ -12,7 +12,9 @@ public class AmbientSoundPlayer : MonoBehaviour
 
     void Start()
     {
-        if(_kitchenSceneName == SceneManager.GetActiveScene().name)
+        _ambientAudioFiles.PlaySound(2, true);
+
+        if (_kitchenSceneName == SceneManager.GetActiveScene().name)
         {
             _ambientAudioFiles.PlaySound(1, true);
         }

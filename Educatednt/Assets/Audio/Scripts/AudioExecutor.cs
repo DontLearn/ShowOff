@@ -6,27 +6,30 @@ using UnityEngine.Audio;
 public class AudioExecutor : MonoBehaviour
 {
     [SerializeField] private string _sfxName;
+    [SerializeField] private AudioSource _source;
 
-    private int _clipNumber;
     private AudioClip _clip;
     [SerializeField] private List<AudioClip> _clipList;
     private int _randomClip;
 
 
-    private void SetAudioClip()
+    public void SetAudioClip()
     {
         _randomClip = Random.Range(0, _clipList.Count);
-        _clip = _clipList[_randomClip];
-    }
 
-    public AudioClip GetAudioClip()
-    {
-        SetAudioClip();
-        return _clip;
+        if(_clipList.Count != 0)
+        {
+            _clip = _clipList[_randomClip];
+            _source.clip = _clip;
+        }
+        else
+        {
+            _source.clip = null;
+        }
     }
-
-    public string GetAudioName()
+    
+    public AudioSource SetSource()
     {
-        return _sfxName;
+        return _source;
     }
 }

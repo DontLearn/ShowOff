@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sfx:
   - {fileID: 7401477675685427343}
-  _source: {fileID: 7401477675685427342}
 --- !u!114 &7401477675685427343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,9 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a289d3df84b00634f8ae7fbe3db88641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxName: Jump
+  _sfxName: 
+  _source: {fileID: 7401477675685427342}
   _clipList:
-  - {fileID: 8300000, guid: 9e789a95c0a9679459e4df51b1dbb0a3, type: 3}
+  - {fileID: 0}
 --- !u!82 &7401477675685427342
 AudioSource:
   m_ObjectHideFlags: 0
@@ -72,9 +72,9 @@ AudioSource:
   m_GameObject: {fileID: 7401477675685427329}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1777274759025730007, guid: e154817f6b35ada488ade40c6d80fa47, type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

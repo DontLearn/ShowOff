@@ -3759,7 +3759,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 353816551893560072, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: _kitchenSceneName
-      value: Attila
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2104405377348152086, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: m_RootOrder
@@ -3808,6 +3808,10 @@ PrefabInstance:
     - target: {fileID: 2104405377348152095, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: m_Name
       value: PrototypeAudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350494149237054692, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
@@ -11311,7 +11315,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2049542907
 Transform:
   m_ObjectHideFlags: 0
@@ -11339,7 +11343,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sfx: []
-  _source: {fileID: 0}
 --- !u!82 &2049542909
 AudioSource:
   m_ObjectHideFlags: 0
