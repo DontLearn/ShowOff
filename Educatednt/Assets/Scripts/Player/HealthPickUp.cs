@@ -1,27 +1,28 @@
 using Combat;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthPickUp : MonoBehaviour
-{
-    private Health health;
-    private HealthBar _healthBar;
-    public int hitpointsBust;
 
-    // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("—” ¿");
+public class HealthPickUp : MonoBehaviour {
+    [SerializeField, Range( 0, 100 )]
+    private int _healAmount = 25;
 
-            health = other.gameObject.GetComponent<Health>();
-            health.hitPoints = health.hitPoints + hitpointsBust;
-            int hitpoints = health.hitPoints;
+
+    private Health _health = null;
+    private HealthBar _healthBar = null;
+
+
+
+    private void OnTriggerEnter( Collider other ) {
+        if ( other.gameObject.CompareTag( "Player" ) ) {
+
+            _health = other.gameObject.GetComponent<Health>();
+            _health.AddHitPoints( _healAmount );
             _healthBar = other.gameObject.GetComponentInChildren<HealthBar>();
-            _healthBar.SetHealth(hitpoints);
-            Destroy(gameObject);
+            _healthBar.SetHealth( _health.HitPoints );
+
+            Debug.Log( $"{this}: Added {_healAmount} to the Player's hit points, which is now {_health.HitPoints}." );
+            
+            Destroy( gameObject );
         }
     }
 }

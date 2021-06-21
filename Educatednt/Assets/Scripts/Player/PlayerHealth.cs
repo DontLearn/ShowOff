@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
+using Data;
 
 
 namespace Combat {
-    class Health : MonoBehaviour, IHittable {
+    class PlayerHealth : PlayerBehaviour, IHittable {
         public int HitPoints => _hitPoints;
 
 
@@ -23,6 +24,9 @@ namespace Combat {
         private PlayAudioSource _killSound;
 
 
+        private bool _upgraded = false;
+
+
 
         private void Start() {
             if ( _healthBar ) {
@@ -32,6 +36,24 @@ namespace Combat {
             else {
                 Debug.LogError( $"{this}: No Health Bar found on {name}." );
             }
+        }
+
+
+        private void Update() {
+            if ( !_upgraded && isLoaded ) {
+                // UPGRADE
+                Upgrade();
+            }
+        }
+
+
+        private void Upgrade() {
+            _hitPoints = data[ "health" ];
+            _upgraded = true;
+
+            if ( _healthBar )
+                _healthBar.SetHealth( _hitPoints );
+            Debug.Log( $"{this}: Upgraded health. Is now {_hitPoints}" );
         }
 
 
@@ -74,6 +96,7 @@ namespace Combat {
             if ( _killSound ) {
                 _killSound.PlayAudio();
             }
+            /// TODO: inform scene to restart
         }
 
 
