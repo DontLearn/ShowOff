@@ -9,6 +9,7 @@ public class PauseMenuHandler : MonoBehaviour
     private GameObject _pauseMenu;
     [SerializeField]
     private int _mainMenuSceneNumber;
+    [SerializeField] private MenuAudio _menuAudio;
 
     private bool _isActive;
     void Start()
@@ -33,6 +34,7 @@ public class PauseMenuHandler : MonoBehaviour
         if (_isActive)
         {
             Time.timeScale = 0;
+            _menuAudio.PauseMenuSound();
         }
         else
         {
