@@ -55,6 +55,12 @@ namespace Combat
         }
 
 
+        public override void SetKnockback( int amount ) {
+            hitForce = amount;
+            _diveForce = amount / -2f;
+        }
+
+
         public override bool Strike() {
             if ( null != _currentActive ) {
                 // Get all colliders overlapping our hitbox

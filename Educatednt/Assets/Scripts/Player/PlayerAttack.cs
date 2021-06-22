@@ -22,6 +22,7 @@ namespace Player {
         private Combat.Attack _attack = null;
         private MultiAttack.Hitbox _activeHitbox = MultiAttack.Hitbox.FRONT;
         private Rigidbody _rb = null;
+        private bool _diveAvailable = true;
         private bool _isGrounded = true;
         private bool _attackPressed = false;
         private bool _upgraded = false;
@@ -45,8 +46,12 @@ namespace Player {
             if ( _attack ) {
                 int dmg = data[ "damage" ];
                 _attack.SetDamage( dmg );
+                int knk = data[ "knockback" ];
+                _attack.SetKnockback( knk );
                 _upgraded = true;
-                Debug.Log( $"{this}: Upgraded attack damage. Is now {dmg}" );
+
+                Debug.Log( $"{this}: Upgraded attack damage. Is now {dmg}." );
+                Debug.Log( $"{this}: Upgraded attack knockback. Is now {knk}." );
             }
         }
 
@@ -57,6 +62,11 @@ namespace Player {
 
             _rb = GetComponent<Rigidbody>();
             Debug.Assert( null != _rb, $"RigidBody component missing on {name}." );
+        }
+
+
+        public void SetDiveAvailable( bool available ) {
+            _diveAvailable = available;
         }
 
 
@@ -82,7 +92,14 @@ namespace Player {
 
 
         public void SetActiveHitbox( MultiAttack.Hitbox hitbox ) {
-            _activeHitbox = hitbox;
+            if ( !_diveAvailable ) {
+                _activeHitbox = MultiAttack.Hitbox.FRONT;
+                return;
+            }
+            else {
+                _activeHitbox = hitbox;
+            }
+
             if ( _activeHitbox == MultiAttack.Hitbox.FRONT )
                 _attackPressed = false;
             if ( _attack && _attack is MultiAttack )
@@ -93,7 +110,7 @@ namespace Player {
         private void FixedUpdate() {
             if ( _attack ) {
                 float velY = _rb.velocity.y;
-                if ( _attack is MultiAttack && !_isGrounded && velY <= 0.4f ) {
+                if ( _diveAvailable && _attack is MultiAttack && !_isGrounded && velY <= 0.4f ) {
                     DiveAttack();
                 }
                 else {

@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Data;
 
 
 namespace Player
 {
     [RequireComponent( typeof( PlayerAnimator ), typeof( PlayerMovement ) )]
-    public class Player : MonoBehaviour
+    public class Player : PlayerBehaviour
     {
         [SerializeField]
         private Controls _controls = null;
@@ -16,6 +15,8 @@ namespace Player
         private PlayerMovement _movement = null;
         private PlayerJump _jump = null;
         private PlayerAttack _attack = null;
+        private int _upgradeLevel = 0;
+        private bool _upgraded = false;
 
         // controls
         private string _forwardAxis = "";
@@ -34,6 +35,12 @@ namespace Player
 
 
         private void Update() {
+            if ( !_upgraded && isLoaded ) {
+                // UPGRADE
+                Upgrade();
+            }
+
+
             // Move
             Move();
 
@@ -51,6 +58,23 @@ namespace Player
 
             // Check Velocity
             CheckVelocity();
+        }
+
+
+        private void Upgrade() {
+            _upgradeLevel = data[ "upgrade" ];
+            _upgraded = true;
+
+            Debug.Log( $"{this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
+
+            if ( _upgradeLevel < 1 ) {
+                _jump = null;
+            }
+            if ( _upgradeLevel < 2 ) {
+                if ( _attack ) {
+                    _attack.SetDiveAvailable( false );
+                }
+            }
         }
 
 

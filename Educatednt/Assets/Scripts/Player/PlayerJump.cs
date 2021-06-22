@@ -4,8 +4,8 @@ using Data;
 
 namespace Player {
     public class PlayerJump : PlayerBehaviour {
-        [SerializeField, Range( 5f, 25f )]
-        private float _jumpForce = 22f;
+        [SerializeField, Range( 5f, 30f )]
+        private float _jumpForce = 21f;
 
         [SerializeField, Range( 0f, 18f )]
         private float _jumpDash = 4f;
@@ -43,7 +43,7 @@ namespace Player {
         private void Upgrade() {
             _jumpForce = data[ "jumpForce" ];
             _upgraded = true;
-            Debug.Log( $"{this}: Upgraded jump force. Is now {_jumpForce}" );
+            Debug.Log( $"{this}: Upgraded jump force. Is now {_jumpForce}." );
         }
 
 
