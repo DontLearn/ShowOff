@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Data {
     public class PlayerBehaviour : PersistentDataBehaviour {
-        [SerializeField]
         protected Dictionary<string, int> data = new Dictionary<string, int>() {
             { "health", 0 },
             { "upgrade", 0 },

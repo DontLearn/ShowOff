@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Data {
     public class PersistentData {
-        public static PersistentData instance {
+        public static PersistentData Instance {
             get {
                 if ( _instance == null ) {
                     _instance = new PersistentData();
