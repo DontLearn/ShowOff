@@ -4,6 +4,7 @@ using UnityEngine;
 public class RecipeManager : MonoBehaviour
 {
     [SerializeField]
+    [Header("0- soup, 1 - pilaf, 2 - friedRice, 3 - burger")]
     public List<RecipeSerializable> recipes = new List<RecipeSerializable>();
     [SerializeField]
     private Inventory _inventory;
@@ -14,29 +15,15 @@ public class RecipeManager : MonoBehaviour
         Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
     }
 
-    public void CheckAvailableRecipes(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
+    public void CheckAvailableRecipes(int pRice, int pTomatoe, int pMushroom, int pBurger)
     {
-        for (int recipeNum = 0; recipeNum < recipes.Count; recipeNum++)
+        foreach (RecipeSerializable recipe in recipes)
         {
-            //check all three ingredients:
-            if (pRice >= recipes[recipeNum].rice &&
-                pTomatoe >= recipes[recipeNum].tomatoe &&
-                pMushroom >= recipes[recipeNum].mushroom &&
-                pBurger >= recipes[recipeNum].burger)
-            {
-                //note the recipe at 0 as available to cook.
-                //So, Kitchen scene can show/hide cook buttons.
-                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = true;
-                Debug.Log($"{recipes[recipeNum].name} available to cook!");
-            }
-            else
-            {
-                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = false;
-            }
+            recipe.isReady = (pRice >= recipe.rice &&
+                              pTomatoe >= recipe.tomatoe &&
+                              pMushroom >= recipe.mushroom &&
+                              pBurger >= recipe.burger);
         }
-    }
-    public void CookRecipe(int pRecipeNumber)
-    {
-        _inventory.GetComponent<Inventory>().DeleteIngredienceFromInventory(recipes[pRecipeNumber].rice, recipes[pRecipeNumber].tomatoe, recipes[pRecipeNumber].mushroom, recipes[pRecipeNumber].burger);
+        //TO DO: make popup for player to know that a recipe is ready
     }
 }

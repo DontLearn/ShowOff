@@ -1,28 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
+    [Header("0-rice, 1 - toamtoe, 2 - mushroom, 3 - burger")]
+    public Sprite[] pickupSprites = new Sprite[4];
+    public GameObject _inventoryItemPrefab;
+    public GameObject _itemNumber;
+
     private int _slotNumber;
     private GameObject _inventoryHolder;
     private Inventory inventory;
-    private GameObject _itemNumber;
-    private byte _actualItemNumber;
+    private int _actualItemNumber;
+    
+    //SETUP
     private void Start()
     {
+        //SETUP: sprites, slot number
+        loadIngredientSpritesFromFolder();
         assignSlotNumberFromName();
+        checkIfSlotNumberOutOfInventorySlotArrayRange();
 
+        //REFERENCE TO OBJECTS:
+        //inventory holder + script
         _inventoryHolder = GameObject.FindGameObjectWithTag("Player");
-                Debug.Assert(_inventoryHolder, $"{this.name} could not find gameObject with tag Player!");
+        Debug.Assert(_inventoryHolder, $"{this.name} could not find gameObject with tag Player!");
         inventory = GameObject.FindGameObjectWithTag(_inventoryHolder.gameObject.tag).GetComponent<Inventory>();
-                Debug.Assert(inventory, $"{this.name}: The player does not have an inventory!");
-        _itemNumber = this.transform.GetChild(0).gameObject;
-        _itemNumber.gameObject.SetActive(false);
-                Debug.Assert(_itemNumber, $"{this.name} has no itemNumber text.");
+        Debug.Assert(inventory, $"{this.name}: The player does not have an inventory!");
+        //number of items
+        _itemNumber = this.transform.GetChild(1).gameObject;
+        Debug.Assert(_itemNumber, $"{this.name} has no itemNumber text.");
+        //slot item sprite
+        _inventoryItemPrefab = this.transform.GetChild(0).gameObject;
+        Debug.Assert(_inventoryItemPrefab, $"Slot {_slotNumber} does not have any second child! (It has to be the Inventory Item Prefab!)");
+        assignSpriteToInventoryItemPrefabChild();
 
-        checkIfSlotNumberNotOutOfInventorySlotArrayRange();
+        //ShowItemInInventory(false);//Hide both number of items in slot and the slot sprite
     }
     private void assignSlotNumberFromName()
     {
@@ -31,60 +44,66 @@ public class Slot : MonoBehaviour
         //Assign number to slot from its name:
         string number = this.name;
         number = number.Remove(0, 4);
-        int.TryParse(number, out _slotNumber);
-    }
-    private void checkIfSlotNumberNotOutOfInventorySlotArrayRange()
-    {
-        //Check if inventory has enough room for all slots in its slots[]
-        //so slots can store their items in the inventory:
-        if (transform.childCount <= 0)
-        {
-            if (_slotNumber < inventory.slots.Length)
-            {
-                inventory.isFull[_slotNumber] = false;
-            }
-            else
-            {
-                Debug.LogError("slotNumber " + _slotNumber + " is out of range of the number of slots available in inventory! Change the slot's name. (e.g. Slot0, Slot1, Slot2 etc.)");
-            }
+        if(!int.TryParse(number, out _slotNumber)){
+            Debug.LogError($"Exracting number from slot {this.name} failed! Name of slot has no valid int!");
         }
     }
-    public void SlotIsEmpty()
+    private void assignSpriteToInventoryItemPrefabChild()
     {
-        //TO DO: FIX DELETING ALSO THE BUTTON ITEM
+        switch (_slotNumber)
+        {
+            case 0:
+                _inventoryItemPrefab.GetComponent<Image>().sprite = pickupSprites[0];
+                //Debug.Log($"Slot: Slot {_slotNumber} has inventory item prefab = {0}");
+                break;
+            case 1:
+                _inventoryItemPrefab.GetComponent<Image>().sprite = pickupSprites[1];
+                //Debug.Log($"Slot: Slot {_slotNumber} has inventory item prefab = {1}");
+                break;
+            case 2:
+                _inventoryItemPrefab.GetComponent<Image>().sprite = pickupSprites[2];
+                //Debug.Log($"Slot: Slot {_slotNumber} has inventory item prefab = {2}");
+                break;
+            case 3:
+                _inventoryItemPrefab.GetComponent<Image>().sprite = pickupSprites[3];
+                //Debug.Log($"Slot: Slot {_slotNumber} has inventory item prefab = {3}");
+                break;
+        }
+    }
+    private void checkIfSlotNumberOutOfInventorySlotArrayRange()
+    {
+        if (transform.childCount <= 0 && _slotNumber > inventory.slots.Length)
+        {
+            Debug.LogError("slotNumber " + _slotNumber + " is out of range of the number of slots available in inventory! Change the slot's name. (e.g. Slot0, Slot1, Slot2 etc.)");
+        }
+    }
 
-        for(int child = 0; child < this.transform.childCount; child++)
-        {
-            if (child == 0)//item image
-            {
-                this.transform.GetChild(0).gameObject.SetActive(false);
-                Debug.Log($"Item image of {this.name} got destroyed!");
-            }
-            else//number of items
-            {
-                _itemNumber.gameObject.SetActive(false);
-                Debug.Log($"Item bumer of {this.name} got hidden!");
-            }
-            
-        }
-    }
-    public void PlusOneItem()
+    //MANIPULATE SLOT VARIABLES
+    public void SetItemNumber(int pNum)
     {
-        ++_actualItemNumber;
+        _actualItemNumber = pNum;
         _itemNumber.GetComponent<Text>().text = _actualItemNumber.ToString();
-        this.transform.GetChild(0).gameObject.SetActive(true);
+        //Debug.Log($"Slot: Set Item number = {_actualItemNumber}");
     }
-    public void MinusItems(byte pNumberToRemove)
+    public void ShowItemInInventory(bool pShow)
     {
-        _actualItemNumber -= pNumberToRemove;
-        _itemNumber.GetComponent<Text>().text = _actualItemNumber.ToString();
-        SlotIsEmpty();
+        //Debug.Log($"Slot: Show item in inventory = {pShow}");
+        ShowItemNumber(pShow);
+        ShowInventoryItemPrefab(pShow);
     }
-    public void showItemNumber()
+    private void ShowItemNumber(bool pShow)
     {
-        _itemNumber.gameObject.SetActive(true);
-        _itemNumber.transform.SetAsLastSibling();
-        //TO DO: DELETE OLD ITEM BUTTON
-        //OR MAKE IT HERE AS REFERENCE, not in inventory, and just show/hide it
+        _itemNumber.gameObject.SetActive(pShow);
     }
+    private void ShowInventoryItemPrefab(bool pShow)
+    {
+        _inventoryItemPrefab.gameObject.SetActive(pShow);
+        //Debug.Log($"Slot: Show inventory item prefab = {pShow}");
+    }
+    private void loadIngredientSpritesFromFolder()
+    {
+        pickupSprites = Resources.LoadAll<Sprite>("Sprites/IngredientSprites");
+        Debug.Assert(pickupSprites[0], $"Sprites for ingredients in folder Assets/Resources/Sprites/IngredientSprites not found!");
+    }
+    
 }

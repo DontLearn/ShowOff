@@ -1,50 +1,75 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Data;
 
-public class KitchenManager : MonoBehaviour
+public class KitchenManager : KitchenManagerBehaviour
 {
-    /// <summary>
-    /// This class is supposed to take care of things in teh kitchen.
-    /// Right now it should be doing more things (so they will probably have to be separated to individual scripts):
-    /// like show/hide UI and it should somehow make inventory to delete some ingredience once recipe is cooked.
-    /// And switching back to the (right now) prototype scene "SimpleInventory".
-    /// </summary>
     [Header("From best to worst.")]
     public Sprite[] kingStates = new Sprite[4];
     public byte startState = 0;
-    [Space(10)]
-    public Image kingStateImage;
-    [Space(10)]
-    public Button[] recipeButtons;
-    
+    [Space(10)] public Image kingStateImage;
+    [Space(10)] public Button[] recipeButtons;
+
+    private RecipeManager recipeManager;
+    private bool _upgraded = false;
+
+    private int _rice = 0;
+    private int _tomatoe = 0;
+    private int _mushroom = 0;
+    private int _burger = 0;
+
     void Start()
-    {        
-        Debug.Log($"HELLO");
-        kingStateImage.GetComponent<Image>().sprite = kingStates[2];
-        //display buttons based on what recipe is ready
-        
-        for (int i = 0; i < 2; i++)
+    {
+        kingStateImage.GetComponent<Image>().sprite = kingStates[startState];
+        recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
+        Debug.Assert(recipeManager, "RecipeManager object with script was not found in the scene!");
+
+        //TO DO: display buttons based on what recipe is ready
+
+    }
+
+    //RECIPE MANAGER
+    //Check recipes - loop through them
+
+    private void Upgrade()
+    {
+        _rice = data["rice"];
+        _tomatoe = data["tomatoe"];
+        _mushroom = data["mushroom"];
+        _burger = data["burger"];
+
+        _upgraded = true;
+        Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomatoe = {_tomatoe}, mushroom = {_mushroom}, burger = {_burger}");
+    }
+    private void Update()
+    {
+        if (!_upgraded && isLoaded)
         {
-            /*if (KitchenAvailableRecipesController.AvailableRecipes[i])
-            {
-                recipeButtons[i].gameObject.SetActive(true);
-                Debug.Log($"Recipe{i} is ready to be cooked = true");
-            }
-            else
-            {
-                Debug.Log($"Recipe{i} is ready to be cooked = false");
-                recipeButtons[i].gameObject.SetActive(false);
-            }*/
-            Debug.Log($"HELLO 2");
+            // UPGRADE
+            Upgrade();
         }
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
 
+    public void CookRecipe(int pRecipeNumber)
+    {
+        DeleteIngredienceFromInventory(recipeManager.recipes[pRecipeNumber].rice, recipeManager.recipes[pRecipeNumber].tomatoe, recipeManager.recipes[pRecipeNumber].mushroom, recipeManager.recipes[pRecipeNumber].burger);
+    }
+    private void DeleteIngredienceFromInventory(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
+    {
+        //change data:
+        _rice -= pRice;
+        _tomatoe -= pTomatoe;
+        _mushroom -= pMushroom;
+        _burger -= pBurger;
+
+        //save data:
+        data["rice"] = _rice;
+        data["tomatoe"] = _tomatoe;
+        data["mushroom"] = _mushroom;
+        data["burger"] = _burger;
+
+        Debug.Log($"Recipe cooked! Inventory now: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
     }
     public void ChangeBackToScene(int pSceneNumber)
     {
