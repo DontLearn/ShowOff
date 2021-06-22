@@ -6,6 +6,14 @@ using Data;
 namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( Rigidbody ) )]
     public class PlayerAttack : PlayerBehaviour {
+        [HideInInspector]
+        public bool struck = false;
+
+        [HideInInspector]
+        public float range = 0f;
+
+
+
         [SerializeField, Range( 0f, 10f )]
         private float _downForce = 5f;
 
@@ -123,7 +131,11 @@ namespace Player {
         private void FrontalAttack() {
             if ( _attackPressed ) {
                 _attackPressed = false;
-                _attack.Strike();
+                if ( _attack is MultiAttack ) {
+                    MultiAttack multi = _attack as MultiAttack;
+                    range = multi._hitBoxFront.size.z;
+                }
+                if ( _attack.Strike() ) { struck = true; }
             }
         }
 
