@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
 public class GateScript : MonoBehaviour
 {
-    private int amountOfLvls;
-    public bool toKitchen;
-    public int levelToGo;
+   
+    
+    public int levelToGo = -1;
 
     public bool locked;
     
@@ -16,19 +18,15 @@ public class GateScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !locked)
         {
-           
+            //Debug.Log("WTF DUDE");
 
-            if (SceneManager.GetActiveScene().buildIndex < 4 && !toKitchen)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-            else if(!toKitchen)
-            {
-                SceneManager.LoadScene(0);
-            } else
-            {
-                SceneManager.LoadScene(levelToGo);
-            }
+           
+            
+
+            int nextLvl = (levelToGo >= 0) ? levelToGo : (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
+
+            SceneChanger.Instance.ChangeScene(nextLvl);
+
         }
     }
 }
