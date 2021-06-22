@@ -683,22 +683,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8acfdcbb3d017ef4fbbe043abb648108, type: 3}
   - {fileID: 8300000, guid: 29755fa30de0c174195032bc0c431b22, type: 3}
   - {fileID: 8300000, guid: 2274a77671fee6942bfa7efcbbaa0cd6, type: 3}
---- !u!114 &2611638579406502832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1906159340684521952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a289d3df84b00634f8ae7fbe3db88641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sfxName: Land
-  _source: {fileID: 1906159340684521967}
-  _clipList:
-  - {fileID: 8300000, guid: f89def16e4b490c4e8ff8f30c1b8c63f, type: 3}
 --- !u!114 &2378086402881728161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,6 +699,22 @@ MonoBehaviour:
   _source: {fileID: 1906159340684521967}
   _clipList:
   - {fileID: 8300000, guid: ba3cd2832ffd8184e831fe37035784a9, type: 3}
+--- !u!114 &2611638579406502832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906159340684521952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a289d3df84b00634f8ae7fbe3db88641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxName: Land
+  _source: {fileID: 1906159340684521967}
+  _clipList:
+  - {fileID: 8300000, guid: f89def16e4b490c4e8ff8f30c1b8c63f, type: 3}
 --- !u!114 &2766654304785593872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1469,7 +1469,7 @@ GameObject:
   - component: {fileID: 6162155450221642042}
   - component: {fileID: 8562061004092929634}
   - component: {fileID: 1041695738629044350}
-  - component: {fileID: 6080864488429679727}
+  - component: {fileID: 8069590794851763551}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -1582,7 +1582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1293c42e3eb51543b2342c2e2898af1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 22
+  _jumpForce: 21
   _jumpDash: 4
   _dashSensitivity: 0.4
 --- !u!114 &8562061004092929634
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   _diveForce: -45
   _hitBoxFront: {fileID: 346319153569968088}
   _hitBoxBelow: {fileID: 3346103136970486066}
---- !u!114 &6080864488429679727
+--- !u!114 &8069590794851763551
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -26,10 +26,12 @@ public class Slot : MonoBehaviour
     }
     private void assignSlotNumberFromName()
     {
+        /// TODO: Try Parse failed, 'number' is not a valid int
+        
         //Assign number to slot from its name:
         string number = this.name;
         number = number.Remove(0, 4);
-        _slotNumber = int.Parse(number);
+        int.TryParse(number, out _slotNumber);
     }
     private void checkIfSlotNumberNotOutOfInventorySlotArrayRange()
     {

@@ -9,12 +9,12 @@ namespace Data {
 
 
         void Awake () {
-            PersistentData.instance.AddToPersistencyManager( this );
+            PersistentData.Instance.AddToPersistencyManager( this );
         }
 
 
         void OnDestroy () {
-            PersistentData.instance.RemoveFromPersistencyManager( this );
+            PersistentData.Instance.RemoveFromPersistencyManager( this );
         }
     }
 }
