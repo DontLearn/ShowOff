@@ -7,7 +7,7 @@ public class HealthPickUp : MonoBehaviour {
     private int _healAmount = 25;
 
 
-    private Health _health = null;
+    private PlayerHealth _health = null;
     private HealthBar _healthBar = null;
 
 
@@ -15,7 +15,7 @@ public class HealthPickUp : MonoBehaviour {
     private void OnTriggerEnter( Collider other ) {
         if ( other.gameObject.CompareTag( "Player" ) ) {
 
-            _health = other.gameObject.GetComponent<Health>();
+            _health = other.gameObject.GetComponent<PlayerHealth>();
             _health.AddHitPoints( _healAmount );
             _healthBar = other.gameObject.GetComponentInChildren<HealthBar>();
             _healthBar.SetHealth( _health.HitPoints );
