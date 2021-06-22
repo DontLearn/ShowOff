@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RecipeManager : MonoBehaviour
 {
@@ -11,8 +12,18 @@ public class RecipeManager : MonoBehaviour
 
     private void Start()
     {
-        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
+        if (SceneManager.GetActiveScene().name != "KitchenScene")
+        {
+            if (!GameObject.FindGameObjectWithTag("Player"))
+            {
+                Debug.LogError("Failed to find game object with tag Player in the scene!");
+                Destroy(this);
+                return;
+            }
+
+            _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+            Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
+        }
     }
 
     public void CheckAvailableRecipes(int pRice, int pTomatoe, int pMushroom, int pBurger)

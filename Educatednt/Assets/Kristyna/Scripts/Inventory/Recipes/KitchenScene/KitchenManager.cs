@@ -5,32 +5,50 @@ using Data;
 
 public class KitchenManager : KitchenManagerBehaviour
 {
-    [Header("From best to worst.")]
-    public Sprite[] kingStates = new Sprite[4];
-    public byte startState = 0;
-    [Space(10)] public Image kingStateImage;
     [Space(10)] public Button[] recipeButtons;
-
-    private RecipeManager recipeManager;
+    [Space(10)] public RecipeManager recipeManager;
+    
     private bool _upgraded = false;
 
     private int _rice = 0;
-    private int _tomatoe = 0;
-    private int _mushroom = 0;
-    private int _burger = 0;
+    private int _tomatoe = 3;
+    private int _mushroom = 3;
+    private int _burger = 1;
 
     void Start()
     {
-        kingStateImage.GetComponent<Image>().sprite = kingStates[startState];
-        recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
-        Debug.Assert(recipeManager, "RecipeManager object with script was not found in the scene!");
+        if (!GameObject.FindGameObjectWithTag("RecipeManager"))
+        {
+            Debug.LogError("Failed to find game object with tag RecipeManager in the scene!");
+            Destroy(this);
+            return;
+        }
+        else
+        {
+            recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
+            Debug.Assert(recipeManager, "RecipeManager object does not contain RecipeManager script!");
+        }
 
-        //TO DO: display buttons based on what recipe is ready
+        DecideActiveRecipeButtons();
 
+        Debug.Log($"Inventory items: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
     }
+    private void DecideActiveRecipeButtons()
+    {
+        recipeManager.CheckAvailableRecipes(_rice, _tomatoe, _mushroom, _burger);
 
-    //RECIPE MANAGER
-    //Check recipes - loop through them
+        for(int index = 0; index < recipeButtons.Length; ++index)
+        {
+            if (recipeManager.recipes[index].isReady)
+            {
+                recipeButtons[index].gameObject.SetActive(true);
+            }
+            else
+            {
+                recipeButtons[index].gameObject.SetActive(false);
+            }
+        }
+    }
 
     private void Upgrade()
     {
@@ -54,6 +72,14 @@ public class KitchenManager : KitchenManagerBehaviour
     public void CookRecipe(int pRecipeNumber)
     {
         DeleteIngredienceFromInventory(recipeManager.recipes[pRecipeNumber].rice, recipeManager.recipes[pRecipeNumber].tomatoe, recipeManager.recipes[pRecipeNumber].mushroom, recipeManager.recipes[pRecipeNumber].burger);
+        HideAllRecipeButtons();
+    }
+    private void HideAllRecipeButtons()
+    {
+        foreach (Button button in recipeButtons)
+        {
+             button.gameObject.SetActive(false);
+        }
     }
     private void DeleteIngredienceFromInventory(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
     {
