@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4610.8545, g: 2564.6953, b: 1961.7266, a: 1}
+  m_IndirectSpecularColor: {r: 4605.198, g: 2563.7852, b: 1962.7344, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -847,6 +847,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8268415842649473120, guid: 0607fffbb1199604094d6a1637fc3f21, type: 3}
+      propertyPath: _audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: e154817f6b35ada488ade40c6d80fa47, type: 2}
     - target: {fileID: 8268415842649473120, guid: 0607fffbb1199604094d6a1637fc3f21, type: 3}
       propertyPath: _staringtLevel
       value: 
@@ -10207,7 +10211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackLimit: 5
-  InventoryItemPrefab: {fileID: 0}
+  InventoryItemPrefab: {fileID: 2974660988862252395, guid: 3d418000582b87d46980c730e7a0111c, type: 3}
   pickupSprites:
   - {fileID: 21300000, guid: 53d33cc9a5425ae43a8036d5f2e65415, type: 3}
   - {fileID: 21300000, guid: bc6cbb3a2e1b04649965c0a3b15f7432, type: 3}
