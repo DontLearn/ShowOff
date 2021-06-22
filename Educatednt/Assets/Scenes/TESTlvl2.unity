@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4604.535, g: 2563.8457, b: 1963.918, a: 1}
+  m_IndirectSpecularColor: {r: 4604.051, g: 2564.9023, b: 1967.4766, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2825,8 +2825,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 577885410}
-  - {fileID: 954256306}
   - {fileID: 579428202}
+  - {fileID: 954256306}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4016,7 +4016,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 431316815}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &579428203
 MonoBehaviour:
@@ -7288,7 +7288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue: {fileID: 1346097561}
-  dialogueUI: {fileID: 887595801}
+  dialogueUI: {fileID: 0}
 --- !u!135 &1060987168
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -7839,7 +7839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1086741490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8001,7 +8001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1100572763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8014,8 +8014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e8c3375031ce24dbf7dda527348dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 1316859082}
-  dialogueText: {fileID: 316554572}
+  nameText: {fileID: 0}
+  dialogueText: {fileID: 0}
   dialogueUI: {fileID: 887595801}
   tutorialimg: {fileID: 0}
   tutorialImgs: []

@@ -73,6 +73,12 @@ public class PrototypeMenuHandler : MonoBehaviour
 
     public void SetVolume()
     {
-        _audioMixer.SetFloat("MainVolume", _volumeSlider.value);
+        /// ERROR: NullReferenceException. Audio mixer or Volume slider missing.
+        /// TODO: Same thing. Not present? Then don't perform a function on them,
+        /// instead provide debug information like this.
+        if ( null != _audioMixer && null != _volumeSlider )
+            _audioMixer.SetFloat("MainVolume", _volumeSlider.value);
+        else
+            Debug.LogError( $"{this}: either audio mixer or volume slider are missing." );
     }
 }
