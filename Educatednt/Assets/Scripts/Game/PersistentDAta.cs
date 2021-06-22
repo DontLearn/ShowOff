@@ -17,7 +17,7 @@ namespace Data {
         private static PersistentData _instance = null;
 
 
-        private List<PersistentDataBehaviour> _maintainedBehaviours;
+        private List<PersistentDataBehaviour> _maintainedBehaviours = new List<PersistentDataBehaviour>();
 
 
 

@@ -47,8 +47,8 @@ public class ChaseCharacter : ChaseAbs {
 
     public override void Chase( Transform target, bool agentEnabled ) {
         if ( target ) {
-            if ( _agent ) {
-                Vector3 point = ( agentEnabled ) ? target.position : transform.position;
+            if ( _agent && _agent.isActiveAndEnabled ) {
+                Vector3 point = target.position;
                 _agent.SetDestination( point );
             }
             if ( Vector3.Distance( transform.position, target.position ) <= _jumpRange - _jumpMargin ) {

@@ -24,8 +24,18 @@ public class Inventory : MonoBehaviour
     private byte _mushroom = 0;
     private byte _burger = 0;
 
-    private void Awake()
-    {
+
+    private void Awake() {
+        /// PROBLEM: Game Object Find with tag causes errors because it's not present in the scene
+        /// TODO: Use another way to reach out to a RecipeManager. Maybe don't make it a MonoBehaviour,
+        /// just a static script. Why does a recipemanager need to be in the scene anyway?
+        /// temporary code: {
+        if ( !GameObject.FindGameObjectWithTag( "RecipeManager" ) ) {
+            Destroy( this );
+            return;
+        }
+        /// }
+
         _recipes = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
             Debug.Assert(_recipes, "Recipe Manager with the Recipes script not found by the tag!");
         findSlotsInScene();
