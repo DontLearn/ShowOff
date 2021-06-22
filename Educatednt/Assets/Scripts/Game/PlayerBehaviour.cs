@@ -5,11 +5,11 @@ using UnityEngine;
 namespace Data {
     public class PlayerBehaviour : PersistentDataBehaviour {
         protected Dictionary<string, int> data = new Dictionary<string, int>() {
-            { "health", 0 },
-            { "upgrade", 0 },
-            { "damage", 0 },
-            { "knockback", 0 },
-            { "jumpForce", 0 }
+            { "health", 100 },
+            { "upgrade", 2 },
+            { "damage", 10 },
+            { "knockback", 70 },
+            { "jumpForce", 21 }
         };
 
 
@@ -22,7 +22,7 @@ namespace Data {
 
             foreach ( KeyValuePair<string, int> pair in data ) {
                 if ( int.TryParse( persistentData.GetStringData( pair.Key ), out int data ) ) {
-                    newDic.Add( pair.Key, pair.Value );
+                    newDic.Add( pair.Key, data );
                 }
                 else {
                     Debug.LogError( $"Could not parse {pair.Key} to an int." );
