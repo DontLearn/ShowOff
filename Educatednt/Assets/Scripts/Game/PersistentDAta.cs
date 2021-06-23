@@ -22,14 +22,18 @@ namespace Data {
 
 
         public void LoadAllPersistentItems() {
+            Console.WriteLine( $"{this}: Loading {_maintainedBehaviours.Count} items.." );
             foreach ( PersistentDataBehaviour behaviour in _maintainedBehaviours ) {
+                Console.WriteLine( $"{this}: Loading {behaviour.name}.." );
                 behaviour.Load( this );
             }
         }
 
 
         public void SaveAllPersistentItems() {
+            Console.WriteLine( $"{this}: Saving {_maintainedBehaviours.Count} items.." );
             foreach ( PersistentDataBehaviour behaviour in _maintainedBehaviours ) {
+                Console.WriteLine( $"{this}: Saving {behaviour.name}.." );
                 behaviour.Save( this );
             }
         }
@@ -47,11 +51,28 @@ namespace Data {
 
 
         /// --------- Data Manager ---------
+        public bool DataInstantiated => _dataInstantiated;
+
+
         private Dictionary<String, String> _data = new Dictionary<String, String>();
+        private bool _dataInstantiated = false;
+
 
 
         public void Reset() {
             _data.Clear();
+        }
+
+
+        public void InstantiateData() {
+            if ( !_dataInstantiated ) {
+                Console.WriteLine( $"{this}: Instantiating Data list.." );
+                SaveAllPersistentItems();
+                _dataInstantiated = true;
+            }
+            else {
+                Console.WriteLine( $"{this}: Data list already exists, skipping instantiation.." );
+            }
         }
 
 
@@ -72,6 +93,17 @@ namespace Data {
             else {
                 Console.WriteLine( $"Error: Data {id} cannot be found." );
                 return "";
+            }
+        }
+
+
+        public bool TryGetIntData( string id, out int result ) {
+            if ( _data.ContainsKey( id ) && _data[ id ] is String ) {
+                return int.TryParse( _data[ id ], out result );
+            }
+            else {
+                result = 0;//undefined
+                return false;
             }
         }
 

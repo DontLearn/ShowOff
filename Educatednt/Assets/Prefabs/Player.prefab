@@ -1444,6 +1444,7 @@ GameObject:
   - component: {fileID: 8562061004092929634}
   - component: {fileID: 1041695738629044350}
   - component: {fileID: 8069590794851763551}
+  - component: {fileID: 1323196885254844523}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -1572,7 +1573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   struck: 0
-  range: 0
+  pressed: 0
   _downForce: 7
   _bounceForce: 17
   _bounceDash: 11.5
@@ -1613,6 +1614,20 @@ MonoBehaviour:
   _healthBar: {fileID: 525714574439437519}
   _damageSound: {fileID: 0}
   _killSound: {fileID: 0}
+--- !u!114 &1323196885254844523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4737563938146979244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a0e90555a3e2d40a4f0392d0f8c12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stackLimit: 5
+  slots: []
 --- !u!1 &4737563938426396801
 GameObject:
   m_ObjectHideFlags: 0

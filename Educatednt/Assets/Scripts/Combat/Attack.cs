@@ -1,10 +1,12 @@
 using UnityEngine;
 
 
-namespace Combat
-{
-    public abstract class Attack : MonoBehaviour
-    {
+namespace Combat {
+    public abstract class Attack : MonoBehaviour {
+        public int Damage => damage;
+        public int Knockback => ( int )hitForce;
+
+
         [SerializeField, Range( 0, 100 )]
         protected int damage = 10;
 
@@ -17,6 +19,7 @@ namespace Combat
 
         public abstract void SetDamage( int amount );
         public abstract void SetKnockback( int amount );
+        public abstract void LevelUp();
         public abstract bool Strike();
 
 

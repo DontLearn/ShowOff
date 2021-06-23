@@ -51,10 +51,11 @@ namespace Player {
 
         protected override void Upgrade() {
             base.Upgrade();
+
             if ( null != _attack ) {
-                int dmg = data[ "damage" ];
+                int dmg = data[ Data.DAMAGE ];
                 _attack.SetDamage( dmg );
-                int knk = data[ "knockback" ];
+                int knk = data[ Data.KNOCKBACK ];
                 _attack.SetKnockback( knk );
 
                 Debug.Log( $"{this}: Upgraded attack damage. Is now {dmg}." );
@@ -67,26 +68,43 @@ namespace Player {
 
 
         private void LoadComponents() {
-            _attack = GetComponent<Combat.Attack>();
-            Debug.Assert( null != _attack, $"Attack component missing on {name}." );
+            if ( null == _attack ) {
+                _attack = GetComponent<Combat.Attack>();
+                Debug.Assert( null != _attack, $"Attack component missing on {name}." );
+            }
 
-            _rb = GetComponent<Rigidbody>();
-            Debug.Assert( null != _rb, $"RigidBody component missing on {name}." );
+            if ( null == _rb ) {
+                _rb = GetComponent<Rigidbody>();
+                Debug.Assert( null != _rb, $"RigidBody component missing on {name}." );
+            }
         }
 
 
-        public void SetDiveAvailable( bool available ) {
-            _diveAvailable = available;
+        public void SetLevel( int level ) {
+            // if the player is on level 0 or 1, they can't dive attack.
+            _diveAvailable = level <= 1;
+
+            // from level 3 on, the player deals increased damage.
+            if ( level > 2 && null != _attack ) {
+                _attack.LevelUp();
+
+                // Let's also save those new values
+                data[ Data.DAMAGE ] = _attack.Damage;
+                data[ Data.KNOCKBACK ] = _attack.Knockback;
+            }
         }
 
 
         public void SetGrounded( bool pIsGrounded ) {
             _isGrounded = pIsGrounded;
+
+            if ( _isGrounded && _activeHitbox == MultiAttack.Hitbox.BELOW ) {
+                _attackPressed = false;
+            }
         }
 
 
         public void AttackPressed() {
-            Debug.Log( $"Setting true: {_attackPressed}" );
             _attackPressed = true;
 
             if ( !_isGrounded ) {
@@ -111,10 +129,6 @@ namespace Player {
                 _activeHitbox = hitbox;
             }
 
-            /*if ( _activeHitbox == MultiAttack.Hitbox.FRONT ) {
-                Debug.Log( $"Setting false: {_attackPressed}" );
-                _attackPressed = false;
-            }*/
             if ( _attack && _attack is MultiAttack )
                 ( ( MultiAttack )_attack ).SetActiveHitbox( hitbox );
         }
@@ -134,7 +148,6 @@ namespace Player {
 
 
         private void FrontalAttack() {
-            Debug.Log( $"Attack pressed: {_attackPressed}." );
             if ( _attackPressed ) {
                 pressed = true;
                 _attackPressed = false;
@@ -174,6 +187,48 @@ namespace Player {
                 _bounceForce,
                 velocityXZ.z * _bounceDash )
             );
+        }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            int damage, knockback;
+
+            if ( !persistentData.TryGetIntData( Data.DAMAGE.ToString(), out damage ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.DAMAGE}, not an int." );
+            }
+            if ( !persistentData.TryGetIntData( Data.KNOCKBACK.ToString(), out knockback ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.KNOCKBACK}, not an int." );
+            }
+
+            if ( null != _attack ) {
+                data[ Data.DAMAGE ] = damage;
+                _attack.SetDamage( damage );
+                Debug.Log( $"{this}: Loaded damage to {damage}." );
+
+                data[ Data.KNOCKBACK ] = _attack.Knockback;
+                _attack.SetKnockback( knockback );
+                Debug.Log( $"{this}: Loaded knockback to {knockback}." );
+            }
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            if ( null == _attack ) {
+                Debug.Log( $"{this}: Attack isn't initialized yet, loading component.." );
+                LoadComponents();
+
+                if ( null == _attack ) {
+                    Debug.LogError( $"{this}: Attack could not be initialized. No data was saved." );
+                    return;
+                }
+            }
+
+            persistentData.SetIntData( Data.DAMAGE.ToString(), _attack.Damage );
+            Debug.Log( $"{this}: Saved damage to {_attack.Damage}." );
+
+            persistentData.SetIntData( Data.KNOCKBACK.ToString(), _attack.Knockback );
+            Debug.Log( $"{this}: Saved knockback to {_attack.Knockback}." );
         }
     }
 }

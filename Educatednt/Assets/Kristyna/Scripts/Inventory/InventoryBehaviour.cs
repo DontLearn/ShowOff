@@ -4,37 +4,30 @@ using UnityEngine;
 
 namespace Data {
     public class InventoryBehaviour : PersistentDataBehaviour {
-        protected Dictionary<string, int> data = new Dictionary<string, int>() {
-            {"rice", 0 },
-            {"tomatoe", 0 },
-            {"mushroom", 0 },
-            {"burger", 0 }
+        public enum Data {
+            RICE,
+            TOMATO,
+            MUSHROOM,
+            BURGER,
+        }
+
+
+        protected Dictionary<Data, int> data = new Dictionary<Data, int>() {
+            {Data.RICE, 0 },
+            {Data.TOMATO, 0 },
+            {Data.MUSHROOM, 0 },
+            {Data.BURGER, 0 }
         };
 
 
 
         public override void Load( PersistentData persistentData ) {
-            Dictionary<string, int> newDic = new Dictionary<string, int>();
-
-            foreach ( KeyValuePair<string, int> pair in data ) {
-                if ( int.TryParse( persistentData.GetStringData( pair.Key ), out int data ) ) {
-                    newDic.Add( pair.Key, pair.Value );
-                }
-                else {
-                    Debug.LogError( $"Could not parse {pair.Key} to an int" );
-                }
-            }
-
-            data = newDic;
             isLoaded = true;
         }
 
 
-        public override void Save( PersistentData persistentData ) {
-            foreach ( KeyValuePair<string, int> pair in data ) {
-                persistentData.SetIntData( pair.Key, pair.Value );
-            }
-        }
+        public override void Save( PersistentData persistentData ) { }
+
 
 
         protected override void Upgrade() {

@@ -2,11 +2,9 @@ using UnityEngine;
 using Data;
 
 
-namespace Player
-{
+namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( PlayerMovement ) )]
-    public class Player : PlayerBehaviour
-    {
+    public class Player : PlayerBehaviour {
         [SerializeField]
         private Controls _controls = null;
 
@@ -25,6 +23,7 @@ namespace Player
 
         private Vector2 _axisInversion = Vector2.one;
         private bool _isGrounded = true;
+
 
 
         private void Start() {
@@ -62,18 +61,11 @@ namespace Player
 
         protected override void Upgrade() {
             base.Upgrade();
-            _upgradeLevel = data[ "upgrade" ];
+            _upgradeLevel = data[ Data.UPGRADE ];
 
             Debug.Log( $"{this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
 
-            if ( _upgradeLevel < 1 ) {
-                _jump = null;
-            }
-            if ( _upgradeLevel < 2 ) {
-                if ( _attack ) {
-                    _attack.SetDiveAvailable( false );
-                }
-            }
+            CheckLevels();
         }
 
 
@@ -182,6 +174,48 @@ namespace Player
 
                 }
             }
+        }
+
+
+        public void Levelup() {
+            ++_upgradeLevel;
+            CheckLevels();
+        }
+
+
+        private void CheckLevels() {
+            // level is expected to exist within 0 - 3
+
+            if ( null != _jump ) {
+                _jump.SetLevel( _upgradeLevel );
+            }
+            else {
+                Debug.Log( $"{this}: Can't upgrade Jump, not present." );
+            }
+
+            if ( null != _attack ) {
+                _attack.SetLevel( _upgradeLevel );
+            }
+            else {
+                Debug.Log( $"{this}: Can't upgrade Attack, not present." );
+            }
+        }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            if ( !persistentData.TryGetIntData( Data.UPGRADE.ToString(), out _upgradeLevel ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.UPGRADE}, not an int." );
+            }
+
+            data[ Data.UPGRADE ] = _upgradeLevel;
+            Debug.Log( $"{this}: Loaded upgrade level to {_upgradeLevel}." );
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            persistentData.SetIntData( Data.UPGRADE.ToString(), _upgradeLevel );
+            Debug.Log( $"{this}: Saved upgrade level to {_upgradeLevel}." );
         }
     }
 }
