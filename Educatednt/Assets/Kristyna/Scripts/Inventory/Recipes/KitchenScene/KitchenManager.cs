@@ -10,9 +10,9 @@ public class KitchenManager : KitchenManagerBehaviour
 
 
     private int _rice = 0;
-    private int _tomatoe = 3;
-    private int _mushroom = 3;
-    private int _burger = 1;
+    private int _tomatoe = 0;
+    private int _mushroom = 0;
+    private int _burger = 0;
 
     void Start()
     {

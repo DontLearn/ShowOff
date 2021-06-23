@@ -54,16 +54,19 @@ public class RecipeManager : MonoBehaviour
                               pMushroom >= recipes[index].mushroom &&
                               pBurger >= recipes[index].burger);
 
-            if (recipes[index].isReady)
+            if (SceneManager.GetActiveScene().name != "KitchenScene")
             {
-                if (!wasPopupDisplayed[index])
+                if (recipes[index].isReady)
                 {
-                    Debug.Log($"Recipe {recipes[index].name} ready!");
-                    _recipePopup.ActivatePopup(recipes[index].name);
+                    if (!wasPopupDisplayed[index])
+                    {
+                        Debug.Log($"Recipe {recipes[index].name} ready!");
+                        _recipePopup.ActivatePopup(recipes[index].name);
 
-                    wasPopupDisplayed[index] = true;
+                        wasPopupDisplayed[index] = true;
+                    }
                 }
-            }
+            }            
         }
     }
 }
