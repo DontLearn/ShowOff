@@ -1597,6 +1597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0b6c6e3b033a94191c64d7a573fec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  struck: 0
+  pressed: 0
   _downForce: 7
   _bounceForce: 17
   _bounceDash: 11.5

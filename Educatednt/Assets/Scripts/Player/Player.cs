@@ -15,7 +15,7 @@ namespace Player
         private PlayerMovement _movement = null;
         private PlayerJump _jump = null;
         private PlayerAttack _attack = null;
-        private int _upgradeLevel = 0;
+        private int _upgradeLevel = 2;
 
         // controls
         private string _forwardAxis = "";
@@ -26,12 +26,6 @@ namespace Player
         private Vector2 _axisInversion = Vector2.one;
         private bool _isGrounded = true;
 
-
-
-        /*private void Awake() {
-            if ( !data.ContainsKey( "upgrade" ) )
-                data.Add( "upgrade", 2 );
-        }*/
 
 
         private void Start() {
@@ -189,6 +183,23 @@ namespace Player
 
                 }
             }
+        }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            if ( !persistentData.TryGetIntData( Data.UPGRADE.ToString(), out _upgradeLevel ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.UPGRADE}, not an int." );
+            }
+
+            data[ Data.UPGRADE ] = _upgradeLevel;
+            Debug.Log( $"{this}: Loaded upgrade level to {_upgradeLevel}." );
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            persistentData.SetIntData( Data.UPGRADE.ToString(), _upgradeLevel );
+            Debug.Log( $"{this}: Saved upgrade level to {_upgradeLevel}." );
         }
     }
 }

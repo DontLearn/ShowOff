@@ -36,15 +36,6 @@ namespace Player {
 
 
 
-        /*private void Awake() {
-            if ( !data.ContainsKey( "damage" ) )
-                data.Add( "damage", 10 );
-
-            if ( !data.ContainsKey( "knockback" ) )
-                data.Add( "knockback", 70 );
-        }*/
-
-
         private void Start() {
             LoadComponents();
         }
@@ -77,11 +68,15 @@ namespace Player {
 
 
         private void LoadComponents() {
-            _attack = GetComponent<Combat.Attack>();
-            Debug.Assert( null != _attack, $"Attack component missing on {name}." );
+            if ( null == _attack ) {
+                _attack = GetComponent<Combat.Attack>();
+                Debug.Assert( null != _attack, $"Attack component missing on {name}." );
+            }
 
-            _rb = GetComponent<Rigidbody>();
-            Debug.Assert( null != _rb, $"RigidBody component missing on {name}." );
+            if ( null == _rb ) {
+                _rb = GetComponent<Rigidbody>();
+                Debug.Assert( null != _rb, $"RigidBody component missing on {name}." );
+            }
         }
 
 
@@ -182,6 +177,48 @@ namespace Player {
                 _bounceForce,
                 velocityXZ.z * _bounceDash )
             );
+        }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            int damage, knockback;
+
+            if ( !persistentData.TryGetIntData( Data.DAMAGE.ToString(), out damage ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.DAMAGE}, not an int." );
+            }
+            if ( !persistentData.TryGetIntData( Data.KNOCKBACK.ToString(), out knockback ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.KNOCKBACK}, not an int." );
+            }
+
+            if ( null != _attack ) {
+                data[ Data.DAMAGE ] = damage;
+                _attack.SetDamage( damage );
+                Debug.Log( $"{this}: Loaded damage to {damage}." );
+
+                data[ Data.KNOCKBACK ] = _attack.Knockback;
+                _attack.SetKnockback( knockback );
+                Debug.Log( $"{this}: Loaded knockback to {knockback}." );
+            }
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            if ( null == _attack ) {
+                Debug.Log( $"{this}: Attack isn't initialized yet, loading component.." );
+                LoadComponents();
+
+                if ( null == _attack ) {
+                    Debug.LogError( $"{this}: Attack could not be initialized. No data was saved." );
+                    return;
+                }
+            }
+
+            persistentData.SetIntData( Data.DAMAGE.ToString(), _attack.Damage );
+            Debug.Log( $"{this}: Saved damage to {_attack.Damage}." );
+
+            persistentData.SetIntData( Data.KNOCKBACK.ToString(), _attack.Knockback );
+            Debug.Log( $"{this}: Saved knockback to {_attack.Knockback}." );
         }
     }
 }

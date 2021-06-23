@@ -1,10 +1,12 @@
 using UnityEngine;
 
 
-namespace Combat
-{
-    public abstract class Attack : MonoBehaviour
-    {
+namespace Combat {
+    public abstract class Attack : MonoBehaviour {
+        public int Damage => damage;
+        public int Knockback => ( int )hitForce;
+
+
         [SerializeField, Range( 0, 100 )]
         protected int damage = 10;
 

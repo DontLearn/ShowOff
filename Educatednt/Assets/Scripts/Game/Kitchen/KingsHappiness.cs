@@ -20,8 +20,8 @@ public class KingsHappiness : KingBehaviour {
     protected override void Upgrade() {
         base.Upgrade();
         //load data
-        _happinessLvl = happiness;
-        _burgersEaten = burgersEaten;
+        _happinessLvl = data[ Data.HAPPINESS ];
+        _burgersEaten = data[ Data.BURGERS_EATEN ];
     }
 
 
@@ -66,8 +66,6 @@ public class KingsHappiness : KingBehaviour {
 
     public void NormalFoodEaten() {
         progressBar.value = ++_happinessLvl;
-
-        happiness = _happinessLvl;//sava data
     }
 
 
@@ -82,10 +80,33 @@ public class KingsHappiness : KingBehaviour {
 
         _burgersEaten++;
 
-        //sava data
-        burgersEaten = _burgersEaten;
-        happiness = _happinessLvl;
-
         progressBar.value = _happinessLvl;
+    }
+
+
+    public override void Load( PersistentData persistentData ) {
+        base.Load( persistentData );
+
+        if ( !persistentData.TryGetIntData( Data.HAPPINESS.ToString(), out _happinessLvl ) ) {
+            Debug.LogError( $"{this} Can't parse {Data.HAPPINESS}, not an int." );
+        }
+        if ( !persistentData.TryGetIntData( Data.BURGERS_EATEN.ToString(), out _burgersEaten ) ) {
+            Debug.LogError( $"{this} Can't parse {Data.BURGERS_EATEN}, not an int." );
+        }
+
+        data[ Data.HAPPINESS ] = _happinessLvl;
+        Debug.Log( $"{this}: Loaded king's happiness to {_happinessLvl}." );
+
+        data[ Data.BURGERS_EATEN ] = _burgersEaten;
+        Debug.Log( $"{this}: Loaded king's burger amount to {_burgersEaten}." );
+    }
+
+
+    public override void Save( PersistentData persistentData ) {
+        persistentData.SetIntData( Data.HAPPINESS.ToString(), _happinessLvl );
+        Debug.Log( $"{this}: Saved king's happiness to {_happinessLvl}." );
+
+        persistentData.SetIntData( Data.BURGERS_EATEN.ToString(), _burgersEaten );
+        Debug.Log( $"{this}: Saved king's burger amount to {_burgersEaten}." );
     }
 }

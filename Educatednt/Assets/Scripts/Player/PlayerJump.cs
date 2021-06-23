@@ -71,5 +71,24 @@ namespace Player {
                 }
             }
         }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            int jumpForce;
+            if ( !persistentData.TryGetIntData( Data.JUMPFORCE.ToString(), out jumpForce ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.JUMPFORCE}, not an int." );
+            }
+            _jumpForce = jumpForce;
+
+            data[ Data.JUMPFORCE ] = ( int )_jumpForce;
+            Debug.Log( $"{this}: Loaded jump force to {_jumpForce}." );
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            persistentData.SetIntData( Data.JUMPFORCE.ToString(), ( int )_jumpForce );
+            Debug.Log( $"{this}: Saved jump force to {_jumpForce}." );
+        }
     }
 }
