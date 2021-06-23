@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: _sfxName
       value: Pickup
       objectReference: {fileID: 0}
+    - target: {fileID: 7401477675685427343, guid: 3a22e58bda8743f47808137995b9d811, type: 3}
+      propertyPath: _clipList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9d2491adccfbbaf41af05e093a396e62, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a22e58bda8743f47808137995b9d811, type: 3}
 --- !u!4 &49893091550062335 stripped

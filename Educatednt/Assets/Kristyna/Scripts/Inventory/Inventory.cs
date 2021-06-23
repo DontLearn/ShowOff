@@ -10,10 +10,10 @@ public class Inventory : InventoryBehaviour
 
     private RecipeManager _recipes;
 
-    private int _rice = 2;
-    private int _tomatoe = 1;
-    private int _mushroom = 3;
-    private int _burger = 4;
+    private int _rice = 0;
+    private int _tomatoe = 0;
+    private int _mushroom = 0;
+    private int _burger = 0;
 
     private bool _upgraded = false;
 
@@ -38,13 +38,13 @@ public class Inventory : InventoryBehaviour
     }
     private void Awake()
     {
-
         /// PROBLEM: Game Object Find with tag causes errors because it's not present in the scene
         /// TODO: Use another way to reach out to a RecipeManager. Maybe don't make it a MonoBehaviour,
         /// just a static script. Why does a recipemanager need to be in the scene anyway?
         /// temporary code: {
         if ( !GameObject.FindGameObjectWithTag( "RecipeManager" ) ) {
-            Destroy( this );
+            Debug.LogError( "this script is dependent on a RecipeManager in the scene. It's not there. Handle it" );
+            enabled = false;
             return;
         }
         /// }
@@ -151,9 +151,8 @@ public class Inventory : InventoryBehaviour
             IncreaseIngredient(pType);
             upgradeInventoryUI();
 
-            if (pIngredient >= 1) _recipes.CheckAvailableRecipes(_rice, _tomatoe, _mushroom, _burger);
+            if (_rice > 0 || _tomatoe > 0 || _mushroom > 0 || _burger > 0) _recipes.CheckAvailableRecipes(_rice, _tomatoe, _mushroom, _burger);
 
-            //Debug.Log($"{pType} added to inventory! inventory: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
             return true;
         }
         else
@@ -164,7 +163,7 @@ public class Inventory : InventoryBehaviour
     }
     private void IncreaseIngredient(Ingredient.ingredientType pType)
     {
-        //Increase ingredient in inventory + update UI
+        //Increase ingredient in inventory + update UI + save data
         switch (pType)
         {
             case Ingredient.ingredientType.Rice:
