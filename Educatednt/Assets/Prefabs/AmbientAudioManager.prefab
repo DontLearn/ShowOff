@@ -16,12 +16,13 @@ GameObject:
   - component: {fileID: 8574202900266239256}
   - component: {fileID: 8350494149237054692}
   - component: {fileID: 2719769612036216413}
+  - component: {fileID: 5640060982711897442}
   m_Layer: 0
   m_Name: AmbientAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2104405377348152086
 Transform:
@@ -67,6 +68,7 @@ MonoBehaviour:
   - {fileID: 5533390953387116532}
   - {fileID: 7295081857762738417}
   - {fileID: 8574202900266239256}
+  - {fileID: 5640060982711897442}
 --- !u!114 &5533390953387116532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,9 +113,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a289d3df84b00634f8ae7fbe3db88641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sfxName: Music
+  _sfxName: Level Music
   _source: {fileID: 2719769612036216413}
-  _clipList: []
+  _clipList:
+  - {fileID: 8300000, guid: f4548c1fe28b7a64c811b5543e288bef, type: 3}
+  - {fileID: 8300000, guid: 681c5af6f555100448c9b18af9355609, type: 3}
+  - {fileID: 8300000, guid: 939a6ac72604c8144bb70ef2f01975fe, type: 3}
+  - {fileID: 8300000, guid: b2abbc1982d03d94dbcd0ec78f9fe8cb, type: 3}
+  - {fileID: 8300000, guid: f2439bb0328843248ba7bc52d10a49fe, type: 3}
+  - {fileID: 8300000, guid: 8cc9fbf5fd35d2b42b289c3bf3dfa5a0, type: 3}
+  - {fileID: 8300000, guid: ea4e4df98acd88144b7e6991e11d3483, type: 3}
 --- !u!82 &8350494149237054692
 AudioSource:
   m_ObjectHideFlags: 0
@@ -222,7 +231,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 1287455236563961075, guid: e154817f6b35ada488ade40c6d80fa47, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -306,3 +315,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5640060982711897442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104405377348152095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a289d3df84b00634f8ae7fbe3db88641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxName: Kitchen Music
+  _source: {fileID: 2719769612036216413}
+  _clipList:
+  - {fileID: 8300000, guid: 2ce6f03ab26b10a47a1b21dd68370803, type: 3}

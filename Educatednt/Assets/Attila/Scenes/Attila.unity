@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7499f4b36fe414bb9c11dd86061a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &873224061
+--- !u!1001 &877096936
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -450,7 +450,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 353816551893560072, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: _kitchenSceneName
-      value: 
+      value: Attila
       objectReference: {fileID: 0}
     - target: {fileID: 2104405377348152086, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: m_RootOrder
@@ -498,15 +498,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2104405377348152095, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: m_Name
-      value: PrototypeAudioManager
+      value: AmbientAudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 2104405377348152095, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8350494149237054692, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
-      propertyPath: m_audioClip
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fcbdee94f7caab24e8b7bfc22475ee87, type: 3}
