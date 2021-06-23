@@ -17,8 +17,8 @@ public class PlayAudioSource : MonoBehaviour
 
         /// temporary code: {
         if ( !_manager ) {
-            Debug.LogError( "this script is dependent on an AudioManager in the scene. It's not there." );
-            Destroy( this );
+            Debug.LogError( "this script is dependent on an AudioManager in the scene. It's not there. Handle it" );
+            enabled = false;
         }
         /// }
     }
