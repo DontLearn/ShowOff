@@ -48,6 +48,8 @@ public class KingsHappiness : KingBehaviour {
                 switch ( _happinessLvl ) {
                     case 1:
                         Debug.Log( "Get higher jump" );
+                        //Show popup with good/bad outcome + text with what ability you get
+                        //change players ability via variable
                         break;
                     case 2:
                         Debug.Log( "Get bounce attack" );
