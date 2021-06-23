@@ -69,3 +69,4 @@ MonoBehaviour:
     burger: 1
     isReady: 0
   _inventory: {fileID: 0}
+  _recipePopup: {fileID: 0}
