@@ -1,37 +1,26 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 
 
 namespace Data {
     public class KingBehaviour : PersistentDataBehaviour {
-        protected int happiness = 0;
-        private string _key = "happiness";
+        public enum Data {
+            HAPPINESS,
+            BURGERS_EATEN,
+        }
 
-        protected int burgersEaten = 0;
-        private string _keyTwo = "burgersEaten";
+        protected Dictionary<Data, int> data = new Dictionary<Data, int>() {
+            { Data.HAPPINESS, 0 },
+            { Data.BURGERS_EATEN, 0 },
+        };
 
 
 
         public override void Load( PersistentData persistentData ) {
-            if ( int.TryParse( persistentData.GetStringData( _key ), out int value ) ) {
-                happiness = value;
-            }
-            else {
-                Debug.LogError( $"Could not parse {_key} to an int." );
-            }
-
-            if ( int.TryParse( persistentData.GetStringData( _keyTwo ), out int valueTwo ) ) {
-                burgersEaten = valueTwo;
-            }
-            else {
-                Debug.LogError( $"Could not parse {_keyTwo} to an int." );
-            }
+            isLoaded = true;
         }
 
 
-        public override void Save( PersistentData persistentData ) {
-            persistentData.SetIntData( _key, happiness );
-            persistentData.SetIntData( _keyTwo, burgersEaten );
-        }
+        public override void Save( PersistentData persistentData ) { }
 
 
         protected override void Upgrade() { }

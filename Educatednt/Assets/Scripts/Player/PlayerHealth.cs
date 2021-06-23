@@ -24,9 +24,6 @@ namespace Combat {
         private PlayAudioSource _killSound;
 
 
-        private bool _upgraded = false;
-
-
 
         private void Start() {
             if ( _healthBar ) {
@@ -40,16 +37,19 @@ namespace Combat {
 
 
         private void Update() {
-            if ( !_upgraded && isLoaded ) {
+            if ( !isUpgraded && isLoaded ) {
                 // UPGRADE
                 Upgrade();
             }
         }
 
 
-        private void Upgrade() {
-            _hitPoints = data[ "health" ];
-            _upgraded = true;
+        protected override void Upgrade() {
+            base.Upgrade();
+            if ( null != data && data.Count > 0 && data.ContainsKey( Data.HEALTH ) ) {
+                _hitPoints = data[ Data.HEALTH ];
+                //Debug.Log( $"{this}: Setting hit points to {_hitPoints}." );
+            }
 
             if ( _healthBar )
                 _healthBar.SetHealth( _hitPoints );
@@ -59,12 +59,21 @@ namespace Combat {
 
         public void AddHitPoints( int amount ) {
             _hitPoints += amount;
+
+            Debug.Log( $"{this}: Updating Data {Data.HEALTH}: new hit points: {_hitPoints}." );
+            data[ Data.HEALTH ] = _hitPoints;
         }
 
 
         public void Hit( int damage ) {
             _hitPoints = Math.Max( _hitPoints - damage, 0 );
             Debug.Log( $"{name} was hit for {damage} damage!" );
+
+            // Update Data
+            if ( null != data && data.Count > 0 && data.ContainsKey( Data.HEALTH ) ) {
+                Debug.Log( $"{this}: Updating Data {Data.HEALTH}: new hit points: {_hitPoints}." );
+                data[ Data.HEALTH ] = _hitPoints;
+            }
 
             if ( _healthBar )
                 _healthBar.SetHealth( _hitPoints );
@@ -102,6 +111,23 @@ namespace Combat {
 
         public bool IsDead() {
             return _hitPoints <= 0;
+        }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            if ( !persistentData.TryGetIntData( Data.HEALTH.ToString(), out _hitPoints ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.HEALTH}, not an int." );
+            }
+
+            data[ Data.HEALTH ] = _hitPoints;
+            Debug.Log( $"{this}: Loaded hit points to {_hitPoints}." );
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            persistentData.SetIntData( Data.HEALTH.ToString(), _hitPoints );
+            Debug.Log( $"{this}: Saved hit points to {_hitPoints}." );
         }
     }
 }

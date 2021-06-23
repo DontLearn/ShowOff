@@ -6,7 +6,7 @@ public class Ingredient : Pickup
     public enum ingredientType
     {
         Rice = 0,
-        Tomatoe = 1,
+        Tomato = 1,
         Mushroom = 2,
         Burger = 3
     }

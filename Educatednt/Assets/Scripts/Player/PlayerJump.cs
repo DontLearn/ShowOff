@@ -19,6 +19,12 @@ namespace Player {
 
 
 
+        /*private void Awake() {
+            if ( !data.ContainsKey( "jumpForce" ) )
+                data.Add( "jumpForce", 21 );
+        }*/
+
+
         void Start() {
             _rb = GetComponent<Rigidbody>();
             Debug.Assert( null != _rb, $"{name} is missing a RigidBody component." );
@@ -41,7 +47,7 @@ namespace Player {
 
         protected override void Upgrade() {
             base.Upgrade();
-            _jumpForce = data[ "jumpForce" ];
+            _jumpForce = data[ Data.JUMPFORCE ];
             Debug.Log( $"{this}: Upgraded jump force. Is now {_jumpForce}." );
         }
 
@@ -64,6 +70,25 @@ namespace Player {
                     _rb.AddForce( new Vector3( 0, _jumpForce * 100f ) );
                 }
             }
+        }
+
+
+        public override void Load( PersistentData persistentData ) {
+            base.Load( persistentData );
+            int jumpForce;
+            if ( !persistentData.TryGetIntData( Data.JUMPFORCE.ToString(), out jumpForce ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.JUMPFORCE}, not an int." );
+            }
+            _jumpForce = jumpForce;
+
+            data[ Data.JUMPFORCE ] = ( int )_jumpForce;
+            Debug.Log( $"{this}: Loaded jump force to {_jumpForce}." );
+        }
+
+
+        public override void Save( PersistentData persistentData ) {
+            persistentData.SetIntData( Data.JUMPFORCE.ToString(), ( int )_jumpForce );
+            Debug.Log( $"{this}: Saved jump force to {_jumpForce}." );
         }
     }
 }
