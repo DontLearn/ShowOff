@@ -39,14 +39,22 @@ public class Slot : MonoBehaviour
     }
     private void assignSlotNumberFromName()
     {
-        /// TODO: Try Parse failed, 'number' is not a valid int
-        
+        /// ERROR: Try Parse failed, 'number' is not a valid int
+        /// TODO: I've told you a few times now that using strings / checking names is
+        /// fragile and breaks easily.
+        /// I keep getting errors from slots that "don't have the right name"
+        /// But the real problem is that you want to check for a name in the first place.
+        /// Stop that, please. Names are no good.
+        /// You already even HAVE a slot number, why not give that a [SerializedField]
+        /// and set it manually in the editor?
+
+        /// DISABLED
         //Assign number to slot from its name:
-        string number = this.name;
+        /*string number = this.name;
         number = number.Remove(0, 4);
         if(!int.TryParse(number, out _slotNumber)){
             Debug.LogError($"Exracting number from slot {this.name} failed! Name of slot has no valid int!");
-        }
+        }*/
     }
     private void assignSpriteToInventoryItemPrefabChild()
     {

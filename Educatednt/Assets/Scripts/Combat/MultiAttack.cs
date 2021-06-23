@@ -20,9 +20,8 @@ namespace Combat
         [SerializeField, Range( -100f, 100f )]
         private float _diveForce = -15f;
 
-        /// TODO: revert back to private
         [SerializeField]
-        public BoxCollider _hitBoxFront = null;
+        private BoxCollider _hitBoxFront = null;
 
         [SerializeField]
         private BoxCollider _hitBoxBelow = null;
