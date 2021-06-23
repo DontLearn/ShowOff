@@ -68,7 +68,7 @@ public class KingsHappyness : KingBehaviour
 
         happiness = _happynessLvl;//sava data
     }
-
+    
     public void BurgerEaten()
     {
         if (_burgersEaten < 1)
