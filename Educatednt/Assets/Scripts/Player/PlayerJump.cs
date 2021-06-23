@@ -19,6 +19,12 @@ namespace Player {
 
 
 
+        /*private void Awake() {
+            if ( !data.ContainsKey( "jumpForce" ) )
+                data.Add( "jumpForce", 21 );
+        }*/
+
+
         void Start() {
             _rb = GetComponent<Rigidbody>();
             Debug.Assert( null != _rb, $"{name} is missing a RigidBody component." );
@@ -41,7 +47,7 @@ namespace Player {
 
         protected override void Upgrade() {
             base.Upgrade();
-            _jumpForce = data[ "jumpForce" ];
+            _jumpForce = data[ Data.JUMPFORCE ];
             Debug.Log( $"{this}: Upgraded jump force. Is now {_jumpForce}." );
         }
 

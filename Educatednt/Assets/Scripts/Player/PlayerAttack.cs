@@ -36,6 +36,15 @@ namespace Player {
 
 
 
+        /*private void Awake() {
+            if ( !data.ContainsKey( "damage" ) )
+                data.Add( "damage", 10 );
+
+            if ( !data.ContainsKey( "knockback" ) )
+                data.Add( "knockback", 70 );
+        }*/
+
+
         private void Start() {
             LoadComponents();
         }
@@ -51,10 +60,11 @@ namespace Player {
 
         protected override void Upgrade() {
             base.Upgrade();
+
             if ( null != _attack ) {
-                int dmg = data[ "damage" ];
+                int dmg = data[ Data.DAMAGE ];
                 _attack.SetDamage( dmg );
-                int knk = data[ "knockback" ];
+                int knk = data[ Data.KNOCKBACK ];
                 _attack.SetKnockback( knk );
 
                 Debug.Log( $"{this}: Upgraded attack damage. Is now {dmg}." );
@@ -82,11 +92,14 @@ namespace Player {
 
         public void SetGrounded( bool pIsGrounded ) {
             _isGrounded = pIsGrounded;
+
+            if ( _isGrounded && _activeHitbox == MultiAttack.Hitbox.BELOW ) {
+                _attackPressed = false;
+            }
         }
 
 
         public void AttackPressed() {
-            Debug.Log( $"Setting true: {_attackPressed}" );
             _attackPressed = true;
 
             if ( !_isGrounded ) {
@@ -111,10 +124,6 @@ namespace Player {
                 _activeHitbox = hitbox;
             }
 
-            /*if ( _activeHitbox == MultiAttack.Hitbox.FRONT ) {
-                Debug.Log( $"Setting false: {_attackPressed}" );
-                _attackPressed = false;
-            }*/
             if ( _attack && _attack is MultiAttack )
                 ( ( MultiAttack )_attack ).SetActiveHitbox( hitbox );
         }
@@ -134,7 +143,6 @@ namespace Player {
 
 
         private void FrontalAttack() {
-            Debug.Log( $"Attack pressed: {_attackPressed}." );
             if ( _attackPressed ) {
                 pressed = true;
                 _attackPressed = false;

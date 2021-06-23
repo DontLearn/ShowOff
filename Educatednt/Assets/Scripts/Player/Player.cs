@@ -27,6 +27,13 @@ namespace Player
         private bool _isGrounded = true;
 
 
+
+        /*private void Awake() {
+            if ( !data.ContainsKey( "upgrade" ) )
+                data.Add( "upgrade", 2 );
+        }*/
+
+
         private void Start() {
             LoadComponents();
             LoadInput();
@@ -62,7 +69,7 @@ namespace Player
 
         protected override void Upgrade() {
             base.Upgrade();
-            _upgradeLevel = data[ "upgrade" ];
+            _upgradeLevel = data[ Data.UPGRADE ];
 
             Debug.Log( $"{this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
 

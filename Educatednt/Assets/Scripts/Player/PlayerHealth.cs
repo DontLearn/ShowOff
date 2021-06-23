@@ -24,8 +24,11 @@ namespace Combat {
         private PlayAudioSource _killSound;
 
 
-        private bool _upgraded = false;
 
+        /*private void Awake() {
+            if ( !data.ContainsKey( "health" ) )
+                data.Add( "health", 100 );
+        }*/
 
 
         private void Start() {
@@ -40,16 +43,16 @@ namespace Combat {
 
 
         private void Update() {
-            if ( !_upgraded && isLoaded ) {
+            if ( !isUpgraded && isLoaded ) {
                 // UPGRADE
                 Upgrade();
             }
         }
 
 
-        private void Upgrade() {
-            _hitPoints = data[ "health" ];
-            _upgraded = true;
+        protected override void Upgrade() {
+            base.Upgrade();
+            _hitPoints = data[ Data.HEALTH ];
 
             if ( _healthBar )
                 _healthBar.SetHealth( _hitPoints );

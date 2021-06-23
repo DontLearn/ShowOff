@@ -45,7 +45,7 @@ public class Inventory : InventoryBehaviour
         /// just a static script. Why does a recipemanager need to be in the scene anyway?
         /// temporary code: {
         if ( !GameObject.FindGameObjectWithTag( "RecipeManager" ) ) {
-            Debug.LogError( "this script is dependent on a RecipeManager in the scene. It's not there. Handle it" );
+            Debug.LogWarning( "this script is dependent on a RecipeManager in the scene. It's not there. Handle it" );
             enabled = false;
             return;
         }

@@ -22,14 +22,18 @@ namespace Data {
 
 
         public void LoadAllPersistentItems() {
+            Console.WriteLine( $"{this}: Loading {_maintainedBehaviours.Count} items.." );
             foreach ( PersistentDataBehaviour behaviour in _maintainedBehaviours ) {
+                Console.WriteLine( $"{this}: Loading {behaviour.name}.." );
                 behaviour.Load( this );
             }
         }
 
 
         public void SaveAllPersistentItems() {
+            Console.WriteLine( $"{this}: Saving {_maintainedBehaviours.Count} items.." );
             foreach ( PersistentDataBehaviour behaviour in _maintainedBehaviours ) {
+                Console.WriteLine( $"{this}: Saving {behaviour.name}.." );
                 behaviour.Save( this );
             }
         }
