@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 4394355597192508045}
   m_Layer: 5
   m_Name: PopupRecipeReady
-  m_TagString: Untagged
+  m_TagString: PopupRecipeReady
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &21019347426075660
 RectTransform:
   m_ObjectHideFlags: 0
@@ -70,7 +70,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8912046869519737441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -149,7 +149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4734620220113394646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5391869652429831148
 RectTransform:
   m_ObjectHideFlags: 0
