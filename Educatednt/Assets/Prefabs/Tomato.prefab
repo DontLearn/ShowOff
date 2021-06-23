@@ -1450,6 +1450,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7401477675685427342, guid: 3a22e58bda8743f47808137995b9d811, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a22e58bda8743f47808137995b9d811, type: 3}
 --- !u!82 &2673702465450586158 stripped

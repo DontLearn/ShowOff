@@ -2188,6 +2188,10 @@ PrefabInstance:
       propertyPath: _sfx.Array.data[3]
       value: 
       objectReference: {fileID: 3845276484467290274}
+    - target: {fileID: 7401477675685427342, guid: 3a22e58bda8743f47808137995b9d811, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7401477675685427343, guid: 3a22e58bda8743f47808137995b9d811, type: 3}
       propertyPath: _sfxName
       value: Moving
