@@ -80,8 +80,18 @@ namespace Player {
         }
 
 
-        public void SetDiveAvailable( bool available ) {
-            _diveAvailable = available;
+        public void SetLevel( int level ) {
+            // if the player is on level 0 or 1, they can't dive attack.
+            _diveAvailable = level <= 1;
+
+            // from level 3 on, the player deals increased damage.
+            if ( level > 2 && null != _attack ) {
+                _attack.LevelUp();
+
+                // Let's also save those new values
+                data[ Data.DAMAGE ] = _attack.Damage;
+                data[ Data.KNOCKBACK ] = _attack.Knockback;
+            }
         }
 
 

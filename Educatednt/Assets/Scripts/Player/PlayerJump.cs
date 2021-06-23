@@ -18,11 +18,9 @@ namespace Player {
         private bool _jumpPressed = false;
 
 
+        private float _force = 0f;
 
-        /*private void Awake() {
-            if ( !data.ContainsKey( "jumpForce" ) )
-                data.Add( "jumpForce", 21 );
-        }*/
+
 
 
         void Start() {
@@ -64,12 +62,19 @@ namespace Player {
 
                 if ( velocityXZ.magnitude > _dashSensitivity * 0.5f ) {
                     velocityXZ = velocityXZ.normalized;
-                    _rb.AddForce( new Vector3( velocityXZ.x * _jumpDash, _jumpForce, velocityXZ.z * _jumpDash ) * 100f );
+                    _rb.AddForce( new Vector3( velocityXZ.x * _jumpDash, _force, velocityXZ.z * _jumpDash ) * 100f );
                 }
                 else {
-                    _rb.AddForce( new Vector3( 0, _jumpForce * 100f ) );
+                    _rb.AddForce( new Vector3( 0, _force * 100f ) );
                 }
             }
+        }
+
+
+        public void SetLevel( int level ) {
+            _force = ( level == 0 ) ? _jumpForce / 2f : _jumpForce;
+
+            Debug.Log( $"{this}: Actual amount of jump force: {_force / _jumpForce * 100f}%." );
         }
 
 

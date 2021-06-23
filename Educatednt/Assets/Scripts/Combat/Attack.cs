@@ -19,6 +19,7 @@ namespace Combat {
 
         public abstract void SetDamage( int amount );
         public abstract void SetKnockback( int amount );
+        public abstract void LevelUp();
         public abstract bool Strike();
 
 
