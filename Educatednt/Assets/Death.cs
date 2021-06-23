@@ -25,6 +25,7 @@ public class Death : MonoBehaviour
 
     private void Died()
     {
-        GameObject newpickup = Instantiate(pickUp, transform.position, transform.rotation);
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        GameObject newpickup = Instantiate(pickUp, pos, transform.rotation);
     }
 }

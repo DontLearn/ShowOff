@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
     public Sprite[] tutorialImgs;
 
     private Queue<string> sentences;
+
+    public bool hasImage;
     //private Queue<int> imageNumber; 
         
     void Start()
@@ -30,7 +32,11 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         nameText.text = dialogue.name;
-        tutorialimg.sprite = tutorialImgs[dialogue.imageNumber];
+        if (hasImage)
+        {
+            tutorialimg.sprite = tutorialImgs[dialogue.imageNumber];
+        }
+        
         sentences.Clear();//clear previous sentences
 
         //load all sentences

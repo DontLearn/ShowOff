@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 3315558232377383466}
   - component: {fileID: 4240482285930405818}
   - component: {fileID: 5824580268842890864}
+  - component: {fileID: 1924709281390501322}
   m_Layer: 11
   m_Name: Shroom
   m_TagString: Untagged
@@ -669,6 +670,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1924709281390501322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410863375821054734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fd015022f48d342a79629677dc2730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUp: {fileID: 1966981333766562308, guid: 5f96d951027825949a0f3ffac0e79eec, type: 3}
 --- !u!1 &7410863375893415425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,14 +1082,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073ea8bc41417e242965ef8be42e9a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8267843291521538056 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4817119360525820198, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
-  m_PrefabInstance: {fileID: 3487086981839632686}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8267843291521538059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4817119360525820197, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
+  m_PrefabInstance: {fileID: 3487086981839632686}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8267843291521538056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4817119360525820198, guid: c9570b23cd8e9fd4e8919835eec3ce3e, type: 3}
   m_PrefabInstance: {fileID: 3487086981839632686}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6681966015024885061
