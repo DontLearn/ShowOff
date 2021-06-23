@@ -35,10 +35,12 @@ public class PauseMenuHandler : MonoBehaviour
         {
             Time.timeScale = 0;
             _menuAudio.PauseMenuSound();
+            Cursor.visible = true;
         }
         else
         {
             Time.timeScale = 1;
+            Cursor.visible = false;
         }
     }
 
