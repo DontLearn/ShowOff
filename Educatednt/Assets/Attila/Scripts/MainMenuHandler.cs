@@ -21,6 +21,7 @@ public class MainMenuHandler : MonoBehaviour
     {
         _availableResolutions = Screen.resolutions;
         SetupResolution();
+        
     }
 
     public void StartGame()
