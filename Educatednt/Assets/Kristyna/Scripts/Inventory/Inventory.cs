@@ -1,36 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEngine.UI;
+using Data;
 
-public class Inventory : MonoBehaviour
+
+public class Inventory : InventoryBehaviour
 {
     public byte stackLimit = 5;
-    public GameObject InventoryItemPrefab;
-    [Header("0-rice, 1 - toamtoe, 2 - mushroom, 3 - burger")]
-    public Sprite[] pickupSprites = new Sprite[4];
-
     [HideInInspector]
     public GameObject[] slots;
-    [HideInInspector]
-    [SerializeField]
-    public bool[] isFull;
 
     private RecipeManager _recipes;
 
-    private byte _rice = 0;   
-    private byte _tomatoe = 0;
-    private byte _mushroom = 0;
-    private byte _burger = 0;
+    private int _rice = 0;
+    private int _tomatoe = 0;
+    private int _mushroom = 0;
+    private int _burger = 0;
 
+    private bool _upgraded = false;
 
-    private void Awake() {
+    //SETUP
+    private void Update()
+    {
+        if (!_upgraded && isLoaded)
+        {
+            // UPGRADE
+            Upgrade();
+        }
+    }
+    private void Upgrade()
+    {
+        _rice = data["rice"];
+        _tomatoe = data["tomatoe"];
+        _mushroom = data["mushroom"];
+        _burger = data["burger"];
+
+        _upgraded = true;
+        Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomatoe = {_tomatoe}, mushroom = {_mushroom}, burger = {_burger}");
+    }
+    private void Awake()
+    {
         /// PROBLEM: Game Object Find with tag causes errors because it's not present in the scene
         /// TODO: Use another way to reach out to a RecipeManager. Maybe don't make it a MonoBehaviour,
         /// just a static script. Why does a recipemanager need to be in the scene anyway?
         /// temporary code: {
         if ( !GameObject.FindGameObjectWithTag( "RecipeManager" ) ) {
+            Debug.LogError("Failed to find game object with tag RecipeManager in the scene!");
             Destroy( this );
             return;
         }
@@ -39,119 +52,136 @@ public class Inventory : MonoBehaviour
         _recipes = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
             Debug.Assert(_recipes, "Recipe Manager with the Recipes script not found by the tag!");
         findSlotsInScene();
-        loadIngredientSpritesFromFolder();
+        upgradeInventoryUI();
+    }
+    private void findSlotsInScene()
+    {
+        slots = GameObject.FindGameObjectsWithTag("Slot");
+        Debug.Assert(slots[0], $"No game objects with Slot tag found! num of slots = {slots.Length}");
 
-        Debug.Assert(InventoryItemPrefab, $"InventoryItemPrefab prefab missing in Inventory inspector!");
-    }
-    private void loadIngredientSpritesFromFolder()
-    {
-        pickupSprites = Resources.LoadAll<Sprite>("Sprites/IngredientSprites");
-        Debug.Assert(pickupSprites[0], $"Sprites for ingredients in folder Assets/Resources/Sprites/IngredientSprites not found!");
-    }
-    private bool checkIngredientAvailability(byte pIngredient, Ingredient.ingredientType pType)
-    {
-        if (pIngredient < stackLimit)
+        if (slots.Length <= 0)
         {
-            if (pIngredient <= 0)
-            {
-                //Create UI:
-                InventoryItemPrefab.GetComponent<Image>().sprite = pickupSprites[(int)pType];
-                Instantiate(InventoryItemPrefab, slots[(int)pType].transform, false);
-                
-                slots[(int)pType].GetComponent<Slot>().showItemNumber();
-            }
-
-            switch (pType)
-            {
-                case Ingredient.ingredientType.Rice:
-                    ++_rice;
-                    slots[(int)pType].GetComponent<Slot>().PlusOneItem();
-                    break;
-                case Ingredient.ingredientType.Tomatoe:
-                    ++_tomatoe;
-                    slots[(int)pType].GetComponent<Slot>().PlusOneItem();
-                    break;
-                case Ingredient.ingredientType.Mushroom:
-                    ++_mushroom;
-                    slots[(int)pType].GetComponent<Slot>().PlusOneItem();
-                    break;
-                case Ingredient.ingredientType.Burger:
-                    ++_burger;
-                    slots[(int)pType].GetComponent<Slot>().PlusOneItem();
-                    break;
-            }
-            if (_rice >= 1 || _tomatoe >= 1 || _mushroom >= 1 || _burger >= 1) _recipes.CheckAvailableRecipes(_rice, _tomatoe, _mushroom, _burger);
-
-            Debug.Log($"{pType} added to inventory! inventory: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
-            return true;
+            Debug.LogWarning("Inventory: There are no slots to be found! Add them to the Canvas (InventoryUI > slotEmptyHolder X <- prefab)");
+        }
+    }
+    private void upgradeInventoryUI()
+    {
+        if (_rice <= 0)
+        {
+            //Debug.Log($"Inventory: hide rice {_rice}");
+            slots[(int)Ingredient.ingredientType.Rice].GetComponent<Slot>().ShowItemInInventory(false);
+            slots[(int)Ingredient.ingredientType.Rice].GetComponent<Slot>().SetItemNumber(_rice);
         }
         else
         {
-            Debug.Log($"Inventory is full for {pType} ingredient!");
-            isFull[(int)pType] = true;
-            return false;
+            //Debug.Log($"Inventory: show rice {_rice}");
+            slots[(int)Ingredient.ingredientType.Rice].GetComponent<Slot>().ShowItemInInventory(true);
+            slots[(int)Ingredient.ingredientType.Rice].GetComponent<Slot>().SetItemNumber(_rice);
         }
+
+        if (_tomatoe <= 0)
+        {
+            //Debug.Log($"Inventory: hide _tomatoe {_tomatoe}");
+            slots[(int)Ingredient.ingredientType.Tomatoe].GetComponent<Slot>().ShowItemInInventory(false);
+            slots[(int)Ingredient.ingredientType.Tomatoe].GetComponent<Slot>().SetItemNumber(_tomatoe);
+        }
+        else
+        {
+            //Debug.Log($"Inventory: show rice {_tomatoe}");
+            slots[(int)Ingredient.ingredientType.Tomatoe].GetComponent<Slot>().ShowItemInInventory(true);
+            slots[(int)Ingredient.ingredientType.Tomatoe].GetComponent<Slot>().SetItemNumber(_tomatoe);
+        }
+
+        if (_mushroom <= 0)
+        {
+            //Debug.Log($"Inventory: hide rice {_mushroom}");
+            slots[(int)Ingredient.ingredientType.Mushroom].GetComponent<Slot>().ShowItemInInventory(false);
+            slots[(int)Ingredient.ingredientType.Mushroom].GetComponent<Slot>().SetItemNumber(_mushroom);
+        }
+        else
+        {
+            //Debug.Log($"Inventory: show rice {_mushroom}");
+            slots[(int)Ingredient.ingredientType.Mushroom].GetComponent<Slot>().ShowItemInInventory(true);
+            slots[(int)Ingredient.ingredientType.Mushroom].GetComponent<Slot>().SetItemNumber(_mushroom);
+        }
+
+        if (_burger <= 0)
+        {
+            //Debug.Log($"Inventory: hide rice {_burger}");
+            slots[(int)Ingredient.ingredientType.Burger].GetComponent<Slot>().ShowItemInInventory(false);
+            slots[(int)Ingredient.ingredientType.Burger].GetComponent<Slot>().SetItemNumber(_burger);
+        }
+        else
+        {
+            //Debug.Log($"Inventory: show rice {_burger}");
+            slots[(int)Ingredient.ingredientType.Burger].GetComponent<Slot>().ShowItemInInventory(true);
+            slots[(int)Ingredient.ingredientType.Burger].GetComponent<Slot>().SetItemNumber(_burger);
+        }
+
     }
-    /// <summary>
-    /// Returns true if item was added successfully. False the inventory is full for the specific ingredient.
-    /// Ingredient pickup uses this for check if should destroy itself.
-    /// </summary>
-    /// <param name="pType"></param>
-    /// <returns></returns>
+    
+    //MANIPULATING INGREDIENTS
     public bool AddItemToInventory(Ingredient.ingredientType pType)
     {
         switch (pType)
         {
             case Ingredient.ingredientType.Rice:
-                if(checkIngredientAvailability(_rice, Ingredient.ingredientType.Rice))
-                {
-                    return true;
-                }
-                return false;
+                return checkIngredientAvailability(_rice, Ingredient.ingredientType.Rice);
+
             case Ingredient.ingredientType.Tomatoe:
-                if (checkIngredientAvailability(_tomatoe, Ingredient.ingredientType.Tomatoe))
-                {
-                    return true;
-                }
-                return false;
+                return checkIngredientAvailability(_tomatoe, Ingredient.ingredientType.Tomatoe);
+
             case Ingredient.ingredientType.Mushroom:
-                if (checkIngredientAvailability(_mushroom, Ingredient.ingredientType.Mushroom))
-                {
-                    return true;
-                }
-                return false;
+                return checkIngredientAvailability(_mushroom, Ingredient.ingredientType.Mushroom);
+
             case Ingredient.ingredientType.Burger:
-                if (checkIngredientAvailability(_burger, Ingredient.ingredientType.Burger))
-                {
-                    return true;
-                }
-                return false;
+                return checkIngredientAvailability(_burger, Ingredient.ingredientType.Burger);
         }
         return false;
     }
-    private void findSlotsInScene()
+    private bool checkIngredientAvailability(int pIngredient, Ingredient.ingredientType pType)
     {
-        slots = GameObject.FindGameObjectsWithTag("Slot");
-        if (slots.Length <= 0)
+        if (pIngredient < stackLimit)
         {
-            Debug.LogWarning("Inventory: There are no slots to be found!");
+            if(pIngredient <= 0)
+            {
+                slots[(int)pType].GetComponent<Slot>().ShowItemInInventory(true);//show the inventoryItemPrefab & number in slot text
+            }
+
+            IncreaseIngredient(pType);
+            upgradeInventoryUI();
+
+            if (_rice > 0 || _tomatoe > 0 || _mushroom > 0 || _burger > 0) _recipes.CheckAvailableRecipes(_rice, _tomatoe, _mushroom, _burger);
+
+            return true;
+        }
+        else
+        {
+            Debug.Log($"Inventory is full for {pType} ingredient!");
+            return false;
         }
     }
-    //This called from Recipes
-    public void DeleteIngredienceFromInventory(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
+    private void IncreaseIngredient(Ingredient.ingredientType pType)
     {
-        _rice -= pRice;
-            slots[0].GetComponent<Slot>().MinusItems(pRice);
-        _tomatoe -= pTomatoe;
-            slots[1].GetComponent<Slot>().MinusItems(pTomatoe);
-        _mushroom -= pMushroom;
-            slots[2].GetComponent<Slot>().MinusItems(pMushroom);
-        _burger -= pBurger;
-            slots[3].GetComponent<Slot>().MinusItems(pBurger);
-        Debug.Log($"Recipe cooked! Inventory now: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
-    }
-    public void healtPickupTest()
-    {
-        Debug.Log("Health restored!");
+        //Increase ingredient in inventory + update UI + save data
+        switch (pType)
+        {
+            case Ingredient.ingredientType.Rice:
+                data["rice"] = ++_rice;
+                slots[(int)pType].GetComponent<Slot>().SetItemNumber(_rice);
+                break;
+            case Ingredient.ingredientType.Tomatoe:
+                data["tomatoe"] = ++_tomatoe;
+                slots[(int)pType].GetComponent<Slot>().SetItemNumber(_tomatoe);
+                break;
+            case Ingredient.ingredientType.Mushroom:
+                data["mushroom"] = ++_mushroom;
+                slots[(int)pType].GetComponent<Slot>().SetItemNumber(_mushroom);
+                break;
+            case Ingredient.ingredientType.Burger:
+                data["burger"] = ++_burger;
+                slots[(int)pType].GetComponent<Slot>().SetItemNumber(_burger);
+                break;
+        }
     }
 }

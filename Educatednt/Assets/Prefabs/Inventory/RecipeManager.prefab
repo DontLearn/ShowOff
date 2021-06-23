@@ -44,14 +44,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipes:
-  - name: Sushi
-    rice: 3
-    tomatoe: 1
+  - name: Soup
+    rice: 0
+    tomatoe: 2
+    mushroom: 2
+    burger: 0
+    isReady: 0
+  - name: Pilaf
+    rice: 0
+    tomatoe: 2
     mushroom: 1
     burger: 0
+    isReady: 0
+  - name: Fried Rice
+    rice: 3
+    tomatoe: 0
+    mushroom: 1
+    burger: 0
+    isReady: 0
   - name: Burger
     rice: 0
     tomatoe: 0
     mushroom: 0
     burger: 1
+    isReady: 0
   _inventory: {fileID: 0}
+  _recipePopup: {fileID: 0}

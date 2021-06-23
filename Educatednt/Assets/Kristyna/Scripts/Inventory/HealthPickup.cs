@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthPickup : Pickup
@@ -8,7 +6,8 @@ public class HealthPickup : Pickup
     {
         if (other.gameObject.tag == playerTag)
         {
-            inventory.healtPickupTest();
+            //inventory.healtPickupTest();
+            Debug.Log("HealthPickup: Collided with player but did nothing, should it do something? -> code it");
             Destroy(this.gameObject);
         }
     }

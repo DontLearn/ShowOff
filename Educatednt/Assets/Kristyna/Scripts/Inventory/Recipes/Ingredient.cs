@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ingredient : Pickup
@@ -19,12 +17,7 @@ public class Ingredient : Pickup
         {
             if (inventory.AddItemToInventory(this.value))
             {
-                //Debug.Log("iNGREDIENT CAN GO TO INVENORY");
                 Destroy(this.gameObject);
-            }
-            else
-            {
-                //Debug.Log("iNGREDIENT cannot store in INVENORY");
             }
         }
     }

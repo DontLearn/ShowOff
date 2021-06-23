@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class MainMenuHandler : MonoBehaviour
     private Dropdown _resolutionDropdown;
     [SerializeField]
     private int _languageValue;
+    [SerializeField] private AudioMixer _audioMixer;
 
     Resolution[] _availableResolutions;
 
@@ -81,5 +83,20 @@ public class MainMenuHandler : MonoBehaviour
         QualitySettings.SetQualityLevel(_qualityInt);
     }
 
-    // AUDIO settings
+    //AUDIO SETUP
+
+    public void SetMainVolume (float _mainVolume)
+    {
+        _audioMixer.SetFloat("MainVolume", _mainVolume);
+    }
+
+    public void SetSFXVolume(float _sfxVolume)
+    {
+        _audioMixer.SetFloat("SFXVolume", _sfxVolume);
+    }
+
+    public void SetMusicVolume(float _musicVolume)
+    {
+        _audioMixer.SetFloat("MusicVolume", _musicVolume);
+    }
 }

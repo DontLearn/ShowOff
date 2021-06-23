@@ -1,42 +1,56 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RecipeManager : MonoBehaviour
 {
     [SerializeField]
+    [Header("0- soup, 1 - pilaf, 2 - friedRice, 3 - burger")]
     public List<RecipeSerializable> recipes = new List<RecipeSerializable>();
+
     [SerializeField]
     private Inventory _inventory;
+    [SerializeField]
+    private PopupReadyRecipe _recipePopup;
+    private bool[] wasPopupDisplayed = new bool[] { false, false, false, false};
 
     private void Start()
     {
-        _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-        Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
-    }
-
-    public void CheckAvailableRecipes(byte pRice, byte pTomatoe, byte pMushroom, byte pBurger)
-    {
-        for (int recipeNum = 0; recipeNum < recipes.Count; recipeNum++)
+        if (SceneManager.GetActiveScene().name != "KitchenScene")
         {
-            //check all three ingredients:
-            if (pRice >= recipes[recipeNum].rice &&
-                pTomatoe >= recipes[recipeNum].tomatoe &&
-                pMushroom >= recipes[recipeNum].mushroom &&
-                pBurger >= recipes[recipeNum].burger)
+            if (!GameObject.FindGameObjectWithTag("Player"))
             {
-                //note the recipe at 0 as available to cook.
-                //So, Kitchen scene can show/hide cook buttons.
-                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = true;
-                Debug.Log($"{recipes[recipeNum].name} available to cook!");
+                Debug.LogError("Failed to find game object with tag Player in the scene!");
+                Destroy(this);
+                return;
             }
-            else
-            {
-                //KitchenAvailableRecipesController.AvailableRecipes[recipeNum] = false;
-            }
+
+            _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+            Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
+
+            wasPopupDisplayed = new bool[recipes.Count];
         }
     }
-    public void CookRecipe(int pRecipeNumber)
+
+    public void CheckAvailableRecipes(int pRice, int pTomatoe, int pMushroom, int pBurger)
     {
-        _inventory.GetComponent<Inventory>().DeleteIngredienceFromInventory(recipes[pRecipeNumber].rice, recipes[pRecipeNumber].tomatoe, recipes[pRecipeNumber].mushroom, recipes[pRecipeNumber].burger);
+        for (int index = 0; index < recipes.Count; ++index)
+        {
+            recipes[index].isReady = (pRice >= recipes[index].rice &&
+                              pTomatoe >= recipes[index].tomatoe &&
+                              pMushroom >= recipes[index].mushroom &&
+                              pBurger >= recipes[index].burger);
+
+            if (recipes[index].isReady)
+            {
+                if (!wasPopupDisplayed[index])
+                {
+                    Debug.Log($"Recipe {recipes[index].name} ready!");
+                    _recipePopup.ActivatePopup(recipes[index].name);
+
+                    wasPopupDisplayed[index] = true;
+                }
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1481.7754, g: 1835.8867, b: 2430.4492, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -153,7 +153,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1393415677}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -198,6 +198,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175554105}
   m_CullTransparentMesh: 1
+--- !u!1001 &343191763
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6354412374426223346, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_Name
+      value: RecipeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223346, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.7070653
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.388626
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.46372175
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223348, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354412374426223349, guid: 5927135438a14a04396e39a70296c266, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5927135438a14a04396e39a70296c266, type: 3}
 --- !u!1 &364598864
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +506,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cook burger
+  m_Text: Cook Soup
 --- !u!222 &441477067
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -610,7 +675,7 @@ GameObject:
   - component: {fileID: 729878254}
   - component: {fileID: 729878253}
   m_Layer: 5
-  m_Name: Recipe1 (1)
+  m_Name: Recipe2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,13 +688,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729878251}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1825495266}
-  m_Father: {fileID: 1393415677}
-  m_RootOrder: 7
+  m_Father: {fileID: 1599664946}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -657,7 +722,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0.99086285, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 0.9504018, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -688,6 +753,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1697295942}
+        m_TargetAssemblyTypeName: KitchenManager, Assembly-CSharp
+        m_MethodName: CookRecipe
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -928,7 +1005,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1393415677}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1056,7 +1133,7 @@ GameObject:
   - component: {fileID: 1336563441}
   - component: {fileID: 1336563440}
   m_Layer: 5
-  m_Name: Recipe1 (2)
+  m_Name: Recipe3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1069,13 +1146,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1336563438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1994963608}
-  m_Father: {fileID: 1393415677}
-  m_RootOrder: 8
+  m_Father: {fileID: 1599664946}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1103,7 +1180,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 0.99086285, b: 1, a: 1}
+    m_NormalColor: {r: 0.05260229, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1128,12 +1205,24 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1697295944}
         m_TargetAssemblyTypeName: KingsHappyness, Assembly-CSharp
-        m_MethodName: NormalFoodEaten
+        m_MethodName: BurgerEaten
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1697295942}
+        m_TargetAssemblyTypeName: KitchenManager, Assembly-CSharp
+        m_MethodName: CookRecipe
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1269,13 +1358,10 @@ RectTransform:
   m_Children:
   - {fileID: 932036549}
   - {fileID: 1902464445}
-  - {fileID: 1458070822}
-  - {fileID: 1818204433}
+  - {fileID: 1599664946}
   - {fileID: 1091436521}
-  - {fileID: 403611118}
   - {fileID: 175554106}
-  - {fileID: 729878252}
-  - {fileID: 1336563439}
+  - {fileID: 403611118}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1310,17 +1396,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458070821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441477065}
-  m_Father: {fileID: 1393415677}
-  m_RootOrder: 2
+  m_Father: {fileID: 1599664946}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -263, y: 79.3}
+  m_AnchoredPosition: {x: -263, y: 77}
   m_SizeDelta: {x: 129.8219, y: 49.4395}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1458070823
@@ -1369,8 +1455,20 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1697295944}
         m_TargetAssemblyTypeName: KingsHappyness, Assembly-CSharp
-        m_MethodName: BurgerEaten
+        m_MethodName: NormalFoodEaten
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1697295942}
+        m_TargetAssemblyTypeName: KitchenManager, Assembly-CSharp
+        m_MethodName: CookRecipe
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1487,7 +1585,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cook Sushi
+  m_Text: Cook Pilaf
 --- !u!222 &1463377612
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1650,6 +1748,45 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576558071}
   m_CullTransparentMesh: 1
+--- !u!1 &1599664945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599664946}
+  m_Layer: 5
+  m_Name: MealButtons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1599664946
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599664945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1458070822}
+  - {fileID: 1818204433}
+  - {fileID: 729878252}
+  - {fileID: 1336563439}
+  m_Father: {fileID: 1393415677}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1697295941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,16 +1817,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b196f10aa2156b4d8e9553d3ec24b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kingStates:
-  - {fileID: 21300000, guid: 9654de2d8ffd52b489d1623bd0adf361, type: 3}
-  - {fileID: 21300000, guid: 41f9a0bef99cd394aa19b062437afdbb, type: 3}
-  - {fileID: 21300000, guid: bb2e9e4f2bb58944a8783e2ba72e12e7, type: 3}
-  - {fileID: 21300000, guid: 1b84c005073c10e4897edbbe8d121a6b, type: 3}
-  startState: 0
-  kingStateImage: {fileID: 175554107}
   recipeButtons:
   - {fileID: 1458070823}
   - {fileID: 1818204434}
+  - {fileID: 729878253}
+  - {fileID: 1336563440}
+  recipeManager: {fileID: 0}
 --- !u!4 &1697295943
 Transform:
   m_ObjectHideFlags: 0
@@ -1716,9 +1849,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c431686fc8efc1419907aaae0917a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happynessLvl: 0
-  burgersEaten: 0
-  KingIsFull: 0
+  kingStateImage: {fileID: 175554107}
+  kingStates:
+  - {fileID: 21300000, guid: 1b84c005073c10e4897edbbe8d121a6b, type: 3}
+  - {fileID: 21300000, guid: bb2e9e4f2bb58944a8783e2ba72e12e7, type: 3}
+  - {fileID: 21300000, guid: 41f9a0bef99cd394aa19b062437afdbb, type: 3}
+  - {fileID: 21300000, guid: 9654de2d8ffd52b489d1623bd0adf361, type: 3}
+  startState: 0
   progressBar: {fileID: 403611119}
 --- !u!1 &1818204432
 GameObject:
@@ -1746,13 +1883,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818204432}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1463377610}
-  m_Father: {fileID: 1393415677}
-  m_RootOrder: 3
+  m_Father: {fileID: 1599664946}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1811,6 +1948,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1697295942}
+        m_TargetAssemblyTypeName: KitchenManager, Assembly-CSharp
+        m_MethodName: CookRecipe
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1923,7 +2072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cook Sushi
+  m_Text: Cook Fried Rice
 --- !u!222 &1825495268
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2210,7 +2359,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Cook Sushi
+  m_Text: Cook Burger
 --- !u!222 &1994963610
 CanvasRenderer:
   m_ObjectHideFlags: 0
