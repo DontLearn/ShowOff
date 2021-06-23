@@ -32,11 +32,15 @@ public class Inventory : InventoryBehaviour {
         _mushroom = data[ Data.MUSHROOM ];
         _burger = data[ Data.BURGER ];
 
+        upgradeInventoryUI();
+        
         Debug.Log( $"{this}: Upgraded ingredients are now: rice = {_rice}, tomato = {_tomato}, mushroom = {_mushroom}, burger = {_burger}" );
     }
 
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
+
         /// PROBLEM: Game Object Find with tag causes errors because it's not present in the scene
         /// TODO: Use another way to reach out to a RecipeManager. Maybe don't make it a MonoBehaviour,
         /// just a static script. Why does a recipemanager need to be in the scene anyway?
@@ -109,8 +113,8 @@ public class Inventory : InventoryBehaviour {
             slots[ ( int )Ingredient.ingredientType.Burger ].GetComponent<Slot>().ShowItemInInventory( true );
             slots[ ( int )Ingredient.ingredientType.Burger ].GetComponent<Slot>().SetItemNumber( _burger );
         }
-
     }
+
 
     //MANIPULATING INGREDIENTS
     public bool AddItemToInventory( Ingredient.ingredientType pType ) {
@@ -177,6 +181,8 @@ public class Inventory : InventoryBehaviour {
     public override void Load( PersistentData persistentData ) {
         base.Load( persistentData );
 
+        Debug.Log( "Loading inventory.." );
+
         if ( !persistentData.TryGetIntData( Data.BURGER.ToString(), out _burger ) ) {
             Debug.LogError( $"{this} Can't parse {Data.BURGER}, not an int." );
         }
@@ -203,6 +209,8 @@ public class Inventory : InventoryBehaviour {
 
 
     public override void Save( PersistentData persistentData ) {
+        Debug.Log( "Saving inventory.." );
+
         persistentData.SetIntData( Data.BURGER.ToString(), _burger );
         persistentData.SetIntData( Data.RICE.ToString(), _rice );
         persistentData.SetIntData( Data.MUSHROOM.ToString(), _mushroom );
@@ -213,6 +221,4 @@ public class Inventory : InventoryBehaviour {
         Debug.Log( $"{this}: Saved mushrooms to {_mushroom}." );
         Debug.Log( $"{this}: Saved tomatoes to {_tomato}." );
     }
-
-
 }

@@ -12,8 +12,9 @@ namespace Data {
 
 
 
-        private void Awake () {
+        protected virtual void Awake () {
             PersistentData.Instance.AddToPersistencyManager( this );
+            Debug.Log( $"{this}: {name} subscribed themselves to PersistentData." );
         }
 
 
