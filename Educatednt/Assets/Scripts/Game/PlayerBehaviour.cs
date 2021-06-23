@@ -21,8 +21,8 @@ namespace Data {
             Dictionary<string, int> newDic = new Dictionary<string, int>();
 
             foreach ( KeyValuePair<string, int> pair in data ) {
-                if ( int.TryParse( persistentData.GetStringData( pair.Key ), out int data ) ) {
-                    newDic.Add( pair.Key, data );
+                if ( int.TryParse( persistentData.GetStringData( pair.Key ), out int dataInt ) ) {
+                    newDic.Add( pair.Key, dataInt );
                 }
                 else {
                     Debug.LogError( $"Could not parse {pair.Key} to an int." );
