@@ -8,6 +8,7 @@ public class MenuAudio : MonoBehaviour
     void Start()
     {
         _menuSounds = GetComponent<AudioFileHandler>();
+        _menuSounds.PlaySound(4, true);
     }
 
     public void PauseMenuSound()
