@@ -16,7 +16,6 @@ namespace Player {
 
         private Rigidbody _rb = null;
         private bool _jumpPressed = false;
-        private bool _upgraded = false;
 
 
 
@@ -27,7 +26,7 @@ namespace Player {
 
 
         private void Update() {
-            if ( !_upgraded && isLoaded ) {
+            if ( !isUpgraded && isLoaded ) {
                 // UPGRADE
                 Upgrade();
             }
@@ -40,9 +39,9 @@ namespace Player {
         }
 
 
-        private void Upgrade() {
+        protected override void Upgrade() {
+            base.Upgrade();
             _jumpForce = data[ "jumpForce" ];
-            _upgraded = true;
             Debug.Log( $"{this}: Upgraded jump force. Is now {_jumpForce}." );
         }
 

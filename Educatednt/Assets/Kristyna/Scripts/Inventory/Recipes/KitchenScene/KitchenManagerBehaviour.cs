@@ -14,7 +14,7 @@ namespace Data
             {"burger", 0 }
         };
 
-        protected bool isLoaded = false;
+
 
         public override void Load(PersistentData persistentData)
         {
@@ -35,12 +35,19 @@ namespace Data
             data = newDic;
             isLoaded = true;
         }
+
+
         public override void Save(PersistentData persistentData)
         {
             foreach (KeyValuePair<string, int> pair in data)
             {
                 persistentData.SetIntData(pair.Key, pair.Value);
             }
+        }
+
+
+        protected override void Upgrade() {
+            isUpgraded = true;
         }
     }
 }

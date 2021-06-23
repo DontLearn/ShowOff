@@ -15,25 +15,27 @@ public class Inventory : InventoryBehaviour
     private int _mushroom = 0;
     private int _burger = 0;
 
-    private bool _upgraded = false;
+
 
     //SETUP
     private void Update()
     {
-        if (!_upgraded && isLoaded)
+        if (!isUpgraded && isLoaded)
         {
             // UPGRADE
             Upgrade();
         }
     }
-    private void Upgrade()
+
+
+    protected override void Upgrade()
     {
+        base.Upgrade();
         _rice = data["rice"];
         _tomatoe = data["tomatoe"];
         _mushroom = data["mushroom"];
         _burger = data["burger"];
 
-        _upgraded = true;
         Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomatoe = {_tomatoe}, mushroom = {_mushroom}, burger = {_burger}");
     }
     private void Awake()

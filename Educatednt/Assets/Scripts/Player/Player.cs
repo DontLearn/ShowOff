@@ -16,7 +16,6 @@ namespace Player
         private PlayerJump _jump = null;
         private PlayerAttack _attack = null;
         private int _upgradeLevel = 0;
-        private bool _upgraded = false;
 
         // controls
         private string _forwardAxis = "";
@@ -35,7 +34,7 @@ namespace Player
 
 
         private void Update() {
-            if ( !_upgraded && isLoaded ) {
+            if ( !isUpgraded && isLoaded ) {
                 // UPGRADE
                 Upgrade();
             }
@@ -61,9 +60,9 @@ namespace Player
         }
 
 
-        private void Upgrade() {
+        protected override void Upgrade() {
+            base.Upgrade();
             _upgradeLevel = data[ "upgrade" ];
-            _upgraded = true;
 
             Debug.Log( $"{this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
 

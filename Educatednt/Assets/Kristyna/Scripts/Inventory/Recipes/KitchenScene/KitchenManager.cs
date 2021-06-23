@@ -7,8 +7,7 @@ public class KitchenManager : KitchenManagerBehaviour
 {
     [Space(10)] public Button[] recipeButtons;
     [Space(10)] public RecipeManager recipeManager;
-    
-    private bool _upgraded = false;
+
 
     private int _rice = 0;
     private int _tomatoe = 3;
@@ -50,19 +49,19 @@ public class KitchenManager : KitchenManagerBehaviour
         }
     }
 
-    private void Upgrade()
+    protected override void Upgrade()
     {
+        base.Upgrade();
         _rice = data["rice"];
         _tomatoe = data["tomatoe"];
         _mushroom = data["mushroom"];
         _burger = data["burger"];
 
-        _upgraded = true;
         Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomatoe = {_tomatoe}, mushroom = {_mushroom}, burger = {_burger}");
     }
     private void Update()
     {
-        if (!_upgraded && isLoaded)
+        if (!isUpgraded && isLoaded)
         {
             // UPGRADE
             Upgrade();
