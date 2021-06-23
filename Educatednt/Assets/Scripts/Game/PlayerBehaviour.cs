@@ -13,23 +13,23 @@ namespace Data {
         };
 
 
-        protected bool isLoaded = false;
-
-
 
         public override void Load( PersistentData persistentData ) {
             Dictionary<string, int> newDic = new Dictionary<string, int>();
+            Debug.Log( $"{this}: Creating new dic.." );
 
             foreach ( KeyValuePair<string, int> pair in data ) {
                 if ( int.TryParse( persistentData.GetStringData( pair.Key ), out int dataInt ) ) {
                     newDic.Add( pair.Key, dataInt );
+                    Debug.Log( $"{this}: Adding key {pair.Key} with value {dataInt} to new dic.." );
                 }
                 else {
-                    Debug.LogError( $"Could not parse {pair.Key} to an int." );
+                    Debug.LogError( $"{this}: Could not parse {pair.Key} to an int." );
                 }
             }
 
             data = newDic;
+            Debug.Log( $"{this}: Overwriting dic.." );
             isLoaded = true;
         }
 
@@ -38,6 +38,11 @@ namespace Data {
             foreach ( KeyValuePair<string, int> pair in data ) {
                 persistentData.SetIntData( pair.Key, pair.Value );
             }
+        }
+
+
+        protected override void Upgrade() {
+            isUpgraded = true;
         }
     }
 }

@@ -33,7 +33,6 @@ namespace Player {
         private bool _diveAvailable = true;
         private bool _isGrounded = true;
         private bool _attackPressed = false;
-        private bool _upgraded = false;
 
 
 
@@ -43,23 +42,26 @@ namespace Player {
 
 
         private void Update() {
-            if ( !_upgraded && isLoaded ) {
+            if ( !isUpgraded && isLoaded ) {
                 // UPGRADE
                 Upgrade();
             }
         }
 
 
-        private void Upgrade() {
-            if ( _attack ) {
+        protected override void Upgrade() {
+            base.Upgrade();
+            if ( null != _attack ) {
                 int dmg = data[ "damage" ];
                 _attack.SetDamage( dmg );
                 int knk = data[ "knockback" ];
                 _attack.SetKnockback( knk );
-                _upgraded = true;
 
                 Debug.Log( $"{this}: Upgraded attack damage. Is now {dmg}." );
                 Debug.Log( $"{this}: Upgraded attack knockback. Is now {knk}." );
+            }
+            else {
+                Debug.LogWarning( $"{this} is trying to load data into an attack but not Attack could be found." );
             }
         }
 

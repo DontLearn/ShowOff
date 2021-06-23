@@ -45,6 +45,8 @@ namespace Data {
         }
 
 
+
+        /// --------- Data Manager ---------
         private Dictionary<String, String> _data = new Dictionary<String, String>();
 
 
@@ -64,18 +66,18 @@ namespace Data {
 
 
         public string GetStringData( string id ) {
-            if ( _data.ContainsKey( id ) ) {
+            if ( _data.ContainsKey( id ) && _data[ id ] is String ) {
                 return _data[ id ];
             }
             else {
-                Console.WriteLine( "ERROR : DATA " + id + " CANNOT BE FOUND" );
+                Console.WriteLine( $"Error: Data {id} cannot be found." );
                 return "";
             }
         }
 
 
         public bool TryGetStringData( string id, out string result ) {
-            if ( _data.ContainsKey( id ) ) {
+            if ( _data.ContainsKey( id ) && _data[ id ] is String ) {
                 result = _data[ id ];
                 return true;
             }
