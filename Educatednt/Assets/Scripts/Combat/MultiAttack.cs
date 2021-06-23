@@ -28,6 +28,7 @@ namespace Combat
 
 
         private BoxCollider _currentActive = null;
+        private float _damageUpgrade = 1.6f, _knockUpgrade = 1.4f;
 
 
 
@@ -46,6 +47,17 @@ namespace Combat
             if ( _currentActive == null ) {
                 Debug.LogWarning( $"No hitbox selected for {name}'s MultiAttack script when selecting a hitbox." );
             }
+        }
+
+
+        public override void LevelUp() {
+            damage = ( int )( damage * _damageUpgrade );
+            hitForce *= _knockUpgrade;
+            _diveDamage = ( int )( _diveDamage * _damageUpgrade );
+            _diveForce *= _knockUpgrade;
+
+            Debug.Log( $"{this}: Damage leveled up to {damage}." );
+            Debug.Log( $"{this}: Knockback leveled up to {hitForce}." );
         }
 
 
