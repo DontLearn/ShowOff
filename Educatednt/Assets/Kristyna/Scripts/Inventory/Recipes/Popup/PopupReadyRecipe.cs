@@ -6,7 +6,7 @@ public class PopupReadyRecipe : MonoBehaviour
     public int timeoutSeconds;
     public Text _recipeName;
 
-    float timer = 0.0f;
+    private float _timer = 0.0f;
     private bool _isActive = false;
 
     private void Update()
@@ -38,12 +38,12 @@ public class PopupReadyRecipe : MonoBehaviour
         this.gameObject.SetActive(false);
         _isActive = false;
 
-        timer = 0;
+        _timer = 0;
     }
     private bool timerDone(int pTimeout)
     {
-        timer += Time.deltaTime;
-        if (((int)timer % 60) >= pTimeout)
+        _timer += Time.deltaTime;
+        if (((int)_timer % 60) >= pTimeout)
         {
             Debug.Log($"Timer done!");
             return true;
