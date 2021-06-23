@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4604.051, g: 2564.9023, b: 1967.4766, a: 1}
+  m_IndirectSpecularColor: {r: 4604.3047, g: 2564.5742, b: 1966.2617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7839,7 +7839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1086741490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14596,16 +14596,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stackLimit: 5
-  InventoryItemPrefab: {fileID: 0}
-  pickupSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   slots:
   - {fileID: 1011684387}
   - {fileID: 363885369}
   - {fileID: 1063029178}
-  isFull: 000000
 --- !u!114 &1806831756 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8562061004092929634, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}

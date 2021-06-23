@@ -26,9 +26,9 @@ public class Debugger : MonoBehaviour
         }
 
         if ( null != _attack ) {
-            if ( _attack.range > Mathf.Epsilon ) {
-                _textBlock.text += $"Attack range = {_attack.range}.\r\n";
-                _attack.range = 0f;
+            if ( _attack.pressed ) {
+                _textBlock.text += $"Attack pressed.\r\n";
+                _attack.pressed = false;
                 _textTime = 5f;
             }
             if ( _attack.struck ) {

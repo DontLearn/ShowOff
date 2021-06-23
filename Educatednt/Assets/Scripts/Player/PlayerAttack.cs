@@ -9,8 +9,8 @@ namespace Player {
         [HideInInspector]
         public bool struck = false;
 
-        [HideInInspector]
-        public float range = 0f;
+        
+        public bool pressed = false;
 
 
 
@@ -84,6 +84,7 @@ namespace Player {
 
 
         public void AttackPressed() {
+            Debug.Log( $"Setting true: {_attackPressed}" );
             _attackPressed = true;
 
             if ( !_isGrounded ) {
@@ -108,15 +109,17 @@ namespace Player {
                 _activeHitbox = hitbox;
             }
 
-            if ( _activeHitbox == MultiAttack.Hitbox.FRONT )
+            /*if ( _activeHitbox == MultiAttack.Hitbox.FRONT ) {
+                Debug.Log( $"Setting false: {_attackPressed}" );
                 _attackPressed = false;
+            }*/
             if ( _attack && _attack is MultiAttack )
                 ( ( MultiAttack )_attack ).SetActiveHitbox( hitbox );
         }
 
 
         private void FixedUpdate() {
-            if ( _attack ) {
+            if ( null != _attack ) {
                 float velY = _rb.velocity.y;
                 if ( _diveAvailable && _attack is MultiAttack && !_isGrounded && velY <= 0.4f ) {
                     DiveAttack();
@@ -129,11 +132,12 @@ namespace Player {
 
 
         private void FrontalAttack() {
+            Debug.Log( $"Attack pressed: {_attackPressed}." );
             if ( _attackPressed ) {
+                pressed = true;
                 _attackPressed = false;
                 if ( _attack is MultiAttack ) {
                     MultiAttack multi = _attack as MultiAttack;
-                    range = multi._hitBoxFront.size.z;
                 }
                 if ( _attack.Strike() ) { struck = true; }
             }
