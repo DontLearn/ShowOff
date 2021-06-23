@@ -996,6 +996,7 @@ GameObject:
   - component: {fileID: 7916336890969440120}
   - component: {fileID: 2873668496976117554}
   - component: {fileID: 474270080691270493}
+  - component: {fileID: 8439609981978415034}
   m_Layer: 11
   m_Name: Burger
   m_TagString: Untagged
@@ -1162,6 +1163,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8439609981978415034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6670574324124602030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fd015022f48d342a79629677dc2730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUp: {fileID: 1966981333766562308, guid: 45b50b4f453bf4a4fac796b94d8bd167, type: 3}
 --- !u!1 &6670574324127623515
 GameObject:
   m_ObjectHideFlags: 0
