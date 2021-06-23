@@ -2,11 +2,9 @@ using UnityEngine;
 using Data;
 
 
-namespace Player
-{
+namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( PlayerMovement ) )]
-    public class Player : PlayerBehaviour
-    {
+    public class Player : PlayerBehaviour {
         [SerializeField]
         private Controls _controls = null;
 
@@ -15,7 +13,7 @@ namespace Player
         private PlayerMovement _movement = null;
         private PlayerJump _jump = null;
         private PlayerAttack _attack = null;
-        private int _upgradeLevel = 2;
+        private int _upgradeLevel = 0;
 
         // controls
         private string _forwardAxis = "";
@@ -67,14 +65,7 @@ namespace Player
 
             Debug.Log( $"{this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
 
-            if ( _upgradeLevel < 1 ) {
-                _jump = null;
-            }
-            if ( _upgradeLevel < 2 ) {
-                if ( _attack ) {
-                    _attack.SetDiveAvailable( false );
-                }
-            }
+            CheckLevels();
         }
 
 
@@ -182,6 +173,31 @@ namespace Player
                         _attack.SetActiveHitbox( Combat.MultiAttack.Hitbox.BELOW );
 
                 }
+            }
+        }
+
+
+        public void Levelup() {
+            ++_upgradeLevel;
+            CheckLevels();
+        }
+
+
+        private void CheckLevels() {
+            // level is expected to exist within 0 - 3
+
+            if ( null != _jump ) {
+                _jump.SetLevel( _upgradeLevel );
+            }
+            else {
+                Debug.Log( $"{this}: Can't upgrade Jump, not present." );
+            }
+
+            if ( null != _attack ) {
+                _attack.SetLevel( _upgradeLevel );
+            }
+            else {
+                Debug.Log( $"{this}: Can't upgrade Attack, not present." );
             }
         }
 
