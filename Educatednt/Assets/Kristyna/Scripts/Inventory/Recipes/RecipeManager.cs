@@ -24,11 +24,24 @@ public class RecipeManager : MonoBehaviour
                 Destroy(this);
                 return;
             }
+            else
+            {
+                _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+                Debug.Assert(_inventory, "Inventory Not Found! Player Missing Component");
+            }
 
-            _inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
-            Debug.Assert(_inventory, "InventoryNotFound_PlayerMissing");
-
-            wasPopupDisplayed = new bool[recipes.Count];
+            wasPopupDisplayed = new bool[recipes.Count];//array for all recipes existing
+            if (!GameObject.FindGameObjectWithTag("PopupRecipeReady"))
+            {
+                Debug.LogError("Failed to find game object with tag PopupRecipeReady in the scene!");
+                Destroy(this);
+                return;
+            }
+            else
+            {
+                _recipePopup = GameObject.FindGameObjectWithTag("PopupRecipeReady").GetComponent<PopupReadyRecipe>();
+                Debug.Assert(_recipePopup, "PopupRecipeReady script not found! PopupRecipeReady UI game object is missing this component!");
+            }
         }
     }
 

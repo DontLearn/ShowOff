@@ -15,7 +15,7 @@ public class PopupReadyRecipe : MonoBehaviour
         {
             if (timerDone(timeoutSeconds))
             {
-                hideItself();
+                hideChildren();
             }
         }
     }
@@ -24,18 +24,22 @@ public class PopupReadyRecipe : MonoBehaviour
         Debug.Log($"Activating popup.");
         if (!_isActive)
         {
-            this.gameObject.SetActive(true);
+            for (int childIndex = 0; childIndex < this.transform.childCount; ++childIndex)
+            {
+                this.transform.GetChild(childIndex).gameObject.SetActive(true);
+            }
             _recipeName.text = pRecipeName;
             _isActive = true;
         }        
     }
 
-    private void hideItself()
+    private void hideChildren()
     {
-        Debug.Log($"Hide popup.");
-
         _recipeName.text = "x";
-        this.gameObject.SetActive(false);
+        for (int childIndex = 0; childIndex < this.transform.childCount; ++childIndex)
+        {
+            this.transform.GetChild(childIndex).gameObject.SetActive(false);
+        }
         _isActive = false;
 
         timer = 0;
