@@ -6,12 +6,14 @@ using Data;
 namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( Rigidbody ) )]
     public class PlayerAttack : PlayerBehaviour {
+        // Remove later {
         [HideInInspector]
         public bool struck = false;
-
-        
+        [HideInInspector]
         public bool pressed = false;
-
+        [HideInInspector]
+        public int Damage = 0;
+        // }
 
 
         [SerializeField, Range( 0f, 10f )]
@@ -150,7 +152,10 @@ namespace Player {
 
         private void FrontalAttack() {
             if ( _attackPressed ) {
+                // Remove later {
+                Damage = _attack.Damage;
                 pressed = true;
+                // }
                 _attackPressed = false;
                 if ( _attack is MultiAttack ) {
                     MultiAttack multi = _attack as MultiAttack;
@@ -205,19 +210,27 @@ namespace Player {
                 Debug.LogError( $"{this} Can't parse {Data.KNOCKBACK}, not an int." );
             }
 
-            if ( null != _attack ) {
-                data[ Data.ATTACK_LEVEL ] = _attack.Level;
-                _attack.SetAttackLevel( level );
-                Debug.Log( $"{this}: Loaded attack's level to {level}." );
+            if ( null == _attack ) {
+                Debug.Log( $"{this}: Attack isn't initialized yet, loading component.." );
+                LoadComponents();
 
-                data[ Data.DAMAGE ] = damage;
-                _attack.SetDamage( damage );
-                Debug.Log( $"{this}: Loaded damage to {damage}." );
-
-                data[ Data.KNOCKBACK ] = _attack.Knockback;
-                _attack.SetKnockback( knockback );
-                Debug.Log( $"{this}: Loaded knockback to {knockback}." );
+                if ( null == _attack ) {
+                    Debug.LogError( $"{this}: Attack could not be initialized. No data was saved." );
+                    return;
+                }
             }
+
+            data[ Data.ATTACK_LEVEL ] = _attack.Level;
+            _attack.SetAttackLevel( level );
+            Debug.Log( $"{this}: Loaded attack's level to {level}." );
+
+            data[ Data.DAMAGE ] = damage;
+            _attack.SetDamage( damage );
+            Debug.Log( $"{this}: Loaded damage to {damage}." );
+
+            data[ Data.KNOCKBACK ] = _attack.Knockback;
+            _attack.SetKnockback( knockback );
+            Debug.Log( $"{this}: Loaded knockback to {knockback}." );
         }
 
 

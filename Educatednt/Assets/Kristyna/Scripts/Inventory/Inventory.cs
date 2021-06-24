@@ -1,11 +1,16 @@
+using System.Linq;
 using UnityEngine;
 using Data;
 
 
 public class Inventory : InventoryBehaviour {
-    public byte stackLimit = 5;
+    //[HideInInspector]
+    //public int HOUSTON = 0;
+
+
+    public int stackLimit = 6;
     [HideInInspector]
-    public GameObject[] slots;
+    public Slot[] slots;
 
     private RecipeManager _recipes;
 
@@ -33,7 +38,7 @@ public class Inventory : InventoryBehaviour {
         _burger = data[ Data.BURGER ];
 
         upgradeInventoryUI();
-        
+
         Debug.Log( $"{this}: Upgraded ingredients are now: rice = {_rice}, tomato = {_tomato}, mushroom = {_mushroom}, burger = {_burger}" );
     }
 
@@ -60,58 +65,92 @@ public class Inventory : InventoryBehaviour {
 
 
     private void findSlotsInScene() {
-        slots = GameObject.FindGameObjectsWithTag( "Slot" );
+        GameObject[] goArray = GameObject.FindGameObjectsWithTag( "Slot" );
+
+        Slot[] slotArray = new Slot[ goArray.Length ];
+
+        for ( int i = 0; i < slotArray.Length; ++i ) {
+            slotArray[ i ] = goArray[ i ].GetComponent<Slot>();
+            if ( null == slotArray[ i ] ) {
+                Debug.LogError( $"{goArray[ i ].name} does not have a Slot component." );
+            }
+        }
+
+        //Slot[] testArray = ( Slot[] )slotArray.Clone();
+        slots = slotArray.OrderBy( x => x.slotNumber ).ToArray();
+        /*if ( testArray[0]!=slots[0] || testArray[1]!=slots[1] || testArray[2]!=slots[2] || testArray[3]!= slots[3] ) {
+            HOUSTON = 1;
+        }
+        else {
+            HOUSTON = 2;
+        }*/
+
+
         Debug.Assert( slots[ 0 ], $"No game objects with Slot tag found! num of slots = {slots.Length}" );
 
         if ( slots.Length <= 0 ) {
             Debug.LogWarning( "Inventory: There are no slots to be found! Add them to the Canvas (InventoryUI > slotEmptyHolder X <- prefab)" );
         }
+        else {
+            for ( int i = 0; i < slots.Length; ++i ) {
+                Debug.Log( $"{this}: Loaded slot [{i}] with number [{slots[ i ].slotNumber}]." );
+            }
+        }
     }
 
 
     private void upgradeInventoryUI() {
-        if ( _rice <= 0 ) {
-            //Debug.Log($"Inventory: hide rice {_rice}");
-            slots[ ( int )Ingredient.ingredientType.Rice ].GetComponent<Slot>().ShowItemInInventory( false );
-            slots[ ( int )Ingredient.ingredientType.Rice ].GetComponent<Slot>().SetItemNumber( _rice );
-        }
-        else {
-            //Debug.Log($"Inventory: show rice {_rice}");
-            slots[ ( int )Ingredient.ingredientType.Rice ].GetComponent<Slot>().ShowItemInInventory( true );
-            slots[ ( int )Ingredient.ingredientType.Rice ].GetComponent<Slot>().SetItemNumber( _rice );
-        }
-
-        if ( _tomato <= 0 ) {
-            //Debug.Log($"Inventory: hide tomato {_tomato}");
-            slots[ ( int )Ingredient.ingredientType.Tomato ].GetComponent<Slot>().ShowItemInInventory( false );
-            slots[ ( int )Ingredient.ingredientType.Tomato ].GetComponent<Slot>().SetItemNumber( _tomato );
-        }
-        else {
-            //Debug.Log($"Inventory: show tomato {_tomato}");
-            slots[ ( int )Ingredient.ingredientType.Tomato ].GetComponent<Slot>().ShowItemInInventory( true );
-            slots[ ( int )Ingredient.ingredientType.Tomato ].GetComponent<Slot>().SetItemNumber( _tomato );
+        if ( null != slots && ( int )Ingredient.ingredientType.RICE >= 0 && ( int )Ingredient.ingredientType.RICE < slots.Length ) {
+            if ( _rice <= 0 ) {
+                //Debug.Log($"Inventory: hide rice {_rice}");
+                slots[ ( int )Ingredient.ingredientType.RICE ].ShowItemInInventory( false );
+                slots[ ( int )Ingredient.ingredientType.RICE ].SetItemNumber( _rice );
+            }
+            else {
+                //Debug.Log($"Inventory: show rice {_rice}");
+                slots[ ( int )Ingredient.ingredientType.RICE ].ShowItemInInventory( true );
+                slots[ ( int )Ingredient.ingredientType.RICE ].SetItemNumber( _rice );
+            }
         }
 
-        if ( _mushroom <= 0 ) {
-            //Debug.Log($"Inventory: hide mushroom {_mushroom}");
-            slots[ ( int )Ingredient.ingredientType.Mushroom ].GetComponent<Slot>().ShowItemInInventory( false );
-            slots[ ( int )Ingredient.ingredientType.Mushroom ].GetComponent<Slot>().SetItemNumber( _mushroom );
-        }
-        else {
-            //Debug.Log($"Inventory: show mushroom {_mushroom}");
-            slots[ ( int )Ingredient.ingredientType.Mushroom ].GetComponent<Slot>().ShowItemInInventory( true );
-            slots[ ( int )Ingredient.ingredientType.Mushroom ].GetComponent<Slot>().SetItemNumber( _mushroom );
+        if ( null != slots && ( int )Ingredient.ingredientType.TOMATO >= 0 && ( int )Ingredient.ingredientType.TOMATO < slots.Length ) {
+            if ( _tomato <= 0 ) {
+                //Debug.Log($"Inventory: hide tomato {_tomato}");
+                slots[ ( int )Ingredient.ingredientType.TOMATO ].ShowItemInInventory( false );
+                slots[ ( int )Ingredient.ingredientType.TOMATO ].SetItemNumber( _tomato );
+            }
+            else {
+                //Debug.Log($"Inventory: show tomato {_tomato}");
+                slots[ ( int )Ingredient.ingredientType.TOMATO ].ShowItemInInventory( true );
+                slots[ ( int )Ingredient.ingredientType.TOMATO ].SetItemNumber( _tomato );
+            }
         }
 
-        if ( _burger <= 0 ) {
-            //Debug.Log($"Inventory: hide burger {_burger}");
-            slots[ ( int )Ingredient.ingredientType.Burger ].GetComponent<Slot>().ShowItemInInventory( false );
-            slots[ ( int )Ingredient.ingredientType.Burger ].GetComponent<Slot>().SetItemNumber( _burger );
+
+        if ( null != slots && ( int )Ingredient.ingredientType.MUSHROOM >= 0 && ( int )Ingredient.ingredientType.MUSHROOM < slots.Length ) {
+            if ( _mushroom <= 0 ) {
+                //Debug.Log($"Inventory: hide mushroom {_mushroom}");
+                slots[ ( int )Ingredient.ingredientType.MUSHROOM ].ShowItemInInventory( false );
+                slots[ ( int )Ingredient.ingredientType.MUSHROOM ].SetItemNumber( _mushroom );
+            }
+            else {
+                //Debug.Log($"Inventory: show mushroom {_mushroom}");
+                slots[ ( int )Ingredient.ingredientType.MUSHROOM ].ShowItemInInventory( true );
+                slots[ ( int )Ingredient.ingredientType.MUSHROOM ].SetItemNumber( _mushroom );
+            }
         }
-        else {
-            //Debug.Log($"Inventory: show burger {_burger}");
-            slots[ ( int )Ingredient.ingredientType.Burger ].GetComponent<Slot>().ShowItemInInventory( true );
-            slots[ ( int )Ingredient.ingredientType.Burger ].GetComponent<Slot>().SetItemNumber( _burger );
+
+        if ( null != slots && ( int )Ingredient.ingredientType.BURGER >= 0 && ( int )Ingredient.ingredientType.BURGER < slots.Length ) {
+            if ( _burger <= 0 ) {
+                //Debug.Log($"Inventory: hide burger {_burger}");
+                slots[ ( int )Ingredient.ingredientType.BURGER ].ShowItemInInventory( false );
+                slots[ ( int )Ingredient.ingredientType.BURGER ].SetItemNumber( _burger );
+            }
+            else {
+                //Debug.Log($"Inventory: show burger {_burger}");
+                slots[ ( int )Ingredient.ingredientType.BURGER ].ShowItemInInventory( true );
+                slots[ ( int )Ingredient.ingredientType.BURGER ].SetItemNumber( _burger );
+            }
         }
     }
 
@@ -119,17 +158,17 @@ public class Inventory : InventoryBehaviour {
     //MANIPULATING INGREDIENTS
     public bool AddItemToInventory( Ingredient.ingredientType pType ) {
         switch ( pType ) {
-            case Ingredient.ingredientType.Rice:
-                return checkIngredientAvailability( _rice, Ingredient.ingredientType.Rice );
+            case Ingredient.ingredientType.RICE:
+                return checkIngredientAvailability( _rice, Ingredient.ingredientType.RICE );
 
-            case Ingredient.ingredientType.Tomato:
-                return checkIngredientAvailability( _tomato, Ingredient.ingredientType.Tomato );
+            case Ingredient.ingredientType.TOMATO:
+                return checkIngredientAvailability( _tomato, Ingredient.ingredientType.TOMATO );
 
-            case Ingredient.ingredientType.Mushroom:
-                return checkIngredientAvailability( _mushroom, Ingredient.ingredientType.Mushroom );
+            case Ingredient.ingredientType.MUSHROOM:
+                return checkIngredientAvailability( _mushroom, Ingredient.ingredientType.MUSHROOM );
 
-            case Ingredient.ingredientType.Burger:
-                return checkIngredientAvailability( _burger, Ingredient.ingredientType.Burger );
+            case Ingredient.ingredientType.BURGER:
+                return checkIngredientAvailability( _burger, Ingredient.ingredientType.BURGER );
         }
         return false;
     }
@@ -138,7 +177,13 @@ public class Inventory : InventoryBehaviour {
     private bool checkIngredientAvailability( int pIngredient, Ingredient.ingredientType pType ) {
         if ( pIngredient < stackLimit ) {
             if ( pIngredient <= 0 ) {
-                slots[ ( int )pType ].GetComponent<Slot>().ShowItemInInventory( true );//show the inventoryItemPrefab & number in slot text
+                int intType = ( int )pType;
+                if ( null != slots && intType >= 0 && intType < slots.Length ) {
+                    Slot slotComponent = slots[ intType ];
+                    if ( null != slotComponent ) {
+                        slotComponent.ShowItemInInventory( true );//show the inventoryItemPrefab & number in slot
+                    }
+                }
             }
 
             IncreaseIngredient( pType );
@@ -157,22 +202,51 @@ public class Inventory : InventoryBehaviour {
 
     private void IncreaseIngredient( Ingredient.ingredientType pType ) {
         //Increase ingredient in inventory + update UI + save data
+        int intType = ( int )pType;
         switch ( pType ) {
-            case Ingredient.ingredientType.Rice:
+            case Ingredient.ingredientType.RICE:
                 data[ Data.RICE ] = ++_rice;
-                slots[ ( int )pType ].GetComponent<Slot>().SetItemNumber( _rice );
+                if ( null != slots && intType >= 0 && intType < slots.Length ) {
+                    Slot slotComponent = slots[ intType ];
+                    if ( null != slotComponent )
+                        slotComponent.SetItemNumber( _rice );
+                }
+                else {
+                    Debug.LogError( $"{this}: out of range or slots not existing." );
+                }
                 break;
-            case Ingredient.ingredientType.Tomato:
+            case Ingredient.ingredientType.TOMATO:
                 data[ Data.TOMATO ] = ++_tomato;
-                slots[ ( int )pType ].GetComponent<Slot>().SetItemNumber( _tomato );
+                if ( null != slots && intType >= 0 && intType < slots.Length ) {
+                    Slot slotComponent = slots[ intType ];
+                    if ( null != slotComponent )
+                        slotComponent.SetItemNumber( _tomato );
+                }
+                else {
+                    Debug.LogError( $"{this}: out of range or slots not existing." );
+                }
                 break;
-            case Ingredient.ingredientType.Mushroom:
+            case Ingredient.ingredientType.MUSHROOM:
                 data[ Data.MUSHROOM ] = ++_mushroom;
-                slots[ ( int )pType ].GetComponent<Slot>().SetItemNumber( _mushroom );
+                if ( null != slots && intType >= 0 && intType < slots.Length ) {
+                    Slot slotComponent = slots[ intType ];
+                    if ( null != slotComponent )
+                        slotComponent.SetItemNumber( _mushroom );
+                }
+                else {
+                    Debug.LogError( $"{this}: out of range or slots not existing." );
+                }
                 break;
-            case Ingredient.ingredientType.Burger:
+            case Ingredient.ingredientType.BURGER:
                 data[ Data.BURGER ] = ++_burger;
-                slots[ ( int )pType ].GetComponent<Slot>().SetItemNumber( _burger );
+                if ( null != slots && intType >= 0 && intType < slots.Length ) {
+                    Slot slotComponent = slots[ intType ];
+                    if ( null != slotComponent )
+                        slotComponent.SetItemNumber( _burger );
+                }
+                else {
+                    Debug.LogError( $"{this}: out of range or slots not existing." );
+                }
                 break;
         }
     }

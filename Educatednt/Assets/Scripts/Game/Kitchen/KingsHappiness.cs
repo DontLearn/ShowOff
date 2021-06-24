@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Data;
-using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 using System;
+
 
 public class KingsHappiness : KingBehaviour {
     [Tooltip( "Pass KingStateImg UI from canvas" )]
