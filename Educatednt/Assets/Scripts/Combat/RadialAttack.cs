@@ -14,6 +14,11 @@ namespace Combat {
 
 
 
+        public override void SetAttackLevel( int amount ) {
+            level = amount;
+        }
+
+
         public override void SetDamage( int amount ) {
             damage = amount;
         }
@@ -24,7 +29,7 @@ namespace Combat {
         }
 
 
-        public override void LevelUp() { }
+        public override void LevelUp( int level ) { }
 
 
         public override bool Strike() {

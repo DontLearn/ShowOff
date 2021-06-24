@@ -50,17 +50,21 @@ namespace Combat
         }
 
 
-        public override void LevelUp() {
-            if ( !leveledUp ) {
-                damage = ( int )( damage * _damageUpgrade );
-                hitForce *= _knockUpgrade;
-                _diveDamage = ( int )( _diveDamage * _damageUpgrade );
-                _diveForce *= _knockUpgrade;
+        public override void LevelUp( int level ) {
+            this.level = level - 2;
 
-                Debug.Log( $"{this}: Damage leveled up to {damage}." );
-                Debug.Log( $"{this}: Knockback leveled up to {hitForce}." );
-                leveledUp = true;
-            }
+            damage = ( int )( damage * ( 1 + _damageUpgrade * level ) );
+            hitForce *= _knockUpgrade;
+            _diveDamage = ( int )( _diveDamage * ( 1 + _damageUpgrade * level ) );
+            _diveForce *= _knockUpgrade;
+
+            Debug.Log( $"{this}: Damage leveled up to {damage}." );
+            Debug.Log( $"{this}: Knockback leveled up to {hitForce}." );
+        }
+
+
+        public override void SetAttackLevel( int amount ) {
+            level = amount;
         }
 
 

@@ -8,6 +8,7 @@ namespace Data {
             HEALTH,
             DAMAGE,
             KNOCKBACK,
+            ATTACK_LEVEL,
             JUMPFORCE
         }
 
@@ -16,6 +17,7 @@ namespace Data {
             { Data.HEALTH, 0 },
             { Data.DAMAGE, 0 },
             { Data.KNOCKBACK, 0 },
+            { Data.ATTACK_LEVEL, 0 },
             { Data.JUMPFORCE, 0 }
         };
 

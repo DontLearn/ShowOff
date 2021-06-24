@@ -87,7 +87,7 @@ namespace Player {
 
             // from level 3 on, the player deals increased damage.
             if ( level > 2 && null != _attack ) {
-                _attack.LevelUp();
+                _attack.LevelUp( level );
 
                 // Let's also save those new values
                 data[ Data.DAMAGE ] = _attack.Damage;
@@ -193,8 +193,11 @@ namespace Player {
 
         public override void Load( PersistentData persistentData ) {
             base.Load( persistentData );
-            int damage, knockback;
+            int level, damage, knockback;
 
+            if ( !persistentData.TryGetIntData( Data.ATTACK_LEVEL.ToString(), out level ) ) {
+                Debug.LogError( $"{this} Can't parse {Data.ATTACK_LEVEL}, not an int." );
+            }
             if ( !persistentData.TryGetIntData( Data.DAMAGE.ToString(), out damage ) ) {
                 Debug.LogError( $"{this} Can't parse {Data.DAMAGE}, not an int." );
             }
@@ -203,6 +206,10 @@ namespace Player {
             }
 
             if ( null != _attack ) {
+                data[ Data.ATTACK_LEVEL ] = _attack.Level;
+                _attack.SetAttackLevel( level );
+                Debug.Log( $"{this}: Loaded attack's level to {level}." );
+
                 data[ Data.DAMAGE ] = damage;
                 _attack.SetDamage( damage );
                 Debug.Log( $"{this}: Loaded damage to {damage}." );
@@ -224,6 +231,9 @@ namespace Player {
                     return;
                 }
             }
+
+            persistentData.SetIntData( Data.ATTACK_LEVEL.ToString(), _attack.Level );
+            Debug.Log( $"{this}: Saved attack's level to {_attack.Level}." );
 
             persistentData.SetIntData( Data.DAMAGE.ToString(), _attack.Damage );
             Debug.Log( $"{this}: Saved damage to {_attack.Damage}." );
