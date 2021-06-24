@@ -15,10 +15,10 @@ public class KitchenManager : InventoryBehaviour
 
 
 
-    private int _rice = 5;
-    private int _tomato = 5;
-    private int _mushroom = 5;
-    private int _burger = 2;
+    private int _rice = 0;
+    private int _tomato = 0;
+    private int _mushroom = 0;
+    private int _burger = 0;
 
     void Start()
     {
