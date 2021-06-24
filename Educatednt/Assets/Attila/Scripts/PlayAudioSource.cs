@@ -12,6 +12,12 @@ public class PlayAudioSource : MonoBehaviour
     void Awake()
     {
         audioManagerObject = GameObject.Find("AudioManager");
+        if (!audioManagerObject)
+        {
+            Debug.LogWarning("this script is dependent on an AudioManager in the scene. It's not there. Handle it");
+            enabled = false;
+            return;
+        }
         _manager = audioManagerObject.GetComponent<PrototypeAudioManager>();
 
 

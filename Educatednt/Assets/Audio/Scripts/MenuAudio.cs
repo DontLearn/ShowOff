@@ -7,12 +7,13 @@ public class MenuAudio : MonoBehaviour
     [SerializeField] private AudioFileHandler _menuSounds;
     void Start()
     {
-        if(null == _menuSounds)
+        _menuSounds = GetComponent<AudioFileHandler>();
+        if (null == _menuSounds)
         {
             Destroy(this);
             return;
         }
-        _menuSounds = GetComponent<AudioFileHandler>();
+        
         _menuSounds.PlaySound(4, true);
     }
 

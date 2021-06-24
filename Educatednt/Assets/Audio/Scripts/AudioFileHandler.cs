@@ -12,10 +12,23 @@ public class AudioFileHandler : MonoBehaviour
         AudioExecutor _executor;
         AudioSource _source;
 
-        _executor = _sfx[_listPosition];
-        _executor.SetAudioClip();
-        _source = _executor.SetSource();
-        _source.loop = _loop;
-        _source.Play();
+
+        if(_listPosition < _sfx.Count && _listPosition >= 0)
+        {
+            _executor = _sfx[_listPosition];
+            if (_executor != null)
+            {
+                _executor.SetAudioClip();
+                _source = _executor.SetSource();
+                if (_source != null)
+                {
+                    _source.loop = _loop;
+                    _source.Play();
+                }
+
+            }
+        }
+        
+        
     }
 }

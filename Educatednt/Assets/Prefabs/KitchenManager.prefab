@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2896331032701779710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2896331032701779708}
+  - component: {fileID: 2896331032701779709}
+  - component: {fileID: 2896331032701779699}
+  m_Layer: 0
+  m_Name: KitchenManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2896331032701779708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896331032701779710}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 481.5, y: 271, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2896331032701779709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896331032701779710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b196f10aa2156b4d8e9553d3ec24b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recipeButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  recipeManager: {fileID: 0}
+  abilityPopup: {fileID: 0}
+  backButton: {fileID: 0}
+--- !u!114 &2896331032701779699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896331032701779710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c431686fc8efc1419907aaae0917a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kingStateImage: {fileID: 0}
+  kingStates:
+  - {fileID: 21300000, guid: c9171de8e9373034c964003e91a46ed0, type: 3}
+  - {fileID: 21300000, guid: bb2e9e4f2bb58944a8783e2ba72e12e7, type: 3}
+  - {fileID: 21300000, guid: 41f9a0bef99cd394aa19b062437afdbb, type: 3}
+  - {fileID: 21300000, guid: 9654de2d8ffd52b489d1623bd0adf361, type: 3}
+  startState: 0
+  happinessLvl: 0
+  progressBar: {fileID: 0}
+  eaten: 0

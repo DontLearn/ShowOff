@@ -35,7 +35,7 @@ public class KitchenManager : InventoryBehaviour
         }
 
         DecideActiveRecipeButtons();
-        showBackButton(false);
+        //showBackButton(true);
         Debug.Log($"Inventory items: {_rice}, {_tomato}, {_mushroom}, {_burger}");
     }
     private void DecideActiveRecipeButtons()
@@ -83,7 +83,7 @@ public class KitchenManager : InventoryBehaviour
         DeleteIngredienceFromInventory(recipeManager.recipes[pRecipeNumber].rice, recipeManager.recipes[pRecipeNumber].tomatoe, recipeManager.recipes[pRecipeNumber].mushroom, recipeManager.recipes[pRecipeNumber].burger);
         HideAllRecipeButtons();
         abilityPopup.ActivatePopup(this.GetComponent<KingsHappiness>().happinessLvl);
-        showBackButton(true);
+        //showBackButton(true);
     }
     private void showBackButton(bool pShow)
     {

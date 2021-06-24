@@ -74,6 +74,7 @@ public class PatrolPoints : PatrolAbs {
             // Move character
             if ( _agent ) {
                 Vector3 point = ( agentEnabled ) ? PositionedPoint( _currentPoint ) : transform.position;
+                if(_agent.isActiveAndEnabled)
                 _agent.SetDestination( point );
             }
         }

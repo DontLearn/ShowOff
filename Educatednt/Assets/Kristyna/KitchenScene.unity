@@ -2888,80 +2888,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615742391}
   m_CullTransparentMesh: 1
---- !u!1 &1697295941
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1697295943}
-  - component: {fileID: 1697295942}
-  - component: {fileID: 1697295944}
-  m_Layer: 0
-  m_Name: KitchenManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1697295942
+--- !u!114 &1697295942 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+  m_PrefabInstance: {fileID: 2896331034260639931}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697295941}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b196f10aa2156b4d8e9553d3ec24b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recipeButtons:
-  - {fileID: 1458070823}
-  - {fileID: 1818204434}
-  - {fileID: 729878253}
-  - {fileID: 1336563440}
-  recipeManager: {fileID: 744553463}
-  abilityPopup: {fileID: 683859963}
-  backButton: {fileID: 1902464444}
---- !u!4 &1697295943
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697295941}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 481.5, y: 271, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1697295944
+--- !u!114 &1697295944 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2896331032701779699, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+  m_PrefabInstance: {fileID: 2896331034260639931}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1697295941}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c431686fc8efc1419907aaae0917a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kingStateImage: {fileID: 175554107}
-  kingStates:
-  - {fileID: 21300000, guid: c9171de8e9373034c964003e91a46ed0, type: 3}
-  - {fileID: 21300000, guid: bb2e9e4f2bb58944a8783e2ba72e12e7, type: 3}
-  - {fileID: 21300000, guid: 41f9a0bef99cd394aa19b062437afdbb, type: 3}
-  - {fileID: 21300000, guid: 9654de2d8ffd52b489d1623bd0adf361, type: 3}
-  startState: 0
-  happinessLvl: 0
-  progressBar: {fileID: 403611119}
-  eaten: 0
 --- !u!1001 &1807011579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3665,3 +3613,96 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994963607}
   m_CullTransparentMesh: 1
+--- !u!1001 &2896331034260639931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2896331032701779699, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: progressBar
+      value: 
+      objectReference: {fileID: 403611119}
+    - target: {fileID: 2896331032701779699, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: kingStateImage
+      value: 
+      objectReference: {fileID: 175554107}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 481.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 271
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779708, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: backButton
+      value: 
+      objectReference: {fileID: 1902464444}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: abilityPopup
+      value: 
+      objectReference: {fileID: 683859963}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: recipeManager
+      value: 
+      objectReference: {fileID: 744553463}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: recipeButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 1458070823}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: recipeButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 1818204434}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: recipeButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 729878253}
+    - target: {fileID: 2896331032701779709, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: recipeButtons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1336563440}
+    - target: {fileID: 2896331032701779710, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}
+      propertyPath: m_Name
+      value: KitchenManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 285902b8219527d479d7e303e9fe8bd7, type: 3}

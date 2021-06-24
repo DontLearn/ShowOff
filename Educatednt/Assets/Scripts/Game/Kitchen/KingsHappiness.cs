@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Data;
-
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+using System;
 
 public class KingsHappiness : KingBehaviour {
     [Tooltip( "Pass KingStateImg UI from canvas" )]
@@ -24,6 +26,7 @@ public class KingsHappiness : KingBehaviour {
         //load data
         happinessLvl = data[ Data.HAPPINESS ];
         _burgersEaten = data[ Data.BURGERS_EATEN ];
+        if (null != progressBar)
         progressBar.value = happinessLvl;
     }
 
@@ -31,12 +34,21 @@ public class KingsHappiness : KingBehaviour {
     protected override void Awake()
     {
         base.Awake();
-        kingStateImage.GetComponent<Image>().sprite = kingStates[ startState ];
+        if (null != kingStateImage && null != kingStates && startState >= 0 && startState<kingStates.Length)
+        {
+            kingStateImage.sprite = kingStates[startState]; 
+        }
 
-        progressBar.maxValue = 3;
-        //happinessLvl = 0;
-        progressBar.value = happinessLvl;
-       // eaten = false;
+        if (null != progressBar)
+        {
+            progressBar.maxValue = 3;
+            //happinessLvl = 0;
+            progressBar.value = happinessLvl;
+            // eaten = false;
+        }
+
+
+
     }
 
 
@@ -53,7 +65,7 @@ public class KingsHappiness : KingBehaviour {
 
     private void eat()
     {
-        if (!eaten  && null != kingStates && happinessLvl >= 0 && happinessLvl < kingStates.Length)
+        if (!eaten )
         {
             
             Debug.Log(happinessLvl + "SUKABLIAT");
@@ -85,9 +97,9 @@ public class KingsHappiness : KingBehaviour {
         if (null != kingStateImage)
         {
             Image img = kingStateImage.GetComponent<Image>();
-            if(img != null)
+            if(img != null && null != kingStates && happinessLvl >= 0 && happinessLvl < kingStates.Length)
             {
-                img.sprite = kingStates[happinessLvl];
+                img.sprite = kingStates[Math.Min( happinessLvl, kingStates.Length -1) ];
             }
             
         }
@@ -113,16 +125,19 @@ public class KingsHappiness : KingBehaviour {
 
     public void BurgerEaten() {
         Debug.Log("EAT BURGER");
-        if ( _burgersEaten < 1 ) {
+        
+        if ( ++_burgersEaten < 2 ) {
             happinessLvl++;
             eat();
+        }else if (_burgersEaten > 2)
+        {
+            //load menu
+            LoadMenu();
+            return;
         }
-        else {
-            happinessLvl = 0;
-            Debug.Log( "King is sick because of you! You are fired!" );
-        }
+        
 
-        _burgersEaten++;
+        
 
         progressBar.value = happinessLvl;
     }
@@ -152,5 +167,11 @@ public class KingsHappiness : KingBehaviour {
 
         persistentData.SetIntData( Data.BURGERS_EATEN.ToString(), _burgersEaten );
         Debug.Log( $"{this}: Saved king's burger amount to {_burgersEaten}." );
+    }
+
+    private void LoadMenu()
+    {
+        PersistentData.Instance.Reset();
+        SceneManager.LoadScene(0);
     }
 }

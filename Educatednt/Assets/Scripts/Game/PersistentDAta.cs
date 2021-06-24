@@ -61,6 +61,7 @@ namespace Data {
 
         public void Reset() {
             _data.Clear();
+            _dataInstantiated = false;
         }
 
 
