@@ -13,12 +13,17 @@ namespace Player {
         [SerializeField, Range( 0f, 1f )]
         private float _dashSensitivity = 0.4f;
 
+        [SerializeField, Range(0f, 1f)]
+        private float _percentageJumpForce = 0.6f;
+
 
         private Rigidbody _rb = null;
         private bool _jumpPressed = false;
 
 
         private float _force = 0f;
+
+        
 
 
 
@@ -72,9 +77,13 @@ namespace Player {
 
 
         public void SetLevel( int level ) {
-            _force = ( level == 0 ) ? _jumpForce / 2f : _jumpForce;
+            _force = ( level == 0 ) ? _jumpForce * _percentageJumpForce : _jumpForce;
+            if (_jumpForce > 0)
+            {
+                Debug.Log($"{this}: Actual amount of jump force: {_force / _jumpForce * 100f}%.");
 
-            Debug.Log( $"{this}: Actual amount of jump force: {_force / _jumpForce * 100f}%." );
+            }
+           
         }
 
 

@@ -82,7 +82,8 @@ namespace Player {
 
         public void SetLevel( int level ) {
             // if the player is on level 0 or 1, they can't dive attack.
-            _diveAvailable = level <= 1;
+            _diveAvailable = level > 1;
+            
 
             // from level 3 on, the player deals increased damage.
             if ( level > 2 && null != _attack ) {
