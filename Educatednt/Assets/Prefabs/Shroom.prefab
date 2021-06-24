@@ -628,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitPoints: 100
-  _stability: 2
+  _stability: 1.2
   _healthBar: {fileID: 163301289258560098}
   _damageSound: {fileID: 0}
   _killSound: {fileID: 0}

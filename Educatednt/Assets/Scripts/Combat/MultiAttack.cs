@@ -28,7 +28,7 @@ namespace Combat
 
 
         private BoxCollider _currentActive = null;
-        private float _damageUpgrade = 1.6f, _knockUpgrade = 1.4f;
+        private float _damageUpgrade = 2f, _knockUpgrade = 1.6f;
 
 
 
@@ -51,13 +51,16 @@ namespace Combat
 
 
         public override void LevelUp() {
-            damage = ( int )( damage * _damageUpgrade );
-            hitForce *= _knockUpgrade;
-            _diveDamage = ( int )( _diveDamage * _damageUpgrade );
-            _diveForce *= _knockUpgrade;
+            if ( !leveledUp ) {
+                damage = ( int )( damage * _damageUpgrade );
+                hitForce *= _knockUpgrade;
+                _diveDamage = ( int )( _diveDamage * _damageUpgrade );
+                _diveForce *= _knockUpgrade;
 
-            Debug.Log( $"{this}: Damage leveled up to {damage}." );
-            Debug.Log( $"{this}: Knockback leveled up to {hitForce}." );
+                Debug.Log( $"{this}: Damage leveled up to {damage}." );
+                Debug.Log( $"{this}: Knockback leveled up to {hitForce}." );
+                leveledUp = true;
+            }
         }
 
 

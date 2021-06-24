@@ -11,10 +11,13 @@ namespace Combat {
         protected int damage = 10;
 
         [SerializeField, Range( 0f, 100f )]
-        protected float hitForce = 40f;
+        protected float hitForce = 70f;
 
         [SerializeField]
         protected int layerMask = 1 << 11;
+
+
+        protected bool leveledUp = false;
 
 
         public abstract void SetDamage( int amount );

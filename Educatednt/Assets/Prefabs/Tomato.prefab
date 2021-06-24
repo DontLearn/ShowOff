@@ -997,8 +997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c168e97a6b5bc9a40ae56077d5bbf1b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitPoints: 100
-  _stability: 2
+  _hitPoints: 120
+  _stability: 1.8
   _healthBar: {fileID: 5987812117865352902}
   _damageSound: {fileID: 0}
   _killSound: {fileID: 0}
