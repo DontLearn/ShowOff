@@ -40,7 +40,7 @@ public class AbilityPopup : MonoBehaviour
             switch (pReachedLevel)
             {
                 case 0:
-                    _abilityName.text = abilityTexts[2];
+                    _abilityName.text = abilityTexts[0];
                     background.GetComponent<Image>().sprite = outcomeSprites[0];
                     break;
                 case 1:
@@ -49,11 +49,11 @@ public class AbilityPopup : MonoBehaviour
                     break;
                 case 2:
                     _abilityName.text = abilityTexts[2];
-                    background.GetComponent<Image>().sprite = outcomeSprites[2];
+                    background.GetComponent<Image>().sprite = outcomeSprites[1];
                     break;
                 case 3:
                     _abilityName.text = abilityTexts[3];
-                    background.GetComponent<Image>().sprite = outcomeSprites[3];
+                    background.GetComponent<Image>().sprite = outcomeSprites[1];
                     break;
             }
             
