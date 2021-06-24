@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 496.74182, g: 596.5906, b: 783.574, a: 1}
+  m_IndirectSpecularColor: {r: 561.13403, g: 677.188, b: 909.83057, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10404,11 +10404,11 @@ MonoBehaviour:
   dialogueUI: {fileID: 887595801}
   tutorialimg: {fileID: 1346864130}
   tutorialImgs:
-  - {fileID: 21300000, guid: 552c6e90b2b52fd4f9b100c4ec11d7e6, type: 3}
-  - {fileID: 21300000, guid: f54c21f786aaf8a48bc23045ea86ec71, type: 3}
-  - {fileID: 21300000, guid: 0d611be7398fb174887abceb9f140c0d, type: 3}
-  - {fileID: 21300000, guid: 90dafb847b33b204c921505f8cec6c50, type: 3}
-  - {fileID: 21300000, guid: cb5196550eaa67d4e9d76b7b80c7de93, type: 3}
+  - {fileID: 21300000, guid: 2de8200276e850e428a025ab68328681, type: 3}
+  - {fileID: 21300000, guid: c9171de8e9373034c964003e91a46ed0, type: 3}
+  - {fileID: 21300000, guid: 62c21a21bda75574b8c065e45d959803, type: 3}
+  - {fileID: 21300000, guid: 8a194dac7a47f1b438cdb255829002f2, type: 3}
+  - {fileID: 21300000, guid: 5a863db6e990d0a4ea6c387bb6b73611, type: 3}
   hasImage: 1
 --- !u!4 &1100572764
 Transform:
