@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 573048559}
   - component: {fileID: 573048558}
   - component: {fileID: 573048557}
+  - component: {fileID: 573048560}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -196,8 +197,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -217,6 +218,120 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &573048560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573048556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c1ce4fb46143f46bc5cb5224c934f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 7
+  m_ObsoleteRenderingPath: 0
+  m_ObsoleteFrameSettings:
+    overrides: 0
+    enableShadow: 0
+    enableContactShadows: 0
+    enableShadowMask: 0
+    enableSSR: 0
+    enableSSAO: 0
+    enableSubsurfaceScattering: 0
+    enableTransmission: 0
+    enableAtmosphericScattering: 0
+    enableVolumetrics: 0
+    enableReprojectionForVolumetrics: 0
+    enableLightLayers: 0
+    enableExposureControl: 1
+    diffuseGlobalDimmer: 0
+    specularGlobalDimmer: 0
+    shaderLitMode: 0
+    enableDepthPrepassWithDeferredRendering: 0
+    enableTransparentPrepass: 0
+    enableMotionVectors: 0
+    enableObjectMotionVectors: 0
+    enableDecals: 0
+    enableRoughRefraction: 0
+    enableTransparentPostpass: 0
+    enableDistortion: 0
+    enablePostprocess: 0
+    enableOpaqueObjects: 0
+    enableTransparentObjects: 0
+    enableRealtimePlanarReflection: 0
+    enableMSAA: 0
+    enableAsyncCompute: 0
+    runLightListAsync: 0
+    runSSRAsync: 0
+    runSSAOAsync: 0
+    runContactShadowsAsync: 0
+    runVolumeVoxelizationAsync: 0
+    lightLoopSettings:
+      overrides: 0
+      enableDeferredTileAndCluster: 0
+      enableComputeLightEvaluation: 0
+      enableComputeLightVariants: 0
+      enableComputeMaterialVariants: 0
+      enableFptlForForwardOpaque: 0
+      enableBigTilePrepass: 0
+      isFptlEnabled: 0
+  clearColorMode: 0
+  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  clearDepth: 1
+  volumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  volumeAnchorOverride: {fileID: 0}
+  antialiasing: 0
+  SMAAQuality: 2
+  dithering: 0
+  stopNaNs: 0
+  taaSharpenStrength: 0.5
+  TAAQuality: 1
+  taaHistorySharpening: 0.35
+  taaAntiFlicker: 0.5
+  taaMotionVectorRejection: 0
+  taaAntiHistoryRinging: 0
+  physicalParameters:
+    m_Iso: 200
+    m_ShutterSpeed: 0.005
+    m_Aperture: 16
+    m_BladeCount: 5
+    m_Curvature: {x: 2, y: 11}
+    m_BarrelClipping: 0.25
+    m_Anamorphism: 0
+  flipYMode: 0
+  xrRendering: 1
+  fullscreenPassthrough: 0
+  allowDynamicResolution: 0
+  customRenderingSettings: 0
+  invertFaceCulling: 0
+  probeLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hasPersistentHistory: 0
+  exposureTarget: {fileID: 0}
+  m_RenderingPathCustomFrameSettings:
+    bitDatas:
+      data1: 72198262773251917
+      data2: 13763000468760363032
+    lodBias: 1
+    lodBiasMode: 0
+    lodBiasQualityLevel: 0
+    maximumLODLevel: 0
+    maximumLODLevelMode: 0
+    maximumLODLevelQualityLevel: 0
+    sssQualityMode: 0
+    sssQualityLevel: 0
+    sssCustomSampleBudget: 20
+    materialQuality: 0
+  renderingPathCustomFrameSettingsOverrideMask:
+    mask:
+      data1: 0
+      data2: 0
+  defaultFrameSettings: 0
 --- !u!1 &1261103190
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,6 +436,14 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2816092259880029213, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638138477364732584, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 79d6311bc0fbe4c4598ca55eee0663f2, type: 3}
     - target: {fileID: 5482269219663023186, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_SizeDelta.x
       value: 415.8269
@@ -336,6 +459,17 @@ PrefabInstance:
     - target: {fileID: 5482269219663023186, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 40.034687
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150346378298, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_Text
+      value: "Royal Food is a game which focuses on the real value of healthy food
+        and the habit of having an appropriate diet, especially for children. The
+        player as a cook needs to deal with food monsters - both healthy and junk
+        - in the enchanted forest to collect all the ingredients for the king\u2019s
+        wish, and to keep him satisfied. Some of the enemies - mostly the veggies
+        - have more health and it is harder to defeat them than others, but the players
+        need both to reach their goal. The main character needs to solve easy puzzles
+        on the level and collect all the ingredients for the recipe of the level."
       objectReference: {fileID: 0}
     - target: {fileID: 7554680150415520237, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_AnchorMax.x
@@ -361,6 +495,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -0.000015258789
       objectReference: {fileID: 0}
+    - target: {fileID: 7554680150654353301, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150684080741, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80.49999
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150698055020, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 220.913
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150698055020, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 174.0745
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150698055020, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 412.79065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150698055020, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -175.01582
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150698055022, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680150699016853, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 780f32ae4b7fcad408144a80c904449b, type: 3}
     - target: {fileID: 7554680151022921530, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -381,9 +547,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7554680151138919517, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26.499996
+      objectReference: {fileID: 0}
     - target: {fileID: 7554680151195551499, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.000017166138
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680151540614839, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7554680151643792383, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_AnchorMax.x
@@ -472,6 +646,26 @@ PrefabInstance:
     - target: {fileID: 7554680152289946859, guid: 008721385a760e24ba600369ba88e411, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7554680152308264927, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835264544009486990, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 188.619
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835264544009486990, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835264544009486990, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -184
+      objectReference: {fileID: 0}
+    - target: {fileID: 7835264544009486990, guid: 008721385a760e24ba600369ba88e411, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 197
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7554680151540614833, guid: 008721385a760e24ba600369ba88e411, type: 3}
