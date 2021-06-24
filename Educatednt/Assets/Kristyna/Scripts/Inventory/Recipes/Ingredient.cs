@@ -2,21 +2,26 @@ using UnityEngine;
 
 public class Ingredient : Pickup
 {
-    public ingredientType value = ingredientType.Rice;
-    public enum ingredientType
-    {
-        Rice = 0,
-        Tomato = 1,
-        Mushroom = 2,
-        Burger = 3
+    public ingredientType Value => _value;
+    
+    
+    public enum ingredientType {
+        RICE = 0,
+        TOMATO = 1,
+        MUSHROOM = 2,
+        BURGER = 3
     }
 
-    public override void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == playerTag)
-        {
-            if (inventory.AddItemToInventory(this.value))
-            {
+    [SerializeField]
+    private ingredientType _value = ingredientType.RICE;
+
+
+
+
+
+    public override void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == playerTag) {
+            if (inventory.AddItemToInventory(this._value)) {
                 Destroy(this.gameObject);
             }
         }

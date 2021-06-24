@@ -402,9 +402,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _inventoryItemPrefab: {fileID: 7185364112794448927}
-  _itemNumber: {fileID: 5404201903313277983}
-  _slotNumber: 3
+  inventoryItemPrefab: {fileID: 7185364112794448927}
+  itemNumber: {fileID: 5404201903313277983}
+  slotNumber: 3
 --- !u!1 &5404201904333038115
 GameObject:
   m_ObjectHideFlags: 0
@@ -469,9 +469,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _inventoryItemPrefab: {fileID: 7185364113630349078}
-  _itemNumber: {fileID: 5404201903261353320}
-  _slotNumber: 0
+  inventoryItemPrefab: {fileID: 7185364113630349078}
+  itemNumber: {fileID: 5404201903261353320}
+  slotNumber: 0
 --- !u!1 &5404201904411536734
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,9 +694,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _inventoryItemPrefab: {fileID: 7185364111644269363}
-  _itemNumber: {fileID: 5404201904459405254}
-  _slotNumber: 1
+  inventoryItemPrefab: {fileID: 7185364111644269363}
+  itemNumber: {fileID: 5404201904459405254}
+  slotNumber: 1
 --- !u!1 &5404201904716707123
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,9 +761,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _inventoryItemPrefab: {fileID: 7185364112459599902}
-  _itemNumber: {fileID: 5404201904411536734}
-  _slotNumber: 2
+  inventoryItemPrefab: {fileID: 7185364112459599902}
+  itemNumber: {fileID: 5404201904411536734}
+  slotNumber: 2
 --- !u!1 &5404201904740095240
 GameObject:
   m_ObjectHideFlags: 0
