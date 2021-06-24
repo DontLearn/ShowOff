@@ -839,6 +839,7 @@ GameObject:
   - component: {fileID: 3315558232377383466}
   - component: {fileID: 4240482285930405818}
   - component: {fileID: 5824580268842890864}
+  - component: {fileID: 612007418335163326}
   m_Layer: 11
   m_Name: Tomato
   m_TagString: Untagged
@@ -1039,6 +1040,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &612007418335163326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7410863375821054734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fd015022f48d342a79629677dc2730, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUp: {fileID: 1966981333766562308, guid: 70c7ee1b8be45d84986eb8e62df9e80c, type: 3}
 --- !u!1 &7410863375893415425
 GameObject:
   m_ObjectHideFlags: 0
