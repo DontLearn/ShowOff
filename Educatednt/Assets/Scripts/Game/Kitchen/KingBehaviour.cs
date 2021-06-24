@@ -23,6 +23,9 @@ namespace Data {
         public override void Save( PersistentData persistentData ) { }
 
 
-        protected override void Upgrade() { }
+        protected override void Upgrade() 
+        {
+            isUpgraded = true;
+        }
     }
 }

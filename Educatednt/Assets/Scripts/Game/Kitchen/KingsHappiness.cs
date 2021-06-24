@@ -15,21 +15,28 @@ public class KingsHappiness : KingBehaviour {
     private int _burgersEaten;
     public Slider progressBar;
 
+    public bool eaten;
+    
+
 
     protected override void Upgrade() {
         base.Upgrade();
         //load data
         happinessLvl = data[ Data.HAPPINESS ];
         _burgersEaten = data[ Data.BURGERS_EATEN ];
+        progressBar.value = happinessLvl;
     }
 
 
-    private void Start() {
+    protected override void Awake()
+    {
+        base.Awake();
         kingStateImage.GetComponent<Image>().sprite = kingStates[ startState ];
 
         progressBar.maxValue = 3;
-        happinessLvl = 0;
+        //happinessLvl = 0;
         progressBar.value = happinessLvl;
+       // eaten = false;
     }
 
 
@@ -37,53 +44,78 @@ public class KingsHappiness : KingBehaviour {
         if ( !isUpgraded && isLoaded ) {
             // UPGRADE
             Upgrade();
+             
         }
 
-        if ( null != kingStateImage ) {
-            Image img = kingStateImage.GetComponent<Image>();
-            if ( null != img && null != kingStates && happinessLvl >= 0 && happinessLvl < kingStates.Length ) {
-                img.sprite = kingStates[ happinessLvl ];
 
-                switch ( happinessLvl ) {
-                    case 0:
-                        break;
-                    case 1:
-                        Debug.Log( "Get higher jump" );
-                        LevelUpPlayer();
-                        break;
-                    case 2:
-                        Debug.Log( "Get bounce attack" );
-                        LevelUpPlayer();
-                        break;
-                    case 3:
-                        Debug.Log( "Get better knife damage" );
-                        LevelUpPlayer();
-                        break;
-                }
-                return;
+       
+    }
+
+    private void eat()
+    {
+        if (!eaten  && null != kingStates && happinessLvl >= 0 && happinessLvl < kingStates.Length)
+        {
+            
+            Debug.Log(happinessLvl + "SUKABLIAT");
+            eaten = true;
+            switch (happinessLvl)
+            {
+                case 0:
+                    break;
+                case 1:
+                    Debug.Log("Get higher jump");
+                    LevelUpPlayer();
+
+
+                    break;
+                case 2:
+                    Debug.Log("Get bounce attack");
+                    LevelUpPlayer();
+
+                    break;
+                case 3:
+                    Debug.Log("Get better knife damage");
+                    LevelUpPlayer();
+
+                    break;
             }
+            return;
         }
 
-        Debug.LogWarning( $"{this}: Upgrade failed." );
+        if (null != kingStateImage)
+        {
+            Image img = kingStateImage.GetComponent<Image>();
+            if(img != null)
+            {
+                img.sprite = kingStates[happinessLvl];
+            }
+            
+        }
     }
 
     private void LevelUpPlayer()
     {
+        Debug.LogWarning("PLAYER LEVEL" + PlayerBehaviour.Data.UPGRADE.ToString());
         int playerLevel;
         if (!PersistentData.Instance.TryGetIntData(PlayerBehaviour.Data.UPGRADE.ToString(), out playerLevel))
         {
             Debug.LogError($"{this} Can't parse {PlayerBehaviour.Data.UPGRADE}, not an int.");
         }
         PersistentData.Instance.SetIntData(PlayerBehaviour.Data.UPGRADE.ToString(), ++playerLevel);
+        Debug.LogWarning("PLAYER LEVEL" + PlayerBehaviour.Data.UPGRADE.ToString());
     }
     public void NormalFoodEaten() {
+        Debug.Log("EAT food");
         progressBar.value = ++happinessLvl;
+        eat();
     }
 
 
     public void BurgerEaten() {
+        Debug.Log("EAT BURGER");
         if ( _burgersEaten < 1 ) {
             happinessLvl++;
+            eat();
         }
         else {
             happinessLvl = 0;

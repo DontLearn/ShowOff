@@ -46,20 +46,20 @@ MonoBehaviour:
   recipes:
   - name: Soup
     rice: 0
-    tomatoe: 2
-    mushroom: 2
+    tomatoe: 3
+    mushroom: 1
     burger: 0
     isReady: 0
   - name: Pilaf
-    rice: 0
-    tomatoe: 2
-    mushroom: 1
+    rice: 6
+    tomatoe: 6
+    mushroom: 6
     burger: 0
     isReady: 0
   - name: Fried Rice
-    rice: 3
+    rice: 5
     tomatoe: 0
-    mushroom: 1
+    mushroom: 4
     burger: 0
     isReady: 0
   - name: Burger

@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Data;
 
-public class KitchenManager : KitchenManagerBehaviour
+public class KitchenManager : InventoryBehaviour
 {
     public Button[] recipeButtons;
     [Space(10)]
@@ -15,10 +15,10 @@ public class KitchenManager : KitchenManagerBehaviour
 
 
 
-    private int _rice = 0;
-    private int _tomato = 0;
-    private int _mushroom = 0;
-    private int _burger = 0;
+    private int _rice = 5;
+    private int _tomato = 5;
+    private int _mushroom = 5;
+    private int _burger = 2;
 
     void Start()
     {
@@ -115,5 +115,55 @@ public class KitchenManager : KitchenManagerBehaviour
     public void ChangeBackToScene(int pSceneNumber)
     {
         SceneChanger.Instance.ChangeScene(pSceneNumber);
+    }
+
+    public override void Load(PersistentData persistentData)
+    {
+        base.Load(persistentData);
+
+        Debug.Log("Loading inventory..");
+
+        if (!persistentData.TryGetIntData(Data.BURGER.ToString(), out _burger))
+        {
+            Debug.LogError($"{this} Can't parse {Data.BURGER}, not an int.");
+        }
+        if (!persistentData.TryGetIntData(Data.RICE.ToString(), out _rice))
+        {
+            Debug.LogError($"{this} Can't parse {Data.RICE}, not an int.");
+        }
+        if (!persistentData.TryGetIntData(Data.MUSHROOM.ToString(), out _mushroom))
+        {
+            Debug.LogError($"{this} Can't parse {Data.MUSHROOM}, not an int.");
+        }
+        if (!persistentData.TryGetIntData(Data.TOMATO.ToString(), out _tomato))
+        {
+            Debug.LogError($"{this} Can't parse {Data.TOMATO}, not an int.");
+        }
+
+        data[Data.BURGER] = _burger;
+        data[Data.RICE] = _rice;
+        data[Data.MUSHROOM] = _mushroom;
+        data[Data.TOMATO] = _tomato;
+
+        Debug.Log($"{this}: Loaded burgers to {_burger}.");
+        Debug.Log($"{this}: Loaded rice to {_rice}.");
+        Debug.Log($"{this}: Loaded mushrooms to {_mushroom}.");
+        Debug.Log($"{this}: Loaded tomatoes to {_tomato}.");
+    }
+
+
+    public override void Save(PersistentData persistentData)
+    {
+        Debug.Log("Saving inventory..");
+
+        persistentData.SetIntData(Data.BURGER.ToString(), _burger);
+        persistentData.SetIntData(Data.RICE.ToString(), _rice);
+        persistentData.SetIntData(Data.MUSHROOM.ToString(), _mushroom);
+        persistentData.SetIntData(Data.TOMATO.ToString(), _tomato);
+
+        Debug.Log($"{this}: Saved burgers to {_burger}.");
+        Debug.Log($"{this}: Saved rice to {_rice}.");
+        Debug.Log($"{this}: Saved mushrooms to {_mushroom}.");
+        Debug.Log($"{this}: Saved tomatoes to {_tomato}.");
     }
 }

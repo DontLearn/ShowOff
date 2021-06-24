@@ -50,8 +50,8 @@ namespace Combat {
             
             if ( IsDead() )
                 Die();
-            else if ( _damageSound )
-                _damageSound.PlayAudio();
+            //else if ( _damageSound )
+               // _damageSound.PlayAudio();
         }
 
 
@@ -73,7 +73,7 @@ namespace Combat {
                 rb.constraints = RigidbodyConstraints.None;
             }
             if ( _killSound ) {
-                _killSound.PlayAudio();
+                //_killSound.PlayAudio();
             }
         }
 

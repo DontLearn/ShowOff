@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa55db77b6aea84299bcefce8fe6ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeoutSeconds: 1
+  timeoutSeconds: 7
   _recipeName: {fileID: 3260894986416648533}
 --- !u!1 &529888322943244302
 GameObject:

@@ -1635,6 +1635,7 @@ MonoBehaviour:
   _jumpForce: 21
   _jumpDash: 4
   _dashSensitivity: 0.4
+  _percentageJumpForce: 0.6
 --- !u!114 &8562061004092929634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1650,7 +1651,7 @@ MonoBehaviour:
   struck: 0
   pressed: 0
   _downForce: 7
-  _bounceForce: 17
+  _bounceForce: 23
   _bounceDash: 11.5
   _slow: 0.7
 --- !u!114 &1041695738629044350
@@ -1701,7 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3a0e90555a3e2d40a4f0392d0f8c12d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stackLimit: 5
+  stackLimit: 6
   slots: []
 --- !u!1 &4737563938426396801
 GameObject:

@@ -13,7 +13,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DefineStage();
+       
         if (!PersistentData.Instance.TryGetIntData(PlayerBehaviour.Data.UPGRADE.ToString(), out int playerLevel))
         {
             Debug.LogError($"{this} Can't parse {PlayerBehaviour.Data.UPGRADE}, not an int.");
@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
         PersistentData.Instance.SetIntData(PlayerBehaviour.Data.UPGRADE.ToString(), ++playerLevel);
         Debug.Log(playerLevel + "ZALUPA");
         stageNumber1to3 = playerLevel;
+        DefineStage();
     }
 
    public void DefineStage()
