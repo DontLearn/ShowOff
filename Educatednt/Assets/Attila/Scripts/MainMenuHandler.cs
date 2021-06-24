@@ -13,15 +13,15 @@ public class MainMenuHandler : MonoBehaviour
     private Dropdown _resolutionDropdown;
     [SerializeField]
     private int _languageValue;
-    [SerializeField] private AudioMixer _audioMixer;
-
+    [SerializeField]
+	private AudioMixer _audioMixer;
+	
     Resolution[] _availableResolutions;
 
     private void Start()
     {
         _availableResolutions = Screen.resolutions;
         SetupResolution();
-        
     }
 
     public void StartGame()
@@ -88,16 +88,25 @@ public class MainMenuHandler : MonoBehaviour
 
     public void SetMainVolume (float _mainVolume)
     {
+		if(_audioMixer != null)
+		{
         _audioMixer.SetFloat("MainVolume", _mainVolume);
+		}
     }
 
     public void SetSFXVolume(float _sfxVolume)
     {
+		if(_audioMixer != null)
+		{
         _audioMixer.SetFloat("SFXVolume", _sfxVolume);
+		}
     }
 
     public void SetMusicVolume(float _musicVolume)
     {
+		if(_audioMixer != null)
+		{
         _audioMixer.SetFloat("MusicVolume", _musicVolume);
+		}
     }
 }
