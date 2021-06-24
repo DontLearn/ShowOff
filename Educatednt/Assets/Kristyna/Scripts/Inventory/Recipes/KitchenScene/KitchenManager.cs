@@ -7,12 +7,12 @@ public class KitchenManager : KitchenManagerBehaviour
 {
     [Space(10)] public Button[] recipeButtons;
     [Space(10)] public RecipeManager recipeManager;
+    public AbilityPopup abilityPopup;
 
-
-    private int _rice = 0;
-    private int _tomatoe = 0;
-    private int _mushroom = 0;
-    private int _burger = 0;
+    private int _rice = 3;
+    private int _tomatoe = 3;
+    private int _mushroom = 3;
+    private int _burger = 2;
 
     void Start()
     {
@@ -72,6 +72,7 @@ public class KitchenManager : KitchenManagerBehaviour
     {
         DeleteIngredienceFromInventory(recipeManager.recipes[pRecipeNumber].rice, recipeManager.recipes[pRecipeNumber].tomatoe, recipeManager.recipes[pRecipeNumber].mushroom, recipeManager.recipes[pRecipeNumber].burger);
         HideAllRecipeButtons();
+        abilityPopup.ActivatePopup(this.GetComponent<KingsHappiness>().happinessLvl);
     }
     private void HideAllRecipeButtons()
     {
