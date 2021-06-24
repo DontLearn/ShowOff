@@ -9,10 +9,10 @@ public class KitchenManager : KitchenManagerBehaviour
     [Space(10)] public RecipeManager recipeManager;
     public AbilityPopup abilityPopup;
 
-    private int _rice = 3;
-    private int _tomatoe = 3;
-    private int _mushroom = 3;
-    private int _burger = 2;
+    private int _rice = 2;
+    private int _tomato = 2;
+    private int _mushroom = 2;
+    private int _burger = 1;
 
     void Start()
     {
@@ -30,11 +30,11 @@ public class KitchenManager : KitchenManagerBehaviour
 
         DecideActiveRecipeButtons();
 
-        Debug.Log($"Inventory items: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
+        Debug.Log($"Inventory items: {_rice}, {_tomato}, {_mushroom}, {_burger}");
     }
     private void DecideActiveRecipeButtons()
     {
-        recipeManager.CheckAvailableRecipes(_rice, _tomatoe, _mushroom, _burger);
+        recipeManager.CheckAvailableRecipes(_rice, _tomato, _mushroom, _burger);
 
         for(int index = 0; index < recipeButtons.Length; ++index)
         {
@@ -49,16 +49,7 @@ public class KitchenManager : KitchenManagerBehaviour
         }
     }
 
-    protected override void Upgrade()
-    {
-        base.Upgrade();
-        _rice = data["rice"];
-        _tomatoe = data["tomatoe"];
-        _mushroom = data["mushroom"];
-        _burger = data["burger"];
-
-        Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomatoe = {_tomatoe}, mushroom = {_mushroom}, burger = {_burger}");
-    }
+    //SETUP
     private void Update()
     {
         if (!isUpgraded && isLoaded)
@@ -66,6 +57,19 @@ public class KitchenManager : KitchenManagerBehaviour
             // UPGRADE
             Upgrade();
         }
+    }
+
+
+    protected override void Upgrade()
+    {
+        base.Upgrade();
+        _rice = data[Data.RICE];
+        _tomato = data[Data.TOMATO];
+        _mushroom = data[Data.MUSHROOM];
+        _burger = data[Data.BURGER];
+
+
+        Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomato = {_tomato}, mushroom = {_mushroom}, burger = {_burger}");
     }
 
     public void CookRecipe(int pRecipeNumber)
@@ -85,17 +89,17 @@ public class KitchenManager : KitchenManagerBehaviour
     {
         //change data:
         _rice -= pRice;
-        _tomatoe -= pTomatoe;
+        _tomato -= pTomatoe;
         _mushroom -= pMushroom;
         _burger -= pBurger;
 
         //save data:
-        data["rice"] = _rice;
-        data["tomatoe"] = _tomatoe;
-        data["mushroom"] = _mushroom;
-        data["burger"] = _burger;
+        data[Data.RICE] = _rice;
+        data[Data.TOMATO] = _tomato;
+        data[Data.MUSHROOM] = _mushroom;
+        data[Data.BURGER] = _burger;
 
-        Debug.Log($"Recipe cooked! Inventory now: {_rice}, {_tomatoe}, {_mushroom}, {_burger}");
+        Debug.Log($"Recipe cooked! Inventory now: {_rice}, {_tomato}, {_mushroom}, {_burger}");
     }
     public void ChangeBackToScene(int pSceneNumber)
     {

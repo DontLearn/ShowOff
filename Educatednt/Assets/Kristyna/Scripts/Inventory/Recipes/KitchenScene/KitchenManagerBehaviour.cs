@@ -5,48 +5,36 @@ namespace Data
 {
     public class KitchenManagerBehaviour : PersistentDataBehaviour
     {
-        [SerializeField]
-        protected Dictionary<string, int> data = new Dictionary<string, int>()
+        public enum Data
         {
-            {"rice", 0 },
-            {"tomatoe", 0 },
-            {"mushroom", 0 },
-            {"burger", 0 }
+            RICE,
+            TOMATO,
+            MUSHROOM,
+            BURGER,
+        }
+
+
+        protected Dictionary<Data, int> data = new Dictionary<Data, int>() {
+            {Data.RICE, 0 },
+            {Data.TOMATO, 0 },
+            {Data.MUSHROOM, 0 },
+            {Data.BURGER, 0 }
         };
 
 
 
         public override void Load(PersistentData persistentData)
         {
-            Dictionary<string, int> newDic = new Dictionary<string, int>();
-
-            foreach (KeyValuePair<string, int> pair in data)
-            {
-                if (int.TryParse(persistentData.GetStringData(pair.Key), out int data))
-                {
-                    newDic.Add(pair.Key, pair.Value);
-                }
-                else
-                {
-                    Debug.LogError($"Could not parse {pair.Key} to an int");
-                }
-            }
-
-            data = newDic;
             isLoaded = true;
         }
 
 
-        public override void Save(PersistentData persistentData)
+        public override void Save(PersistentData persistentData) { }
+
+
+
+        protected override void Upgrade()
         {
-            foreach (KeyValuePair<string, int> pair in data)
-            {
-                persistentData.SetIntData(pair.Key, pair.Value);
-            }
-        }
-
-
-        protected override void Upgrade() {
             isUpgraded = true;
         }
     }
