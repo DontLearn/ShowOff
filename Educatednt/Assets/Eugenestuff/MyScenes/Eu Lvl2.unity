@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 4603.6562, g: 2565.0332, b: 1968.5039, a: 1}
+  m_IndirectSpecularColor: {r: 4604.507, g: 2564.4375, b: 1965.6133, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1924,6 +1924,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &94156038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 762640888243239349, guid: 160a6c218edbfdf45a58189a3454ec34, type: 3}
+  m_PrefabInstance: {fileID: 94156033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &94824226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22072,7 +22077,7 @@ PrefabInstance:
     - target: {fileID: 6912714934631739523, guid: 2601594c0f318f345924610b0ea1573f, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 94156038}
     - target: {fileID: 6912714935905136002, guid: 2601594c0f318f345924610b0ea1573f, type: 3}
       propertyPath: sentences.Array.data[0]
       value: 'Your body needs fats to function properly but they need to be the right
@@ -24648,7 +24653,7 @@ PrefabInstance:
     - target: {fileID: 6912714934631739523, guid: 2601594c0f318f345924610b0ea1573f, type: 3}
       propertyPath: dialogueUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 94156038}
     - target: {fileID: 6912714935905136002, guid: 2601594c0f318f345924610b0ea1573f, type: 3}
       propertyPath: sentences.Array.data[0]
       value: "Many junk foods require \u201Cthickening agents.\u201D The substance
