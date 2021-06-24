@@ -23,6 +23,8 @@ namespace Combat {
         [SerializeField]
         private PlayAudioSource _killSound;
 
+        private int _maxPoints = 100;
+
 
 
         private void Start() {
@@ -58,7 +60,9 @@ namespace Combat {
 
 
         public void AddHitPoints( int amount ) {
-            _hitPoints += amount;
+            
+            
+            _hitPoints = Math.Min(_hitPoints + amount, _maxPoints);
 
             Debug.Log( $"{this}: Updating Data {Data.HEALTH}: new hit points: {_hitPoints}." );
             data[ Data.HEALTH ] = _hitPoints;
