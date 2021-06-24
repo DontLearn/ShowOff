@@ -5,14 +5,20 @@ using Data;
 
 public class KitchenManager : KitchenManagerBehaviour
 {
-    [Space(10)] public Button[] recipeButtons;
-    [Space(10)] public RecipeManager recipeManager;
+    public Button[] recipeButtons;
+    [Space(10)]
+    public RecipeManager recipeManager;
+    [Space(10)] 
     public AbilityPopup abilityPopup;
+    [Space(10)]
+    public GameObject backButton;
 
-    private int _rice = 2;
-    private int _tomato = 2;
-    private int _mushroom = 2;
-    private int _burger = 1;
+
+
+    private int _rice = 0;
+    private int _tomato = 0;
+    private int _mushroom = 0;
+    private int _burger = 0;
 
     void Start()
     {
@@ -29,7 +35,7 @@ public class KitchenManager : KitchenManagerBehaviour
         }
 
         DecideActiveRecipeButtons();
-
+        showBackButton(false);
         Debug.Log($"Inventory items: {_rice}, {_tomato}, {_mushroom}, {_burger}");
     }
     private void DecideActiveRecipeButtons()
@@ -77,6 +83,11 @@ public class KitchenManager : KitchenManagerBehaviour
         DeleteIngredienceFromInventory(recipeManager.recipes[pRecipeNumber].rice, recipeManager.recipes[pRecipeNumber].tomatoe, recipeManager.recipes[pRecipeNumber].mushroom, recipeManager.recipes[pRecipeNumber].burger);
         HideAllRecipeButtons();
         abilityPopup.ActivatePopup(this.GetComponent<KingsHappiness>().happinessLvl);
+        showBackButton(true);
+    }
+    private void showBackButton(bool pShow)
+    {
+        backButton.gameObject.SetActive(pShow);
     }
     private void HideAllRecipeButtons()
     {
@@ -103,6 +114,6 @@ public class KitchenManager : KitchenManagerBehaviour
     }
     public void ChangeBackToScene(int pSceneNumber)
     {
-        SceneManager.LoadScene(pSceneNumber);
+        SceneChanger.Instance.ChangeScene(pSceneNumber);
     }
 }
