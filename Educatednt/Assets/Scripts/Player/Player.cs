@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Data;
 
@@ -5,6 +6,11 @@ using Data;
 namespace Player {
     [RequireComponent( typeof( PlayerAnimator ), typeof( PlayerMovement ) )]
     public class Player : PlayerBehaviour {
+        /// REMOVE {
+        //[HideInInspector]
+        //public int UPGRADELEVEL => _upgradeLevel;
+        /// }
+
         [SerializeField]
         private Controls _controls = null;
 
@@ -26,7 +32,9 @@ namespace Player {
 
 
 
-        private void Start() {
+        protected override void Awake() {
+            base.Awake();
+
             LoadComponents();
             LoadInput();
         }
@@ -62,8 +70,7 @@ namespace Player {
         protected override void Upgrade() {
             base.Upgrade();
             _upgradeLevel = data[ Data.UPGRADE ];
-
-            Debug.Log( $"{this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
+            Debug.Log( $"====UPGRADE==== {this}: Upgraded player's ability level. Is now {_upgradeLevel}." );
 
             CheckLevels();
         }
@@ -177,10 +184,10 @@ namespace Player {
         }
 
 
-        public void Levelup() {
+        /*public void Levelup() {
             ++_upgradeLevel;
             CheckLevels();
-        }
+        }*/
 
 
         private void CheckLevels() {
@@ -209,13 +216,13 @@ namespace Player {
             }
 
             data[ Data.UPGRADE ] = _upgradeLevel;
-            Debug.Log( $"{this}: Loaded upgrade level to {_upgradeLevel}." );
+            Debug.Log( $"====UPGRADE==== {this}: Loaded upgrade level to {_upgradeLevel}." );
         }
 
 
         public override void Save( PersistentData persistentData ) {
             persistentData.SetIntData( Data.UPGRADE.ToString(), _upgradeLevel );
-            Debug.Log( $"{this}: Saved upgrade level to {_upgradeLevel}." );
+            Debug.Log( $"====UPGRADE==== {this}: Saved upgrade level to {_upgradeLevel}." );
         }
     }
 }

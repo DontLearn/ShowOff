@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4513029066720869222, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
+      propertyPath: _attackOverride.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4737563938146979244, guid: 667c442b05d65194b8bec6e3b9a0b561, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1499,7 +1503,7 @@ MonoBehaviour:
       enableBigTilePrepass: 0
       isFptlEnabled: 0
   clearColorMode: 0
-  backgroundColorHDR: {r: 0.025, g: 0.07, b: 0.19, a: 0}
+  backgroundColorHDR: {r: 0, g: 0, b: 0, a: 0}
   clearDepth: 1
   volumeLayerMask:
     serializedVersion: 2

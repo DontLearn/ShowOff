@@ -5,7 +5,7 @@ namespace Combat {
     public abstract class Attack : MonoBehaviour {
         public int Damage => damage;
         public int Knockback => ( int )hitForce;
-        public int Level => level;
+        public int AttackLevel => attackLevel;
 
 
         [SerializeField, Range( 0, 100 )]
@@ -18,7 +18,7 @@ namespace Combat {
         protected int layerMask = 1 << 11;
 
 
-        protected int level = 0;
+        protected int attackLevel = 0;
 
 
         public abstract void SetAttackLevel( int amount );

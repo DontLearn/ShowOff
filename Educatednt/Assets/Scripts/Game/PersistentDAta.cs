@@ -36,6 +36,7 @@ namespace Data {
                 Console.WriteLine( $"{this}: Saving {behaviour.name}.." );
                 behaviour.Save( this );
             }
+            Console.WriteLine( "Saved" );
         }
 
 
