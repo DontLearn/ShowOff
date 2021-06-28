@@ -18,7 +18,23 @@ public class KingsHappiness : KingBehaviour {
     public Slider progressBar;
 
     public bool eaten;
-    
+
+
+
+    protected override void Awake() {
+        base.Awake();
+
+        if ( null != kingStateImage && null != kingStates && startState >= 0 && startState < kingStates.Length ) {
+            kingStateImage.sprite = kingStates[ startState ];
+        }
+
+        if ( null != progressBar ) {
+            progressBar.maxValue = 3;
+            //happinessLvl = 0;
+            progressBar.value = happinessLvl;
+            // eaten = false;
+        }
+    }
 
 
     protected override void Upgrade() {
@@ -26,29 +42,10 @@ public class KingsHappiness : KingBehaviour {
         //load data
         happinessLvl = data[ Data.HAPPINESS ];
         _burgersEaten = data[ Data.BURGERS_EATEN ];
-        if (null != progressBar)
-        progressBar.value = happinessLvl;
-    }
 
-
-    protected override void Awake()
-    {
-        base.Awake();
-        if (null != kingStateImage && null != kingStates && startState >= 0 && startState<kingStates.Length)
-        {
-            kingStateImage.sprite = kingStates[startState]; 
-        }
-
-        if (null != progressBar)
-        {
-            progressBar.maxValue = 3;
-            //happinessLvl = 0;
+        if ( null != progressBar ) {
             progressBar.value = happinessLvl;
-            // eaten = false;
         }
-
-
-
     }
 
 
@@ -56,46 +53,34 @@ public class KingsHappiness : KingBehaviour {
         if ( !isUpgraded && isLoaded ) {
             // UPGRADE
             Upgrade();
-             
         }
-
-
-       
     }
 
-    private void eat()
-    {
-        if (!eaten )
-        {
-            
+    private void Eat() {
+        if (!eaten ) {
             Debug.Log(happinessLvl + "SUKABLIAT");
             eaten = true;
-            switch (happinessLvl)
-            {
+
+            switch (happinessLvl) {
                 case 0:
                     break;
                 case 1:
                     Debug.Log("Get higher jump");
                     LevelUpPlayer();
-
-
                     break;
                 case 2:
                     Debug.Log("Get bounce attack");
                     LevelUpPlayer();
-
                     break;
                 case 3:
                     Debug.Log("Get better knife damage");
                     LevelUpPlayer();
-
                     break;
             }
             return;
         }
 
-        if (null != kingStateImage)
-        {
+        if (null != kingStateImage) {
             Image img = kingStateImage.GetComponent<Image>();
             if(img != null && null != kingStates && happinessLvl >= 0 && happinessLvl < kingStates.Length)
             {
@@ -105,8 +90,8 @@ public class KingsHappiness : KingBehaviour {
         }
     }
 
-    private void LevelUpPlayer()
-    {
+
+    private void LevelUpPlayer() {
         Debug.LogWarning("PLAYER LEVEL" + PlayerBehaviour.Data.UPGRADE.ToString());
         int playerLevel;
         if (!PersistentData.Instance.TryGetIntData(PlayerBehaviour.Data.UPGRADE.ToString(), out playerLevel))
@@ -116,10 +101,12 @@ public class KingsHappiness : KingBehaviour {
         PersistentData.Instance.SetIntData(PlayerBehaviour.Data.UPGRADE.ToString(), ++playerLevel);
         Debug.LogWarning("PLAYER LEVEL" + PlayerBehaviour.Data.UPGRADE.ToString());
     }
+
+
     public void NormalFoodEaten() {
         Debug.Log("EAT food");
         progressBar.value = ++happinessLvl;
-        eat();
+        Eat();
     }
 
 
@@ -128,7 +115,7 @@ public class KingsHappiness : KingBehaviour {
         
         if ( ++_burgersEaten < 2 ) {
             happinessLvl++;
-            eat();
+            Eat();
         }else if (_burgersEaten > 2)
         {
             //load menu
@@ -168,6 +155,7 @@ public class KingsHappiness : KingBehaviour {
         persistentData.SetIntData( Data.BURGERS_EATEN.ToString(), _burgersEaten );
         Debug.Log( $"{this}: Saved king's burger amount to {_burgersEaten}." );
     }
+
 
     private void LoadMenu()
     {

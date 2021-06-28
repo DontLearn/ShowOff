@@ -15,7 +15,7 @@ namespace Combat {
 
 
         public override void SetAttackLevel( int amount ) {
-            level = amount;
+            attackLevel = amount;
         }
 
 

@@ -7,11 +7,12 @@ using Player;
 public class Debugger : MonoBehaviour
 {
     [SerializeField]
+    //private Player.Player _player = null;
     //private PlayerAttack _attack = null;
     //private Ingredient _ingredient = null;
     //private Slot _slot = null;
     //private Inventory _inventory = null;
-    private bool _shown = false;
+    //private bool _shown = false;
 
 
     private Text _textBlock = null;
@@ -59,6 +60,11 @@ public class Debugger : MonoBehaviour
 
         /*if ( null != _ingredient ) {
             _textBlock.text += $"Ingredient type: {_ingredient.Value.ToString()}.\r\n";
+            _textTime = _lifeTime;
+        }*/
+
+        /*if ( null != _player ) {
+            _textBlock.text += $"Playerlevel = {_player.UPGRADELEVEL}.\r\n";
             _textTime = _lifeTime;
         }*/
 

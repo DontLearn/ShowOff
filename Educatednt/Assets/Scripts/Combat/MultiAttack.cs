@@ -51,11 +51,11 @@ namespace Combat
 
 
         public override void LevelUp( int level ) {
-            this.level = level - 2;
+            attackLevel = level - 2;
 
-            damage = ( int )( damage * ( 1 + _damageUpgrade * level ) );
+            damage = ( int )( damage * ( 1 + _damageUpgrade * attackLevel ) );
             hitForce *= _knockUpgrade;
-            _diveDamage = ( int )( _diveDamage * ( 1 + _damageUpgrade * level ) );
+            _diveDamage = ( int )( _diveDamage * ( 1 + _damageUpgrade * attackLevel ) );
             _diveForce *= _knockUpgrade;
 
             Debug.Log( $"{this}: Damage leveled up to {damage}." );
@@ -64,7 +64,7 @@ namespace Combat
 
 
         public override void SetAttackLevel( int amount ) {
-            level = amount;
+            attackLevel = amount;
         }
 
 

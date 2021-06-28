@@ -20,24 +20,22 @@ public class KitchenManager : InventoryBehaviour
     private int _mushroom = 0;
     private int _burger = 0;
 
-    void Start()
-    {
-        if (!GameObject.FindGameObjectWithTag("RecipeManager"))
-        {
-            Debug.LogError("Failed to find game object with tag RecipeManager in the scene!");
-            Destroy(this);
+
+
+
+    private void Start() {
+        if ( !GameObject.FindGameObjectWithTag( "RecipeManager" ) ) {
+            Debug.LogError( "Failed to find game object with tag RecipeManager in the scene!" );
+            Destroy( this );
             return;
         }
-        else
-        {
-            recipeManager = GameObject.FindGameObjectWithTag("RecipeManager").GetComponent<RecipeManager>();
-            Debug.Assert(recipeManager, "RecipeManager object does not contain RecipeManager script!");
+        else {
+            recipeManager = GameObject.FindGameObjectWithTag( "RecipeManager" ).GetComponent<RecipeManager>();
+            Debug.Assert( recipeManager, "RecipeManager object does not contain RecipeManager script!" );
         }
-
-        DecideActiveRecipeButtons();
-        //showBackButton(true);
-        Debug.Log($"Inventory items: {_rice}, {_tomato}, {_mushroom}, {_burger}");
     }
+
+
     private void DecideActiveRecipeButtons()
     {
         recipeManager.CheckAvailableRecipes(_rice, _tomato, _mushroom, _burger);
@@ -54,6 +52,7 @@ public class KitchenManager : InventoryBehaviour
             }
         }
     }
+
 
     //SETUP
     private void Update()
@@ -75,6 +74,7 @@ public class KitchenManager : InventoryBehaviour
         _burger = data[Data.BURGER];
 
 
+        DecideActiveRecipeButtons();
         Debug.Log($"{this}: Upgraded ingredients are now: rice = {_rice}, tomato = {_tomato}, mushroom = {_mushroom}, burger = {_burger}");
     }
 

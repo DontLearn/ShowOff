@@ -38,7 +38,9 @@ namespace Player {
 
 
 
-        private void Start() {
+        protected override void Awake() {
+            base.Awake();
+
             LoadComponents();
         }
 
@@ -220,7 +222,7 @@ namespace Player {
                 }
             }
 
-            data[ Data.ATTACK_LEVEL ] = _attack.Level;
+            data[ Data.ATTACK_LEVEL ] = _attack.AttackLevel;
             _attack.SetAttackLevel( level );
             Debug.Log( $"{this}: Loaded attack's level to {level}." );
 
@@ -245,8 +247,8 @@ namespace Player {
                 }
             }
 
-            persistentData.SetIntData( Data.ATTACK_LEVEL.ToString(), _attack.Level );
-            Debug.Log( $"{this}: Saved attack's level to {_attack.Level}." );
+            persistentData.SetIntData( Data.ATTACK_LEVEL.ToString(), _attack.AttackLevel );
+            Debug.Log( $"{this}: Saved attack's level to {_attack.AttackLevel}." );
 
             persistentData.SetIntData( Data.DAMAGE.ToString(), _attack.Damage );
             Debug.Log( $"{this}: Saved damage to {_attack.Damage}." );

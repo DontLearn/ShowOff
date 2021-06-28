@@ -28,7 +28,9 @@ namespace Player {
 
 
 
-        void Start() {
+        protected override void Awake() {
+            base.Awake();
+
             _rb = GetComponent<Rigidbody>();
             Debug.Assert( null != _rb, $"{name} is missing a RigidBody component." );
         }

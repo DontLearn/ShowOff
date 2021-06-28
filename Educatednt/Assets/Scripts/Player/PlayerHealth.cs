@@ -27,7 +27,9 @@ namespace Combat {
 
 
 
-        private void Start() {
+        protected override void Awake() {
+            base.Awake();
+
             if ( _healthBar ) {
                 _healthBar.SetMaxHealth( _hitPoints );
                 _healthBar.SetHealth( _hitPoints );
