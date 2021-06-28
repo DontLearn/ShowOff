@@ -747,8 +747,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c60aca28bf7b904ca9327c77d66c40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextImage: {fileID: 637878794}
-  time: 1
+  nextImage: {fileID: 1978244067}
+  time: 18
 --- !u!1 &1448844140
 GameObject:
   m_ObjectHideFlags: 0
